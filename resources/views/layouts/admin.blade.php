@@ -4,12 +4,13 @@
 <head>
 
 <meta charset="utf-8" />
-<title>Golf Course | Admin</title>
+<title>ALLCaps</title>
+<link rel="icon" href="assets/images/AC icon.ico" type="image/icon type">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
 <meta content="Themesbrand" name="author" />
 <!-- App favicon -->
-<link rel="shortcut icon" href="assets/images/favicon.ico">
+<link rel="shortcut icon" href="assets/images/AC icon.ico">
 
 <link rel="stylesheet" href="{{ asset('libs/aos/aos.css') }}" />
 
@@ -40,64 +41,100 @@ color: #fff;
 color: #fff;
 }
 
+.navbar-nav{
+    border: none;
+    font-size: 100px;
+
+}
+
+.text-white{
+    font-size: 100px;
+}
+
+/* .horizontal-logo{
+    background: none;
+    display: block; */
+/* } */
+.logo{
+    background: none;
+    display: block;
+    text-align: center;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 0 auto;
+    margin-top: 30px;
+    margin-bottom: 50px; 
+}
+.navbar{
+  height: 70px;
+  width: 100%;
+  padding: 14px 30px;
+  background-color: #1b4cd3;
+  position: relative;
+}
+.navbar .nav-header{
+  display: inline;
+}
+.navbar .nav-header .nav-logo{
+  display: inline-block;
+  margin-top: -7px;
+}
 </style>
 <body>
 <!-- Begin page -->
 <div id="layout-wrapper">
 
 <header id="page-topbar">
-<div class="layout-width">
-<div class="navbar-header">
-    <div class="d-flex">
-        <!-- LOGO -->
-        <div class="navbar-brand-box horizontal-logo">
-            <a href="index.html" class="logo logo-dark">
-                <span class="logo-sm">
-                    <img src="assets/images/logo-sm.png" alt="" height="22">
-                </span>
-                <span class="logo-lg">
-                    <img src="assets/images/logo-dark.png" alt="" height="17">
-                </span>
-            </a>
+    <div class="layout-width">
+        <div class="navbar-header">
+                <div class="nav-logo">
+                    <img src="images/AC WORDMARK.png" alt="horizontal-logo">
+                </div>
+                <div class="d-flex">
+                <div class="navbar-brand-box">
+                    <a href="index.html" class="logo logo-dark">
+                        <img src="images/AC WORDMARK.png" alt="" height="22">
+                    </a>
 
-            <a href="index.html" class="logo logo-light">
-                <span class="logo-sm">
-                    <img src="assets/images/logo-sm.png" alt="" height="22">
-                </span>
-                <span class="logo-lg">
-                    <img src="assets/images/logo-light.png" alt="" height="17">
-                </span>
-            </a>
-        </div>
+                    <a href="index.html" class="logo logo-light">
+                        <span class="logo-sm">
+                            <img src="images/logo-sm.png" alt="" height="22">
+                        </span>
+                        <span class="logo-lg">
+                            <img src="images/logo-light.png" alt="" height="17">
+                        </span>
+                    </a>
+                </div>
 
-        {{-- <button type="button" class="btn btn-sm px-3 fs-16 header-item vertical-menu-btn topnav-hamburger" id="topnav-hamburger-icon">
-            <span class="hamburger-icon">
-                <span></span>
-                <span></span>
-                <span></span>
-            </span>
-        </button> --}}
-
-        <!-- App Search-->
-
-    </div>
-
-    <div class="d-flex align-items-center">
-
-
-        <div class="dropdown ms-sm-3 header-item topbar-user" >
-            <button type="button" class="btn" id="page-header-user-dropdown" data-bs-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <span class="d-flex align-items-center">
-                    <span class="text-start ms-xl-0">
-                        <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{ Auth::user()->name }}</span>
+                {{-- <button type="button" class="btn btn-sm px-3 fs-16 header-item vertical-menu-btn topnav-hamburger" id="topnav-hamburger-icon">
+                    <span class="hamburger-icon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
                     </span>
-                </span>
-            </button>
-            <div class="dropdown-menu dropdown-menu-end">
-                <!-- item-->
-                <h6 class="dropdown-header">{{ Auth::user()->name }}</h6>
-                <!-- <a class="dropdown-item" href="pages-profile.html"><i
+                </button> --}}
+
+                <!-- App Search-->
+
+            </div>
+
+            <div class="d-flex align-items-center">
+
+
+                <div class="dropdown ms-sm-3 header-item topbar-user">
+                    <button type="button" class="btn" id="page-header-user-dropdown" data-bs-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <span class="d-flex align-items-center">
+                            <span class="text-start ms-xl-0">
+                                <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{ Auth::user()->name }}</span>
+                            </span>
+                        </span>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-end">
+                        <!-- item-->
+                        <h6 class="dropdown-header">{{ Auth::user()->name }}</h6>
+                        <!-- <a class="dropdown-item" href="pages-profile.html"><i
                         class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span
                         class="align-middle">Profile</span></a> -->
 
@@ -107,27 +144,21 @@ color: #fff;
                         </a>
 
 
-                <form id="logout-form" action="{{ route('logout-admin') }}" method="POST" class="d-none">
-                    @csrf
-                </form>
+                        <form id="logout-form" action="{{ route('logout-admin') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
 </header>
+
     <!-- ========== App Menu ========== -->
-    <div class="app-menu navbar-menu" style="background: #197f5a;">
+    <div class="app-menu navbar-menu" style="background: #3F3F3F;">
 
-        <div class="card py-2 px-3 m-2">
-            <div class="row">
-                <div class="col-5 text-center">
-                    <img loading="lazy" src="{{asset('images/logo.png')}}" alt="..." width="80" height="80" >
-                </div>
-                <div class="col-1 mt-3 text-center">
-                        Golf Company
-                </div>
-            </div>
-
+        <div class="logo">
+            <img loading="lazy" src="{{asset('images/AC LOGO light.png')}}" alt="..." width="120" height="120" >
         </div>
 
         <div id="scrollbar">
@@ -138,7 +169,7 @@ color: #fff;
                 
                 @if(auth()->user()->role === "admin")
                 <ul class="navbar-nav" id="navbar-nav">
-                    <li class="menu-title text-white"><span data-key="t-menu">Menu</span></li>
+                    <!-- <li class="menu-title text-white"><span data-key="t-menu">Menu</span></li> -->
                     <li class="nav-item">
                         <a class="nav-link menu-link text-white" href="{{route('member')}}">
                             <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards">Members</span>
@@ -186,6 +217,10 @@ color: #fff;
 
                     @if(auth()->user()->role === "kiosk")
                     <li class="nav-item" >
+                        <a class="nav-link menu-link text-white" href="{{route('kiosk')}}">
+                            <i class="ri-pages-line"></i> <span data-key="t-pages">kiosk</span>
+                        </a>
+                    </li><li class="nav-item" >
                         <a class="nav-link menu-link text-white" href="{{route('kiosk')}}">
                             <i class="ri-pages-line"></i> <span data-key="t-pages">kiosk</span>
                         </a>

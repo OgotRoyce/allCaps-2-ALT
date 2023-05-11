@@ -2,9 +2,8 @@
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg">
 
 <head>
-
     <meta charset="utf-8" />
-    <title>Golf Course | Admin</title>
+    <title>AllCaps | Admin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
@@ -28,7 +27,7 @@
 </head>
 <style>
     .form_container {
-        margin-top: 50px;
+        margin-top: 150px;
         width: 30%;
         /* width: fit-content; */
         height: fit-content;
@@ -113,11 +112,12 @@
         width: 100%;
         height: 40px;
         border: 0;
-        background: #115DFC;
+        /* background: #115DFC; */
         border-radius: 7px;
         outline: none;
-        color: #ffffff;
         cursor: pointer;
+        background-color: #FFAC1C;
+        color: white;
     }
     .sign-in_ggl {
         width: 100%;
@@ -164,6 +164,10 @@
         border: 0;
         background-color: #e8e8e8;
     }
+    .text_primary {
+        /* font-size: 0.75rem; */
+        color: #FFAC1C;
+    }
     .note {
         font-size: 0.75rem;
         color: #8B8E98;
@@ -179,7 +183,12 @@
  <form class="form_container mx-auto" action="{{ route('authenticated') }}" method="post">
         {!! csrf_field() !!}
     
-        <div class="logo_container"></div>
+        <!-- <div class="logo_container">
+            <img src="path/to/image.jpg" alt="allcaps logo">
+        </div> -->
+        <div class="text-center mt-2">
+            <h5 class="text_primary">Welcome!</h5>
+        </div>
         <div class="title_container">
             <p class="title">Login to your Account</p>
         </div>
