@@ -1,4 +1,7 @@
 <!doctype html>
+<?php
+  date_default_timezone_set("Asia/Manila");
+?>
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg">
 
 <head>
@@ -24,6 +27,7 @@
 
 <link rel="stylesheet" href="{{ asset('css/custom.min.css') }}" />
 
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 
 {{-- boostrap CDN --}}
 {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> --}}
@@ -33,6 +37,11 @@
 
 </head>
 <style>
+.header {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
 .menu-title{
 color: #fff;
 }
@@ -41,6 +50,10 @@ color: #fff;
 color: #fff;
 }
 
+.nav-logo{
+  /* height: 70px; */
+  width: 10%;
+}
 .navbar-nav{
     border: none;
     font-size: 100px;
@@ -80,6 +93,42 @@ color: #fff;
   display: inline-block;
   margin-top: -7px;
 }
+.app-menu .nav-link.active {
+    background-color: #FFAC1C;
+}
+.navbar-header {
+  font-size: 0;
+}
+
+.header-content-wrapper {
+  display: flex;
+  width: 100%;
+  font-size: initial;
+}
+
+.header-item,
+.nav-logo {
+  display: inline-block;
+  font-size: initial;
+}
+
+.header-item {
+  margin-right: 1rem;
+}
+
+.logout-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.logout-button {
+    background-color: #525252;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    margin-top: 500px;
+}
 </style>
 <body>
 <!-- Begin page -->
@@ -88,77 +137,35 @@ color: #fff;
 <header id="page-topbar">
     <div class="layout-width">
         <div class="navbar-header">
-                <div class="nav-logo">
-                    <img src="images/AC WORDMARK.png" alt="horizontal-logo">
-                </div>
-                <div class="d-flex">
-                <div class="navbar-brand-box">
-                    <a href="index.html" class="logo logo-dark">
-                        <img src="images/AC WORDMARK.png" alt="" height="22">
-                    </a>
-
-                    <a href="index.html" class="logo logo-light">
-                        <span class="logo-sm">
-                            <img src="images/logo-sm.png" alt="" height="22">
-                        </span>
-                        <span class="logo-lg">
-                            <img src="images/logo-light.png" alt="" height="17">
-                        </span>
-                    </a>
-                </div>
-
-                {{-- <button type="button" class="btn btn-sm px-3 fs-16 header-item vertical-menu-btn topnav-hamburger" id="topnav-hamburger-icon">
+            <div class="header-content-wrapper d-flex align-items-center">
+                <button type="button" class="btn btn-sm px-3 fs-16 header-item vertical-menu-btn topnav-hamburger" id="topnav-hamburger-icon">
                     <span class="hamburger-icon">
                         <span></span>
                         <span></span>
                         <span></span>
                     </span>
-                </button> --}}
+                </button> 
 
-                <!-- App Search-->
+                <div class="nav-logo d-flex align-items-center ms-3">
+                    <img src="{{ asset('images/AC WORDMARK.png') }}" alt="horizontal-logo" style="width: 70%">
+                </div>
 
-            </div>
-
-            <div class="d-flex align-items-center">
-
-
-                <div class="dropdown ms-sm-3 header-item topbar-user">
-                    <button type="button" class="btn" id="page-header-user-dropdown" data-bs-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        <span class="d-flex align-items-center">
-                            <span class="text-start ms-xl-0">
-                                <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{ Auth::user()->name }}</span>
-                            </span>
-                        </span>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-end">
-                        <!-- item-->
-                        <h6 class="dropdown-header">{{ Auth::user()->name }}</h6>
-                        <!-- <a class="dropdown-item" href="pages-profile.html"><i
-                        class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span
-                        class="align-middle">Profile</span></a> -->
-
-
-                        <a class="dropdown-item" href="{{ route('logout-admin') }}" onclick="event.preventDefault(); if(confirm('Are you sure you want to logout?')) { document.getElementById('logout-form').submit(); }">
-                            <i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i>{{ __('Logout') }}
-                        </a>
-
-
-                        <form id="logout-form" action="{{ route('logout-admin') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
-                    </div>
+                <div class="d-flex align-items-center ms-auto">
+                    <i class="far fa-calendar-alt"></i>
+                    <span class="ms-2">{{ date("l, F j, Y, g:i a") }}</span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
+
     <!-- ========== App Menu ========== -->
     <div class="app-menu navbar-menu" style="background: #3F3F3F;">
 
         <div class="logo">
             <img loading="lazy" src="{{asset('images/AC LOGO light.png')}}" alt="..." width="120" height="120" >
+
         </div>
 
         <div id="scrollbar">
@@ -247,7 +254,16 @@ color: #fff;
 
                 </ul>
             </div>
-            <!-- Sidebar -->
+            <div class="logout-container">
+                <a class="logout-button" href="{{ route('logout-admin') }}" onclick="event.preventDefault(); if(confirm('Are you sure you want to logout?')) { document.getElementById('logout-form').submit(); }">
+                    <i class="mdi mdi-logout text-white fs-16 align-middle me-1"></i>{{ __('Logout') }}
+                </a>
+
+                <form id="logout-form" action="{{ route('logout-admin') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+            </div>
+
         </div>
     </div>
     <!-- Left Sidebar End -->

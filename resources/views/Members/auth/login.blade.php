@@ -217,9 +217,9 @@
             </svg>
             <input placeholder="name@mail.com" title="Inpit title" name="email" type="text" class="input_field"
                 id="email">
-            </div>
+        </div>
 
-            <div class="input_container">
+        <div class="input_container">
             <label class="input_label" for="password_field">Password</label>
             <svg fill="none" viewBox="0 0 24 24" height="24" width="24" xmlns="http://www.w3.org/2000/svg"
                 class="icon">
