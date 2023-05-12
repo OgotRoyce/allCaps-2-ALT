@@ -30,7 +30,7 @@ class MemberRequest extends FormRequest
             'first_name' => ['required'],
             'last_name' => ['required'],
             'last_name' => ['required'],
-            'mobile_number' => ['required'],
+            // 'mobile_number' => ['required'],
             'email' => ['required'],
             'password' => [
                 Password::min(8)

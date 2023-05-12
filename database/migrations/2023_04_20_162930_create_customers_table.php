@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('account_code');
             $table->string('first_name', 96);
             $table->string('last_name', 96);
-            $table->string('mobile_number', 11);
+            // $table->string('mobile_number', 11);
             $table->string('email', 96)->unique();
             $table->string('password');
             $table->timestamps();

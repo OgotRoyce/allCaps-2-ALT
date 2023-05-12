@@ -64,6 +64,35 @@ class MemberController extends Controller
         //
     }
 
+    public function store(Request $request)
+    {
+        $photo = $request->file('photo');
+
+        if($request->hasFile('photo')){
+            $filenameWithExt = $photo->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $photo->getClientOriginalExtension();
+            $image = $filename.'_'.time().'.'.$extension;
+            $path = $photo->move('public/images/users', $image);
+
+        }else{
+            $image = 'default.png';
+        }
+
+        $members = Course::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            // 'capacity' => $request->capacity,
+            'photo' => $request->photo,
+        ]);
+        $members->photo = $image;
+        $members->save();
+
+        return redirect()->route('member')->with('success', 'User created!');
+
+        // return back()->with('success', 'Course created successfully.');
+    }
+
     /**
      * Remove the specified resource from storage.
      */

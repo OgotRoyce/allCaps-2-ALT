@@ -22,10 +22,10 @@
                     <input type="text" value="{{$profile->last_name}}" name="last_name" class="form-control">
                 </div>
 
-                <div class="mb-3">
+                <!-- <div class="mb-3">
                     <label class="form-label">Mobile Number:</label>
                     <input type="number" value="{{$profile->mobile_number}}" name="mobile_number" class="form-control">
-                </div>
+                </div> -->
 
                 <fieldset disabled="disabled">
                     <div class="mb-3">

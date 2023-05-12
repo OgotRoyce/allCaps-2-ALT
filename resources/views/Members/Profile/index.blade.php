@@ -13,7 +13,6 @@
                     <div class="card-body">
                         <h5 class="card-title">First Name: {{ auth('member')->user()->first_name }}</h5>
                         <h5 class="card-title">Last Name: {{ auth('member')->user()->last_name }}</h5>
-                        <h5 class="card-title">Mobile Number: {{ auth('member')->user()->mobile_number }}</h5>
                         <h5 class="card-title">Email: {{ auth('member')->user()->email }}</h5>
 
                        <a type="button" class="btn btn-primary" href="{{ route('profile-edit', auth('member')->user()->customer_id) }}">Edit Profile</a>

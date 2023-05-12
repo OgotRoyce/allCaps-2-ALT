@@ -179,7 +179,7 @@ color: #fff;
                     <!-- <li class="menu-title text-white"><span data-key="t-menu">Menu</span></li> -->
                     <li class="nav-item">
                         <a class="nav-link menu-link text-white" href="{{route('member')}}">
-                            <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards">Members</span>
+                            <i class="ri-team-fill"></i> <span data-key="t-dashboards">Advisers</span>
                         </a>
                     </li>
 

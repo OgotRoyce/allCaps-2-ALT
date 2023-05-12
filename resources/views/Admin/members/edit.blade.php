@@ -33,11 +33,11 @@
                 <input type="text" name="last_name" class="form-control" id="exampleFormControlInput1"
                     value="{{ $members->last_name }}">
             </div>
-            <div class="">
+            <!-- <div class="">
                 <label for="exampleFormControlInput1" class="form-label">Mobile Number</label>
                 <input type="number" name="mobile_number" class="form-control" id="exampleFormControlInput1"
                     value="{{ $members->mobile_number }}">
-            </div>
+            </div> -->
             <div class="">
                 <label for="formFile" class="form-label">Email</label>
                 <input type="email" name="email" step="any" class="form-control" value="{{ $members->email }}">
@@ -46,6 +46,10 @@
                     <label for="formFile" class="form-label">Password</label>
                     <input type="password" name="password" step="any" class="form-control" >
                 </div> --}}
+            <div class="">
+                <label for="formFile" class="form-label">Default file input example</label>
+                <input type="file" name="photo" step="any" class="form-control" value="{{ $members->photo }}">
+            </div>
 
             <div class="modal-footer">
                 <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->

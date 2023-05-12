@@ -42,9 +42,10 @@ class MemberController extends Controller
             'account_code' => strtoupper(Str::random(10)),  //for account code 10 digits
             'first_name' => $request->get('first_name'),
             'last_name' => $request->get('last_name'),
-            'mobile_number' => $request->get('mobile_number'), //$request->get('mobile_number'),
+            // 'mobile_number' => $request->get('mobile_number'), //$request->get('mobile_number'),
             'email' => $request->get('email'),
             'password' => bcrypt($request->get('password')), //changed from Hash::make
+            'photo' => null,
 
         ]);
         $member->save();
