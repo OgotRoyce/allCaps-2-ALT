@@ -178,13 +178,6 @@ color: #fff;
                 <ul class="navbar-nav" id="navbar-nav">
                     <!-- <li class="menu-title text-white"><span data-key="t-menu">Menu</span></li> -->
 
-                    <li class="nav-item">
-                        <a class="nav-link menu-link text-white" href="{{route('member')}}">
-
-                            <i class="ri-team-fill"></i> <span data-key="t-dashboards">Advisers</span>
-
-                        </a>
-                    </li>
 
                     <li class="nav-item">
                         <a class="nav-link menu-link text-white" href="{{route('member')}}">
@@ -195,8 +188,10 @@ color: #fff;
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link menu-link text-white" href="{{route('appointments')}}" >
-                            <i class="ri-apps-2-line"></i> <span data-key="t-apps">Adviser</span>
+                        <a class="nav-link menu-link text-white" href="{{route('member')}}">
+
+                            <i class="ri-team-fill"></i> <span data-key="t-dashboards">Advisers</span>
+
                         </a>
                     </li>
 
