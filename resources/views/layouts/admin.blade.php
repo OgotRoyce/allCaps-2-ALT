@@ -28,6 +28,10 @@
 <link rel="stylesheet" href="{{ asset('css/custom.min.css') }}" />
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.0.18/sweetalert2.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.0.18/sweetalert2.all.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,500,600&display=swap" />
+
 
 {{-- boostrap CDN --}}
 {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> --}}
@@ -128,7 +132,15 @@ color: #fff;
     border-radius: 4px;
     text-decoration: none;
     margin-top: 500px;
+    box-shadow: none;
+    transition: none;
 }
+
+.scrollbar {
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+}
+
 </style>
 <body>
 <!-- Begin page -->
@@ -180,26 +192,26 @@ color: #fff;
 
 
                     <li class="nav-item">
-                        <a class="nav-link menu-link text-white" href="{{route('member')}}">
+                        <a class="nav-link menu-link text-white" href="{{route('services')}}">
 
-                            <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards">Task</span>
+                            <i class="ri-file-list-2-fill"></i> <span data-key="t-dashboards">Tasks</span>
 
                         </a>
                     </li>
 
                     <li class="nav-item" >
                         <a class="nav-link menu-link text-white" href="{{route('usertype')}}">
-                            <i class="ri-team-fill"></i> <span data-key="t-pages">Adviser</span>
+                            <i class="ri-user-2-fill"></i> <span data-key="t-pages">Advisers</span>
                         </a>
                     </li>
 
 
 
-                    {{-- <li class="nav-item">
+                    <!-- {{-- <li class="nav-item">
                         <a class="nav-link menu-link text-white" href="{{route('course')}}">
                             <i class="ri-layout-3-line"></i> <span data-key="t-layouts">Students</span>
                         </a>
-                    </li> --}}
+                    </li> --}} -->
 
                     <li class="nav-item">
                         <a class="nav-link menu-link text-white" href="{{route('member')}}">
@@ -216,24 +228,24 @@ color: #fff;
                 <ul class="navbar-nav" id="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link menu-link text-white" href="{{route('member')}}">
-                        <i class="ri-team-fill"></i> <span data-key="t-dashboards">Application</span>
+                        <i class="ri-folder-user-fill"></i> <span data-key="t-dashboards">Applications</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link text-white" href="{{route('course')}}">
+                        <i class="ri-team-fill"></i> <span data-key="t-dashboards">Advisoree</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link menu-link text-white" href="{{route('member')}}">
-                        <i class="ri-team-fill"></i> <span data-key="t-dashboards">Advisory</span>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link menu-link text-white" href="{{route('member')}}">
-                        <i class="ri-team-fill"></i> <span data-key="t-dashboards">Task</span>
+                        <i class="ri-file-list-2-fill"></i> <span data-key="t-dashboards">Task</span>
                     </a>
                 </li>
 
                 @endif
-              
+<!--               
                     <li class="nav-item" >
                         <a class="nav-link menu-link text-white" href="{{ route('logout-admin') }}" onclick="event.preventDefault(); if(confirm('Are you sure you want to logout?')) { document.getElementById('logout-form').submit(); }">
                             <i class="mdi mdi-logout text-white fs-16 align-middle me-1"></i>{{ __('Logout') }}
@@ -241,11 +253,11 @@ color: #fff;
                         <form id="logout-form" action="{{ route('logout-admin') }}" method="POST" class="d-none">
                             @csrf
                         </form>
-                    </li> 
+                    </li>  -->
 
                 </ul>
             </div>
-            {{-- <div class="logout-container">
+            <!-- <div class="logout-container">
                 <a class="logout-button" href="{{ route('logout-admin') }}" onclick="event.preventDefault(); if(confirm('Are you sure you want to logout?')) { document.getElementById('logout-form').submit(); }">
                     <i class="mdi mdi-logout text-white fs-16 align-middle me-1"></i>{{ __('Logout') }}
                 </a>
@@ -253,10 +265,21 @@ color: #fff;
                 <form id="logout-form" action="{{ route('logout-admin') }}" method="POST" class="d-none">
                     @csrf
                 </form>
-            </div> --}}
+            </div>  -->
+            <div class="logout-container">
+                <a class="logout-button">
+                    <i class="mdi mdi-logout text-white fs-16 align-middle me-1"></i>{{ __('Logout') }}
+                </a>
 
+                <form id="logout-form" action="{{ route('logout-admin') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+            </div>
         </div>
     </div>
+
+
+
     <!-- Left Sidebar End -->
     <div class="vertical-overlay"></div>
     <div class="main-content overflow-hidden">
@@ -302,4 +325,24 @@ color: #fff;
 <script src="{{ asset('/js/pages/animation-aos.init.js') }}"></script>
     <!-- App js -->
 <script src="{{ asset('js/app.js') }}"></script>
+<script>
+    const logoutButton = document.querySelector('.logout-button');
+    logoutButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You are about to log out!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, log me out!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('logout-form').submit();
+            }
+        })
+    });
+</script>
+
 </body>

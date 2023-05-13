@@ -1,15 +1,19 @@
 <!doctype html>
+<?php
+  date_default_timezone_set("Asia/Manila");
+?>
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg">
 
 <head>
 
 <meta charset="utf-8" />
 <title>ALLCaps</title>
+<link rel="icon" href="assets/images/AC icon.ico" type="image/icon type">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
 <meta content="Themesbrand" name="author" />
 <!-- App favicon -->
-<link rel="shortcut icon" href="assets/images/favicon.ico">
+<link rel="shortcut icon" href="assets/images/AC icon.ico">
 
 <link rel="stylesheet" href="{{ asset('libs/aos/aos.css') }}" />
 
@@ -22,11 +26,25 @@
 <link rel="stylesheet" href="{{ asset('css/app.min.css') }}" />
 
 <link rel="stylesheet" href="{{ asset('css/custom.min.css') }}" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.0.18/sweetalert2.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.0.18/sweetalert2.all.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,500,600&display=swap" />
+
+
+{{-- boostrap CDN --}}
+{{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> --}}
 
 {{-- @vite ('resources/sass/course_members.scss') --}}
 
 </head>
+
 <style>
+.header {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
 .menu-title{
 color: #fff;
 }
@@ -35,94 +53,131 @@ color: #fff;
 color: #fff;
 }
 
+.nav-logo{
+  /* height: 70px; */
+  width: 10%;
+}
+.navbar-nav{
+    border: none;
+    font-size: 100px;
+
+}
+
+.text-white{
+    font-size: 100px;
+}
+
+/* .horizontal-logo{
+    background: none;
+    display: block; */
+/* } */
+.logo{
+    background: none;
+    display: block;
+    text-align: center;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 0 auto;
+    margin-top: 30px;
+    margin-bottom: 50px; 
+}
+.navbar{
+  height: 70px;
+  width: 100%;
+  padding: 14px 30px;
+  background-color: #1b4cd3;
+  position: relative;
+}
+.navbar .nav-header{
+  display: inline;
+}
+.navbar .nav-header .nav-logo{
+  display: inline-block;
+  margin-top: -7px;
+}
+.app-menu .nav-link.active {
+    background-color: #FFAC1C;
+}
+.navbar-header {
+  font-size: 0;
+}
+
+.header-content-wrapper {
+  display: flex;
+  width: 100%;
+  font-size: initial;
+}
+
+.header-item,
+.nav-logo {
+  display: inline-block;
+  font-size: initial;
+}
+
+.header-item {
+  margin-right: 1rem;
+}
+
+.logout-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.logout-button {
+    background-color: #525252;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    margin-top: 500px;
+    box-shadow: none;
+    transition: none;
+}
+
+.scrollbar {
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+}
+
 </style>
 <body>
 <!-- Begin page -->
 <div id="layout-wrapper">
 
 <header id="page-topbar">
-<div class="layout-width">
-<div class="navbar-header">
-    <div class="d-flex">
-        <!-- LOGO -->
-        <div class="navbar-brand-box horizontal-logo">
-            <a href="index.html" class="logo logo-dark">
-                <span class="logo-sm">
-                    <img src="assets/images/logo-sm.png" alt="" height="22">
-                </span>
-                <span class="logo-lg">
-                    <img src="assets/images/logo-dark.png" alt="" height="17">
-                </span>
-            </a>
-
-            <a href="index.html" class="logo logo-light">
-                <span class="logo-sm">
-                    <img src="assets/images/logo-sm.png" alt="" height="22">
-                </span>
-                <span class="logo-lg">
-                    <img src="assets/images/logo-light.png" alt="" height="17">
-                </span>
-            </a>
-        </div>
-
-        <!-- <button type="button" class="btn btn-sm px-3 fs-16 header-item vertical-menu-btn topnav-hamburger" id="topnav-hamburger-icon">
-            <span class="hamburger-icon">
-                <span></span>
-                <span></span>
-                <span></span>
-            </span>
-        </button> -->
-
-        <!-- App Search-->
-
-    </div>
-
-    <div class="d-flex align-items-center">
-
-
-        <div class="dropdown ms-sm-3 header-item topbar-user" >
-            <button type="button" class="btn" id="page-header-user-dropdown" data-bs-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <span class="d-flex align-items-center">
-                    <span class="text-start ms-xl-2">
-                        <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{ auth('member')->user()->first_name }} {{ auth('member')->user()->last_name }}</span>
+    <div class="layout-width">
+        <div class="navbar-header">
+            <div class="header-content-wrapper d-flex align-items-center">
+                <button type="button" class="btn btn-sm px-3 fs-16 header-item vertical-menu-btn topnav-hamburger" id="topnav-hamburger-icon">
+                    <span class="hamburger-icon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
                     </span>
-                </span>
-            </button>
-            <div class="dropdown-menu dropdown-menu-end">
-                <!-- item-->
-                <h6 class="dropdown-header">{{ auth('member')->user()->first_name }} {{ auth('member')->user()->last_name }}</h6>
-                <a class="dropdown-item" href="{{ route('profile') }}"><i
-                        class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span
-                        class="align-middle">Profile</span></a>
+                </button> 
 
+                <div class="nav-logo d-flex align-items-center ms-3">
+                    <img src="{{ asset('images/AC WORDMARK.png') }}" alt="horizontal-logo" style="width: 70%">
+                </div>
 
-                        <a class="dropdown-item" href="{{ route('logout-member') }}" onclick="event.preventDefault(); if(confirm('Are you sure you want to logout?')) { document.getElementById('logout-form').submit(); }">
-                            <i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i>{{ __('Logout') }}
-                        </a>
-
-
-                <form id="logout-form" action="{{ route('logout-member') }}" method="POST" class="d-none">
-                    @csrf
-                </form>
+                <div class="d-flex align-items-center ms-auto">
+                    <i class="far fa-calendar-alt"></i>
+                    <span class="ms-2">{{ date("l, F j, Y, g:i a") }}</span>
+                </div>
             </div>
         </div>
     </div>
-</div>
-</div>
 </header>
-    <!-- ========== App Menu ========== -->
-    <div class="app-menu navbar-menu" style="background: #197f5a;">
 
-        <div class="card py-2 px-3 m-2">
-            <div class="row">
-                <div class="col-5 text-center">
-                    <img loading="lazy" src="{{asset('images/logo.png')}}" alt="..." width="80" height="80" >
-                </div>
-                <div class="col-1 mt-3 text-center">
-                        Golf Company
-                </div>
-            </div>
+
+
+
+    <!-- ========== App Menu ========== -->
+    <div class="app-menu navbar-menu" style="background: #3F3F3F;">
+
+        <div class="logo">
+            <img loading="lazy" src="{{asset('images/AC LOGO light.png')}}" alt="..." width="120" height="120" >
 
         </div>
 
@@ -132,21 +187,21 @@ color: #fff;
                 <div id="two-column-menu">
                 </div>
                 <ul class="navbar-nav" id="navbar-nav">
-                    <li class="menu-title text-white"><span data-key="t-menu">Menu</span></li>
+                    <!-- <li class="menu-title text-white"><span data-key="t-menu">Menu</span></li> -->
                     <li class="nav-item">
-                        <a class="nav-link menu-link text-white" href="{{ route('bookCourse') }}">
-                            <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards">Golf Course</span>
+                        <a class="nav-link menu-link text-white" href="{{route('invoice')}}">
+                            <i class="ri-file-list-2-fill"></i> <span data-key="t-dashboards">Tasks</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link menu-link text-white" href="{{ route('appointment') }}">
-                            <i class="ri-apps-2-line"></i> <span data-key="t-apps">Appointments</span>
+                            <i class="ri-user-2-fill"></i> <span data-key="t-apps">Advisers</span>
                         </a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link menu-link text-white" href="{{ route('invoice') }}">
-                            <i class="ri-layout-3-line"></i> <span data-key="t-layouts">Bills</span>
+                            <i class="ri-layout-3-line"></i> <span data-key="t-layouts">Project</span>
                         </a>
                     </li>
 
@@ -158,7 +213,15 @@ color: #fff;
                     </li>
                 </ul>
             </div>
-            <!-- Sidebar -->
+            <div class="logout-container">
+                <a class="logout-button">
+                    <i class="mdi mdi-logout text-white fs-16 align-middle me-1"></i>{{ __('Logout') }}
+                </a>
+
+                <form id="logout-form" action="{{ route('logout-admin') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+            </div>
         </div>
     </div>
     <!-- Left Sidebar End -->
@@ -207,5 +270,23 @@ color: #fff;
     <!-- App js -->
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+<script>
+    const logoutButton = document.querySelector('.logout-button');
+    logoutButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You are about to log out!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, log me out!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('logout-form').submit();
+            }
+        })
+    });
+</script>
 </body>
