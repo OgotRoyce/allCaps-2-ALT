@@ -24,6 +24,7 @@ class CustomerSeeder extends Seeder
                 'email' => 'bogart.santos@email.com',
                 'account_code'=> strtoupper(Str::random(10)),
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+                'photo' => '',
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ],
@@ -34,6 +35,7 @@ class CustomerSeeder extends Seeder
                 'email' => 'juan.luna@email.com',
                 'account_code'=> strtoupper(Str::random(10)),
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+                'photo' => '',
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ],
