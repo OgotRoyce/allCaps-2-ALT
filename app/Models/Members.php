@@ -16,7 +16,6 @@ class Members extends Authenticatable
         'first_name',
         'last_name',
         'last_name',
-        'mobile_number',
         'email',
         'password',
         'photo'

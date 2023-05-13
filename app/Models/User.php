@@ -25,7 +25,6 @@ class User extends Authenticatable
         'account_code',
         'remember_token',
         'email_verified_at',
-        'photo'
     ];
 
     /**

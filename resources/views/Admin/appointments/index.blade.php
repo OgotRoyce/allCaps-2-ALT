@@ -2,13 +2,23 @@
 
 @section('content')
 <div class="container">
-<h5 class="header mt-2">Appointments</h5>
-<div class="live-preview">
-<div>
-<div class="row">
-<div class="col-lg-12">
-    <a href="">
-        </a>
+    <div class="live-preview">
+    <div>
+    <div class="row">
+    <div class="col-lg-12">
+    <div class="row">
+                <div class="col-10">
+                    <h5 class="header mt-2">Adviser</h5> 
+                </div>
+                <div class="col-2">
+                    <a href="{{route('create-course')}}">
+                        <button type="button" style="width:100%" class="btn btn-primary" >
+                        + Add Adviser
+                        </button>
+                    </a>
+                </div>
+    </div>
+    
         
         <div class="card p-4 border mt-4">
         <div class="row">
@@ -17,12 +27,9 @@
                 <thead>
                     <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Golf course</th>
-                    <th scope="col">Member Name</th>
+                    <th scope="col">Teacher</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Companion(s)</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Time</th>
+                    <th scope="col">Advisory Capacity</th>
                     <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -37,11 +44,8 @@
                     <tr>
                     <th scope="row">{{ $count++ }}</th>
                     <td>{{ $item->name }}</td>
-                    <td>{{ $item->first_name }} {{ $item->last_name }}</td>
                     <td>{{ $item->email }}</td>
-                    <td>{{ $item->guests }}</td>
-                    <td>{{ $item->date }}</td>
-                    <td>{{ $item->time }}</td>
+                    <td>{{ $item->first_name }} {{ $item->last_name }}</td>   
                     <td>
 
                         {{-- <form action="{{ route('edit_appt', $item->app_id) }}" method="POST">

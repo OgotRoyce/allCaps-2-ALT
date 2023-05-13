@@ -177,29 +177,34 @@ color: #fff;
                 @if(auth()->user()->role === "admin")
                 <ul class="navbar-nav" id="navbar-nav">
                     <!-- <li class="menu-title text-white"><span data-key="t-menu">Menu</span></li> -->
+
                     <li class="nav-item">
                         <a class="nav-link menu-link text-white" href="{{route('member')}}">
+
                             <i class="ri-team-fill"></i> <span data-key="t-dashboards">Advisers</span>
+
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link menu-link text-white" href="{{route('member')}}">
+
+                            <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards">Task</span>
+
                         </a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link menu-link text-white" href="{{route('appointments')}}" >
-                            <i class="ri-apps-2-line"></i> <span data-key="t-apps">Appointments</span>
+                            <i class="ri-apps-2-line"></i> <span data-key="t-apps">Adviser</span>
                         </a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link menu-link text-white" href="{{route('course')}}">
-                            <i class="ri-layout-3-line"></i> <span data-key="t-layouts">Golf Course</span>
+                            <i class="ri-layout-3-line"></i> <span data-key="t-layouts">Students</span>
                         </a>
                     </li>
-<!-- 
-                    <li class="nav-item" >
-                        <a class="nav-link menu-link text-white" href="{{route('schedules')}}">
-                            <i class="ri-layout-3-line"></i> <span data-key="t-layouts">Schedules</span>
-                        </a>
-                    </li> -->
 
                     <li class="nav-item" >
                         <a class="nav-link menu-link text-white" href="{{route('usertype')}}">
@@ -208,53 +213,19 @@ color: #fff;
                     </li>
                     @endif
 
-                    @if(auth()->user()->role === "finance")
+              
                     <li class="nav-item" >
-                        <a class="nav-link menu-link text-white" href="{{route('transaction')}}">
-                            <i class="ri-pages-line"></i> <span data-key="t-pages">Transactions</span>
+                        <a class="nav-link menu-link text-white" href="{{ route('logout-admin') }}" onclick="event.preventDefault(); if(confirm('Are you sure you want to logout?')) { document.getElementById('logout-form').submit(); }">
+                            <i class="mdi mdi-logout text-white fs-16 align-middle me-1"></i>{{ __('Logout') }}
                         </a>
-                    </li>
-
-                    <li class="nav-item" >
-                        <a class="nav-link menu-link text-white" href="{{route('transaction')}}">
-                            <i class="ri-pages-line"></i> <span data-key="t-pages">Invoice</span>
-                        </a>
-                    </li>
-                    @endif
-
-                    @if(auth()->user()->role === "kiosk")
-                    <li class="nav-item" >
-                        <a class="nav-link menu-link text-white" href="{{route('kiosk')}}">
-                            <i class="ri-pages-line"></i> <span data-key="t-pages">kiosk</span>
-                        </a>
-                    </li><li class="nav-item" >
-                        <a class="nav-link menu-link text-white" href="{{route('kiosk')}}">
-                            <i class="ri-pages-line"></i> <span data-key="t-pages">kiosk</span>
-                        </a>
-                    </li>
-                    @endif
-
-
-                    @if(auth()->user()->role === "services")
-                    <li class="nav-item" >
-                        <a class="nav-link menu-link text-white" href="{{route('services')}}">
-                            <i class="ri-pages-line"></i> <span data-key="t-pages">Services</span>
-                        </a>
-                    </li>
-                    @endif
-
-                    @if(auth()->user()->role === "merchandise")
-                    <li class="nav-item" >
-                        <a class="nav-link menu-link text-white" href="{{route('merchandise')}}">
-                            <i class="ri-pages-line"></i> <span data-key="t-pages">Merchandise</span>
-                        </a>
-                    </li>
-                    @endif
-
+                        <form id="logout-form" action="{{ route('logout-admin') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </li> 
 
                 </ul>
             </div>
-            <div class="logout-container">
+            {{-- <div class="logout-container">
                 <a class="logout-button" href="{{ route('logout-admin') }}" onclick="event.preventDefault(); if(confirm('Are you sure you want to logout?')) { document.getElementById('logout-form').submit(); }">
                     <i class="mdi mdi-logout text-white fs-16 align-middle me-1"></i>{{ __('Logout') }}
                 </a>
@@ -262,7 +233,7 @@ color: #fff;
                 <form id="logout-form" action="{{ route('logout-admin') }}" method="POST" class="d-none">
                     @csrf
                 </form>
-            </div>
+            </div> --}}
 
         </div>
     </div>

@@ -20,7 +20,6 @@ class CustomerSeeder extends Seeder
             [
                 'first_name' => 'Bogart',
                 'last_name' => 'Santos',
-                'mobile_number' => '09999999999',
                 'email' => 'bogart.santos@email.com',
                 'account_code'=> strtoupper(Str::random(10)),
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
@@ -31,7 +30,6 @@ class CustomerSeeder extends Seeder
             [
                 'first_name' => 'Juan',
                 'last_name' => 'Luna',
-                'mobile_number' => '09999999998',
                 'email' => 'juan.luna@email.com',
                 'account_code'=> strtoupper(Str::random(10)),
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',

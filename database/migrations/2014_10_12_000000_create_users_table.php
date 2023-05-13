@@ -19,11 +19,8 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->text('role')->nullable();
-            $table->string('photo');
             $table->rememberToken();
             $table->timestamps();
-            // $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            // $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
     }
 
