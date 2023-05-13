@@ -108,7 +108,7 @@
     @foreach ($members as $item)
         <div class="col-md-4 col-lg-3">
             <div class="profile-card">
-                <img class= "avatar" src="{{ asset('public/images/'.$item->photo) }}" alt="{{ $item->first_name }} {{ $item->last_name }}" class="avatar">
+                <img class= "avatar" src="{{ asset('public/images/users/'.$item->photo) }}" alt="{{ $item->first_name }} {{ $item->last_name }}" class="avatar">
                 <div class="name">{{ $item->first_name }} {{ $item->last_name }}</div>
                 <div class="email">{{ $item->email }}</div>
                 <a href="{{ route('edit-member', $item->customer_id) }}" class="stretched-link"></a>
