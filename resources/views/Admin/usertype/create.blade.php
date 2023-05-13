@@ -29,13 +29,7 @@
                 </div>
                 <div class="">
                     <label for="exampleFormControlInput1" class="form-label">Role</label>
-                    <select id="inputState" class="form-control form-select" name="role">
-                        <option></option>
-                        <option value="finance" {{ old('role') == 'finance' ? 'selected' : '' }}>Finance</option>
-                        <option value="kiosk" {{ old('role') == 'kiosk' ? 'selected' : '' }}>Kiosk</option>
-                        <option value="services" {{ old('role') == 'services' ? 'selected' : '' }}>Services</option>
-                        <option value="merchandise" {{ old('role') == 'merchandise' ? 'selected' : '' }}>Merchandise</option>
-                    </select>
+                    <input type="email" name="role"  class="form-control" value="Adviser" id="exampleFormControlInput1" readonly>
                 </div>
 
                 <div class="">

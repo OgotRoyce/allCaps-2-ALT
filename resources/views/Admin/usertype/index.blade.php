@@ -8,12 +8,12 @@
     <div class="col-lg-12">
     <div class="row">
             <div class="col-10">
-                <h5 class="header mt-2">User Type</h5> 
+                <h5 class="header mt-2">Adviser</h5> 
             </div>
             <div class="col-2">
         <a href="{{ route('create-user') }}">
             <button type="button" style="width:100%" class="btn btn-primary">
-                + Add User
+                + Add Adviser
             </button>
         </a>
 

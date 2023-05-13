@@ -30,13 +30,7 @@
                 </div>
                 <div class="">
                     <label for="exampleFormControlInput1" class="form-label">Role</label>
-                    <select id="inputState" class="form-control form-select" value="{{ $user->role }}" name="role">
-                        <option></option>
-                        <option value="finance" @if($user->role == 'finance') selected>Finance</option>
-                        <option value="kiosk" @elseif($user->role == 'kiosk') selected>Kiosk</option>
-                        <option value="services" @elseif($user->role == 'services') selected>Services</option>
-                        <option value="merchandise" @elseif($user->role == 'merchandise') selected @endif>Merchandise</option>
-                    </select>
+                    <input type="email" name="role" step="any" class="form-control" value="{{ $user->role }}" readonly >
                 </div>
 
                 {{-- <div class="">

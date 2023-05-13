@@ -14,10 +14,7 @@ class UserTypeController extends Controller
      */
     public function index()
     {
-        $usertype = User::where('role','finance')
-                    ->orwhere('role','kiosk')
-                    ->orwhere('role','services')
-                    ->orwhere('role','merchandise')
+        $usertype = User::where('role','Adviser')
                     ->paginate(10);
         
         return view('Admin.usertype.index',['usertype' => $usertype]);

@@ -211,6 +211,28 @@ color: #fff;
       
                     @endif
 
+                      
+                @if(auth()->user()->role === "Adviser")
+                <ul class="navbar-nav" id="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link menu-link text-white" href="{{route('member')}}">
+                        <i class="ri-team-fill"></i> <span data-key="t-dashboards">Application</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link text-white" href="{{route('member')}}">
+                        <i class="ri-team-fill"></i> <span data-key="t-dashboards">Advisory</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link text-white" href="{{route('member')}}">
+                        <i class="ri-team-fill"></i> <span data-key="t-dashboards">Task</span>
+                    </a>
+                </li>
+
+                @endif
               
                     <li class="nav-item" >
                         <a class="nav-link menu-link text-white" href="{{ route('logout-admin') }}" onclick="event.preventDefault(); if(confirm('Are you sure you want to logout?')) { document.getElementById('logout-form').submit(); }">
