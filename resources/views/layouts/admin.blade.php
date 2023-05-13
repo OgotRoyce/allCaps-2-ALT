@@ -187,25 +187,28 @@ color: #fff;
                         </a>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link menu-link text-white" href="{{route('member')}}">
-
-                            <i class="ri-team-fill"></i> <span data-key="t-dashboards">Advisers</span>
-
+                    <li class="nav-item" >
+                        <a class="nav-link menu-link text-white" href="{{route('usertype')}}">
+                            <i class="ri-team-fill"></i> <span data-key="t-pages">Adviser</span>
                         </a>
                     </li>
 
-                    <li class="nav-item">
+
+
+                    {{-- <li class="nav-item">
                         <a class="nav-link menu-link text-white" href="{{route('course')}}">
                             <i class="ri-layout-3-line"></i> <span data-key="t-layouts">Students</span>
                         </a>
-                    </li>
+                    </li> --}}
 
-                    <li class="nav-item" >
-                        <a class="nav-link menu-link text-white" href="{{route('usertype')}}">
-                            <i class="ri-pages-line"></i> <span data-key="t-pages">User Type</span>
+                    <li class="nav-item">
+                        <a class="nav-link menu-link text-white" href="{{route('member')}}">
+
+                            <i class="ri-team-fill"></i> <span data-key="t-dashboards">Students</span>
+
                         </a>
                     </li>
+      
                     @endif
 
               
