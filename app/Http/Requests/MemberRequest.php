@@ -38,6 +38,7 @@ class MemberRequest extends FormRequest
                     ->numbers()
                     ->letters()
             ],
+            'photo'
         ];
         
         if($id > 0){

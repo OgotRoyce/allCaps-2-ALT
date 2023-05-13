@@ -18,6 +18,7 @@ class Members extends Authenticatable
         'last_name',
         'mobile_number',
         'email',
-        'password'
+        'password',
+        'photo'
     ];
 }
