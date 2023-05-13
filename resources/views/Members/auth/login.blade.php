@@ -190,7 +190,7 @@
 
 <body>
     
-    <form class="form_container mx-auto" action="{{ route('authenticated') }}" method="post">
+    <form class="form_container mx-auto" action="{{ route('authenticate') }}" method="post">
         {!! csrf_field() !!}
 
         <div class="text-center mt-2">
