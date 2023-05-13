@@ -38,7 +38,7 @@
             <input type="password" name="password" step="any" class="form-control">
         </div>
         <div class="">
-            <label for="formFile" class="form-label">Default file input example</label>
+            <label for="formFile" class="form-label">Profile Photo</label>
             <input type="file" name="photo" step="any" class="form-control">
         </div>
 

@@ -37,17 +37,32 @@ class MemberController extends Controller
     {
         $request->validated($request->all());
 
+        $photo = $request->file('photo');
+
+        if($request->hasFile('photo')){
+            $filenameWithExt = $photo->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $photo->getClientOriginalExtension();
+            $image = $filename.'_'.time().'.'.$extension;
+            $path = $photo->move('public/images/users', $image);
+
+        }else{
+            $image = 'default.png';
+        }
+
         $member = Members::create([
 
-            'account_code' => strtoupper(Str::random(10)),  //for account code 10 digits
+            // 'account_code' => strtoupper(Str::random(10)),  //for account code 10 digits
             'first_name' => $request->get('first_name'),
             'last_name' => $request->get('last_name'),
             // 'mobile_number' => $request->get('mobile_number'), //$request->get('mobile_number'),
             'email' => $request->get('email'),
             'password' => bcrypt($request->get('password')), //changed from Hash::make
-            'photo' => null,
+            'photo' => $request->photo,
 
         ]);
+
+        $member->photo = $image;
         $member->save();
         return redirect()->route('member')->with([
             'success' => 'Members created!'

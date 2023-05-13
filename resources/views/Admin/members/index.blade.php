@@ -61,6 +61,29 @@
   color: #424242;
 }
 
+.cards-container { display: flex; flex-wrap: wrap; align-content: center; justify-content: flex-start; flex-direction: row; }
+.profile-card { border-radius: 18px; background: #fbfcff; padding: 18px 12px 42px 14px; margin: 28px; width: fit-content, calc(33.33% - 40px); transition: .3s ease;  }
+.profile-card:hover { background: #fff; cursor: pointer; box-shadow: -2px 3px 12px #d1d1d1; transform: scale(1.05); }
+.avatar { transition: .3s ease; border-radius: 999px; width: 72px; }
+.avatar:hover { transform: scale(1.2) rotate(22deg);  }
+.name { font-weight: 900; position: relative; margin-top: -64px; font-size: 14px; margin-left: 84px; margin-right: 36px; }
+.profile-card .name {
+  /* existing rules */
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.profile-card .email {
+  font-size: 14px;
+  color: #777;
+  margin-left: 84px;
+}
+
+.profile-card .avatar {
+  border-radius: 999px;
+  width: 72px;
+  padding: 10px;
+}
 
 </style>
 
@@ -77,66 +100,21 @@
           </div>
             <div class="header-line"></div>
         </div>
-      </div>  
-
-      <div class="card p-4 border mt-4">
-        <div class="row">
-          <div class="col-12">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Profile Photo</th> <!-- new column -->
-                        <th scope="col">First Name</th>
-                        <th scope="col">Last Name</th>
-                        <!-- <th scope="col">Mobile Mobile</th> -->
-                        <th scope="col">Email</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-
-
-              <tbody>
-                @php $count = ($members->currentPage() - 1) * $members->perPage() + 1; @endphp
-                @foreach ($members as $item)
-                  <tr>
-                    <th scope="row">{{ $count++ }}</th>
-                    <td>
-                        @if($item->photo)
-                        <img src="{{ asset('public/images/'.$item->photo) }}" class="img-thumbnail" style="width:100px;">
-                        @else
-                            <img src="{{ asset('images/no_image.jpg') }}" class="img-thumbnail default" style="width:100px;">
-                        @endif
-                    </td>                    
-                    <td>{{ $item->first_name }}</td>
-                    <td>{{ $item->last_name }}</td>
-                    <!-- <td>{{ $item->mobile_number }}</td> -->
-                    <td>{{ $item->email }}</td>
-                    <td>
-                      <div class="d-flex">
-                        <div class="d-inline-block">
-                          <a href="{{ route('edit-member', $item->customer_id) }}" class="btn my-btn btn-sm d-flex justify-content-center square-btn"><i class="fas fa-edit fa-fw"></i></a>
-                        </div>
-
-                        <div class="d-inline-block">
-                          <a href="{{ route('delete-member', $item->customer_id) }}" class="btn my-btn btn-sm d-flex justify-content-center square-btn" onclick="event.preventDefault(); if(confirm('Are you sure you want to remove this member?')){document.getElementById('delete-form-{{ $item->customer_id }}').submit();}"><i class="fas fa-trash-alt fa-fw"></i></a>
-                        </div>
-                      </div>
-
-                      <form id="delete-form-{{ $item->customer_id }}" action="{{ route('delete-member', $item->customer_id) }}" method="post" style="display: none;">
-                        @csrf
-                        @method('DELETE')
-                      </form>
-                    </td>
-                  </tr>
-                @endforeach
-              </tbody>
-            </table>
-
-            {!! $members->render() !!}
-          </div>
         </div>
-      </div>
     </div>
   </div>
+
+  <div class="row cards-container">
+    @foreach ($members as $item)
+        <div class="col-md-4 col-lg-3">
+            <div class="profile-card">
+                <img class= "avatar" src="{{ asset('public/images/'.$item->photo) }}" alt="{{ $item->first_name }} {{ $item->last_name }}" class="avatar">
+                <div class="name">{{ $item->first_name }} {{ $item->last_name }}</div>
+                <div class="email">{{ $item->email }}</div>
+                <a href="{{ route('edit-member', $item->customer_id) }}" class="stretched-link"></a>
+            </div>
+        </div>
+    @endforeach
+</div>
+<!-- ./ cards-container --> 
 @endsection
