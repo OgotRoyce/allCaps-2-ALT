@@ -122,6 +122,10 @@ Route::group(['prefix' => 'member', 'namespace' => 'Members'], function () {
         Route::get('/edit/{id}', ['as' => 'profile-edit', 'uses' => "ProfileController@edit"]);
         Route::put('/update/{id}', ['as' => 'profile-update',  'uses' => "ProfileController@update"]);
     });
+
+    Route::group(['prefix' => 'project'], function () {
+        Route::get('/', ['as' => 'project', 'uses' => "ProjectController@index"]);
+    });
 });
 
 

@@ -95,9 +95,9 @@
           <div class="d-flex justify-content-between align-items-center">
           <h5 class="header mt-2"><i class="fas fa-users"></i> Students 
           <span class="badge badge-secondary"><span style="font-weight: 300; color: #bfbfbf;">({{ count($members) }} students)</span></h5>
-            <!-- <a href="{{ route('create-member') }}">
-              <button type="button" style="width:100%" class="btn btn-outline-danger float-right">+ Add Adviser</button>
-            </a> -->
+            <a href="{{ route('create-member') }}">
+              <button type="button" style="width:100%" class="btn btn-outline-danger float-right">+ Add Student</button>
+            </a>
           </div>
             <div class="header-line"></div>
         </div>

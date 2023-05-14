@@ -200,7 +200,7 @@ color: #fff;
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link menu-link text-white" href="{{ route('invoice') }}">
+                        <a class="nav-link menu-link text-white" href="{{ route('project') }}">
                             <i class="ri-layout-3-line"></i> <span data-key="t-layouts">Project</span>
                         </a>
                     </li>
