@@ -1,14 +1,14 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="container">
-<div class="live-preview">
-<div>
-<div class="row">
-<div class="col-lg-12">
-<div class="row">
-            <div class="col-10">
-                <h5 class="header mt-2">Course</h5> 
+    <div class="container">
+        <div class="live-preview">
+            <div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="row">
+                            {{-- <div class="col-10">
+                <h5 class="header mt-2">Course</h5>
             </div>
             <div class="col-2">
                 <a href="{{route('create-course')}}">
@@ -38,14 +38,14 @@
 $count = ($courses->currentPage() - 1) * $courses->perPage() + 1;
 @endphp
 
-@foreach($courses as $item)
+@foreach ($courses as $item)
 
 <tbody>
 
 <tr>
 <th scope="row">{{ $count++ }}</th>
 <td>
-    @if($item->photo)
+    @if ($item->photo)
     <img src="{{ asset('public/course/'.$item->photo) }}" class="img-thumbnail" style="margin-left: auto; margin-right: auto; display: block; height:100px; width:100px;">
     @else
         <img src="{{ asset('images/no_image.jpg') }}" class="img-thumbnail default" style="margin-left: auto; margin-right: auto; display: block; height:100px; width:100px;">
@@ -74,19 +74,17 @@ $count = ($courses->currentPage() - 1) * $courses->perPage() + 1;
 </td>
 </tr>
 @endforeach
-</tbody> 
+</tbody>
 
 </table>
 {!!  $courses->render() !!}
-</div>
+</div> --}}
 
-</div>
-</div>
-</div>
-<!-- end row -->
-</div>
-</div>
-</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end row -->
+            </div>
+        </div>
+    </div>
 @endsection
-
-
