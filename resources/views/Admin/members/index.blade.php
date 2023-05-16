@@ -21,140 +21,147 @@
     .header-line {
         height: 1px;
         background-color: #bfbfbf;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
     }
 
-    .btn-primary {
-        background-color: #f06548;
-    }
+    body{
+  background-color: #fcfcfc;
+}
 
-    .btn i {
-        border-radius: 50%;
-        padding: 6px;
-    }
+.row{
+  margin:auto;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  .card{
+    width: 100%;
+    /* margin-bottom: 5px; */
+    display: block;
+    transition: opacity 0.3s;
+  }
+}
 
-    .square-btn {
-        width: 35px;
-        height: 35px;
-        padding: 0 !important;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+.card-body {
+  padding: 0.5rem;
+  text-align: right; /* Add this line */
+  table {
+    width: 100%;
+    tr {
+      display: flex;
+      td {
+        a.btn {
+          font-size: 0.8rem;
+          padding: 3px;
+        }
+      }
+      td:nth-child(2) {
+        text-align: right;
+        justify-content: space-around;
+      }
     }
+  }
+}
 
-    .square-btn i {
-        font-size: 16px;
-        line-height: 1;
-    }
+.card-title:before{
+  display:inline-block;
+  font-family: 'Font Awesome\ 5 Free';
+  font-weight:900;
+  font-size: 1.1rem;
+  text-align: center;
+  border: 2px solid grey;
+  border-radius: 100px;
+  width: 30px;
+  height: 30px;
+  padding-bottom: 3px;
+  margin-right: 10px;
+}
 
-    .d-flex>.d-inline-block:first-child {
-        margin-right: 5px;
-    }
+h2.text-center {
+  margin-bottom: 20px;
+}
 
-    .d-flex>.d-inline-block:last-child {
-        margin-left: 5px;
-    }
 
-    .my-btn {
-        background-color: #e9ebec !important;
-        border-color: #e9ebec !important;
-    }
 
-    .my-btn i {
-        color: #424242;
-    }
+.card.display-none{
+  display: none;
+  transition: opacity 2s;
+}
 
-    .cards-container {
-        display: flex;
-        flex-wrap: wrap;
-        align-content: center;
-        justify-content: flex-start;
-        flex-direction: row;
-    }
 
-    .profile-card {
-        border-radius: 18px;
-        background: #fbfcff;
-        padding: 18px 12px 42px 14px;
-        margin: 28px;
-        width: fit-content, calc(33.33% - 40px);
-        transition: .3s ease;
-    }
-
-    .profile-card:hover {
-        background: #fff;
-        cursor: pointer;
-        box-shadow: -2px 3px 12px #d1d1d1;
-        transform: scale(1.05);
-    }
-
-    .avatar {
-        transition: .3s ease;
-        border-radius: 999px;
-        width: 72px;
-    }
-
-    .avatar:hover {
-        transform: scale(1.2) rotate(22deg);
-    }
-
-    .name {
-        font-weight: 900;
-        position: relative;
-        margin-top: -64px;
-        font-size: 14px;
-        margin-left: 84px;
-        margin-right: 36px;
-    }
-
-    .profile-card .name {
-        /* existing rules */
-        font-size: 18px;
-        margin-bottom: 8px;
-    }
-
-    .profile-card .email {
-        font-size: 14px;
-        color: #777;
-        margin-left: 84px;
-    }
-
-    .profile-card .avatar {
-        border-radius: 999px;
-        width: 72px;
-        padding: 10px;
-    }
 </style>
 
-{{-- @section('content')
-  <div class="container-fluid">
-    <div class="live-preview">
-      <div class="row">
-        <div class="col-12">
-          <div class="d-flex justify-content-between align-items-center">
-          <h5 class="header mt-2"><i class="fas fa-users"></i> Students
-          <span class="badge badge-secondary"><span style="font-weight: 300; color: #bfbfbf;">({{ count($members) }} students)</span></h5>
-            <a href="{{ route('create-member') }}">
-              <button type="button" style="width:100%" class="btn btn-outline-danger float-right">+ Add Student</button>
-            </a>
-          </div>
-            <div class="header-line"></div>
+@section('content')
+<div class="container-fluid">
+  <div class="live-preview">
+    <div class="row">
+      <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center">
+          <h5 class="header mt-2"><i class="fas fa-users"></i> Applications</h5>
         </div>
-        </div>
+        <div class="header-line"></div>
+      </div>
+    </div>
+
+    <div class="row container-fluid application-container">
+      <h2 class="text-center">Pending Applications</h2>
+        <div class="card application-card application-invitation">
+            <div class="card-body">
+                <table>
+                    <tr>
+                    <td style="width:90%"><div class="card-title"><b>Jose Manalo</b> applied to your Advisoree.</div></td>
+                    <td style="width:30%">
+                        <div class="d-flex justify-content-end">
+                        <a href="#" class="btn btn-danger mr-1">Accept</a>
+                        <div class="ml-auto">
+                            <a href="#" class="btn btn-light" style="margin-left: 10px;">Dismiss</a>
+                        </div>
+                        </div>
+                    </td>
+                    </tr>
+                </table>
+            </div>
+        </div>     
+        <div class="card application-card application-invitation">
+            <div class="card-body">
+                <table>
+                    <tr>
+                    <td style="width:90%"><div class="card-title"><b>Von Tandoc</b> applied to your Advisoree.</div></td>
+                    <td style="width:30%">
+                        <div class="d-flex justify-content-end">
+                        <a href="#" class="btn btn-danger mr-1">Accept</a>
+                        <div class="ml-auto">
+                            <a href="#" class="btn btn-light" style="margin-left: 10px;">Dismiss</a>
+                        </div>
+                        </div>
+                    </td>
+                    </tr>
+                </table>
+            </div>
+        </div>     
     </div>
   </div>
-
-  <div class="row cards-container">
-    @foreach ($members as $item)
-        <div class="col-md-4 col-lg-3">
-            <div class="profile-card">
-                <img class= "avatar" src="{{ asset('images/'.$item->photo) }}" alt="{{ $item->first_name }} {{ $item->last_name }}" class="avatar">
-                <div class="name">{{ $item->first_name }} {{ $item->last_name }}</div>
-                <div class="email">{{ $item->email }}</div>
-                <a href="{{ route('edit-member', $item->customer_id) }}" class="stretched-link"></a>
-            </div>
-        </div>
-    @endforeach
 </div>
+
 <!-- ./ cards-container -->
-@endsection --}}
+@endsection 
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+  $(".btn-light").on("click", function(e){
+    e.preventDefault();
+    $(this).closest(".application-card").addClass("display-none");
+  });
+});
+</script>
+
+<script>
+    $(document).ready(function() {
+  $(".btn-danger").on("click", function(e){
+    e.preventDefault();
+    $(this).closest(".application-card").addClass("display-none");
+  });
+});
+</script>

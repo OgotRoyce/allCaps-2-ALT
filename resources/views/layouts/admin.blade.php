@@ -46,6 +46,15 @@ date_default_timezone_set('Asia/Manila');
         display: flex;
         align-items: center;
         padding: 20px;
+        
+    }
+    .role {
+        font-family: 'Poppins', sans-serif;
+        font-size: 32px;
+        color: #fff;
+        /* add this to enable flexbox */
+        text-align: center;
+        /* add this to center items vertically */
     }
 
     .menu-title {
@@ -140,7 +149,7 @@ date_default_timezone_set('Asia/Manila');
         padding: 6px 12px;
         border-radius: 4px;
         text-decoration: none;
-        margin-top: 500px;
+        margin-top: 450px;
         box-shadow: none;
         transition: none;
     }
@@ -199,6 +208,7 @@ date_default_timezone_set('Asia/Manila');
                     </div>
 
                     @if (auth()->user()->role === 'admin')
+                    <h2 class="role mt-2 text-center"> ADMIN </h2>
                         <ul class="navbar-nav" id="navbar-nav">
                             <!-- <li class="menu-title text-white"><span data-key="t-menu">Menu</span></li> -->
 
@@ -238,18 +248,12 @@ date_default_timezone_set('Asia/Manila');
                                 </a>
                             </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link menu-link text-white" href="">
-                                    {{-- member --}}
 
-                                    <i class="ri-team-fill"></i> <span data-key="t-dashboards">ADMIN TO</span>
-
-                                </a>
-                            </li>
                     @endif
 
 
                     @if (auth()->user()->role === 'Adviser')
+                    <h5 class="role mt-2"> ADVISER </h5>
                         <ul class="navbar-nav" id="navbar-nav">
                             <li class="nav-item">
                                 <a class="nav-link menu-link text-white" href="{{ route('member') }}">
@@ -265,17 +269,11 @@ date_default_timezone_set('Asia/Manila');
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link menu-link text-white" href="{{ route('member') }}">
+                                <a class="nav-link menu-link text-white" href="{{ route('tasks-admin') }}">
                                     <i class="ri-file-list-2-fill"></i> <span data-key="t-dashboards">Task</span>
                                 </a>
                             </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link menu-link text-white" href="">
-                                    <i class="ri-file-list-2-fill"></i> <span data-key="t-dashboards">SUPERVISER
-                                        TO</span>
-                                </a>
-                            </li>
                     @endif
                     <!--
                     <li class="nav-item" >

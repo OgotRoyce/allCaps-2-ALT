@@ -31,7 +31,7 @@
   font-size: 18px;
   margin-bottom: 8px;
 }
-.profile-card .role {
+.profile-card .adv-role {
   font-size: 16px;
   color: #3f3f3f;
   margin-left: 84px;
@@ -99,7 +99,7 @@
                 <div class="profile-card">
                 <img class="avatar" src="{{ asset('images/pic.png') }}" alt="Avatar" />
                     <div class="name">{{ $item->name }}</div>
-                    <div class="role">{{ $item->role }}</div>
+                    <div class="adv-role">{{ $item->role }}</div>
                     <div class="email">{{ $item->email }}</div>
                     <a href="{{ route('edit-user', $item->id) }}" class="stretched-link"></a>
                 </div>

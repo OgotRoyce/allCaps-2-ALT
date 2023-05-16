@@ -20,206 +20,70 @@
   margin-bottom: 10px;
 }
 
-body {
-  background: #fff;
+
+.profile-card { border-radius: 18px; background: #fbfcff; padding: 18px 12px 42px 14px; margin: 28px; width: fit-content, calc(33.33% - 40px); transition: .3s ease;  }
+.profile-card:hover { background: #fff; cursor: pointer; box-shadow: -2px 3px 12px #d1d1d1; transform: scale(1.05); }
+.avatar { transition: .3s ease; border-radius: 999px; width: 72px; }
+.avatar:hover { transform: scale(1.2) rotate(22deg);  }
+.name { font-weight: 900; position: relative; margin-top: -64px; font-size: 14px; margin-left: 84px; margin-right: 36px; }
+.profile-card .name {
+  /* existing rules */
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+.profile-card .adv-role {
+  font-size: 16px;
+  color: #3f3f3f;
+  margin-left: 84px;
+  margin-bottom: 8px;
+}
+
+.profile-card .email {
   font-size: 14px;
-}
- 
-.wrapper {
-  display: table;
-  height: 100%;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  /* justify-content: center; */
-  align-items: center;
-  flex-wrap: wrap; 
-  align-content: center; 
-  justify-content: flex-start; 
-  flex-direction: row; 
+  color: #777;
+  margin-left: 84px;
 }
 
-h1.heading {
-  color: #fff;
-  font-size: 1.15em;
-  font-weight: 900;
-  margin: 0 0 0.5em;
-  color: #505050;
-}
-
-.card {
-  /* display: block;  */
-  margin-bottom: 20px;
-  margin-right: 20px;
-  background-color: #fff;
-  border-radius: 10px !important;
-  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12); 
-  transition: box-shadow .25s; 
-  height: 80%;
-  flex-basis: calc(25% - 20px); /* add this */
-  max-width: calc(25% - 20px); /* add this */
-  display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 20px;
-
-}
-
-@media screen and (max-width: 767px) {
-  .card {
-    flex-direction: column;
-  }
-}
-
-.img-card {
-  padding: 20px;
-  flex-basis: 100px; /* add this */
-  max-width: 100px; /* add this */
-}
-
-.card:hover {
-    box-shadow: -2px 3px 12px #d1d1d1;
-}
-
-.img-card app-logo{
-  transition: .3s ease; 
+.profile-card .avatar {
   border-radius: 999px;
-  
-  padding: 20px;
+  width: 72px;
+  padding: 10px;
 }
-
-.app-logo {
-  /* max-width: 70px; */
-  max-height: 70px;
-  object-fit: cover; 
-  border: 1px solid;
-  padding: 5px;
-  border-radius: 999px;
-  border-color: #c4bfbf;
-}
-
-.card-content {
-  /* padding:20px; */
-  text-align:left;
-  height: 170px;
-  overflow: hidden;
-  justify-content: center; /* add this */
-  flex-grow: 1; /* add this */
-}
-
-.card-title {
-  margin-top: 0px;
-  font-weight: 700;
-  font-size: 24px !important;
-}
-
-@media screen and (max-width: 575px) {
-  .card-title {
-    font-size: 20px !important;
-  }
-}
-
-@media screen and (min-width: 576px) and (max-width: 767px) {
-  .card-title {
-    font-size: 22px !important;
-  }
-}
-
-@media screen and (min-width: 768px) and (max-width: 991px) {
-  .card-title {
-    font-size: 23px !important;
-  }
-}
-
-.card-title a {
-  color: #000;
-  text-decoration: none !important;
-}
-.card-title a:hover {
-  color: #f06548;
-  text-decoration: none !important;
-}
-.card-subtitle {
-  font-size: 14px;
-  color: #999;
-  margin-top: 15px;
-}
-
 </style>
 
 @section('content')
 <div class="container-fluid">
-    <div class="live-preview">
-        <div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <h5 class="header mt-2"><i class="fas fa-users"></i> Projects 
-                            <span class="badge badge-secondary"><span style="font-weight: 300; color: #bfbfbf;">List of projects</span></span>
-                        </h5>
-                    </div>
-                    <div class="header-line"></div>
-
-                    <div class="content">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="row">
-                                        <div class="card d-flex flex-row">
-                                            <div class="col-md-4 col-lg-3 img-card">
-                                                <img class="app-logo" src="{{ asset('images/ALL Caps LOGO1.png') }}">
-                                            </div>
-                                            <div class="col-md-8 col-lg-9 card-content p-3">
-                                                <h4 class="card-title">
-                                                    <a href="#">ALLCaps</a>
-                                                </h4>
-                                                <div class="card-subtitle">
-                                                    <p>Capstone Project Team Monitoring System</p>
-                                                    <p style="font-size: 12px; color: #666;">Developed by Michael Jaskcon</p>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="card d-flex flex-row">
-                                            <div class="col-md-4 col-lg-3 img-card">
-                                                <img class="app-logo" src="{{ asset('images/DEV2DEV.png') }}">
-                                            </div>
-                                            <div class="col-md-8 col-lg-9 card-content p-3">
-                                                <h4 class="card-title">
-                                                    <a href="#">GC Dev2Dev</a>
-                                                </h4>
-                                                <div class="card-subtitle">
-                                                    <p>GC Dev2Dev Lorem Ipsum System</p>
-                                                    <p style="font-size: 12px; color: #666;">Developed by Ken Ammay</p>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="card d-flex flex-row">
-                                            <div class="col-md-4 col-lg-3 img-card">
-                                                <img class="app-logo" src="{{ asset('images/GC SHELF LOGO-01.png') }}">
-                                            </div>
-                                            <div class="col-md-8 col-lg-9 card-content p-3">
-                                                <h4 class="card-title">
-                                                    <a href="#">GC SHELF</a>
-                                                </h4>
-                                                <div class="card-subtitle">
-                                                    <p>GC Library System</p>
-                                                    <p style="font-size: 12px; color: #666;">Developed by Lloyd Mariano</p>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                            
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
+  <div class="live-preview">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="d-flex justify-content-between align-items-center">
+          <h5 class="header mt-2">
+            <i class="fas fa-users"></i> Advisoree
+            <span class="badge badge-secondary">
+              <span style="font-weight: 300; color: #bfbfbf;">List of Students</span>
+            </span>
+          </h5>
         </div>
+        <div class="header-line"></div>
+      </div>
     </div>
-</div>
+  </div>
+
+  <!-- <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card d-flex flex-row">
+            <div class="profile-card">
+              <img class="avatar" src="{{ asset('images/pic.png') }}" alt="Avatar" />
+              <div class="name">Royce Ogot</div>
+              <div class="email">201911397@gordoncollege.edu.ph</div>
+              <a href="#" class="stretched-link"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
 @endsection
