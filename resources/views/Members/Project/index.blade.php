@@ -28,7 +28,7 @@
                 <div>
                     <div class="row">
                         <div class="col-lg-12">
-                        <h5 class="header mt-2"><i class="fas fa-folder-open"></i> Your project</h5>
+                        <h5 class="header mt-2"><i class="fas fa-folder-open"></i> My project</h5>
                         <div class="header-line"></div>
                             <div class="card p-4 border mt-4">
                                 <div class="row">
@@ -43,3 +43,4 @@
             </div>
 </div>
 @endsection
+

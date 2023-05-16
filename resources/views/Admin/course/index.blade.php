@@ -1,90 +1,225 @@
-@extends('layouts.admin')
+<!-- @extends('layouts.admin') -->
+
+<style>
+
+.header {
+  font-family: 'Poppins', sans-serif;
+  font-size: 32px;
+  color: #f06548;
+  display: flex; /* add this to enable flexbox */
+  align-items: center; /* add this to center items vertically */
+}
+
+.header i {
+  margin-right: 10px; /* adjust this value to increase/decrease the space */
+}
+
+.header-line {
+  height: 1px;
+  background-color: #bfbfbf;
+  margin-bottom: 10px;
+}
+
+body {
+  background: #fff;
+  font-size: 14px;
+}
+ 
+.wrapper {
+  display: table;
+  height: 100%;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  flex-wrap: wrap; 
+  align-content: center; 
+  justify-content: flex-start; 
+  flex-direction: row; 
+}
+
+h1.heading {
+  color: #fff;
+  font-size: 1.15em;
+  font-weight: 900;
+  margin: 0 0 0.5em;
+  color: #505050;
+}
+
+.card {
+  /* display: block;  */
+  margin-bottom: 20px;
+  margin-right: 20px;
+  background-color: #fff;
+  border-radius: 10px !important;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12); 
+  transition: box-shadow .25s; 
+  height: 80%;
+  flex-basis: calc(25% - 20px); /* add this */
+  max-width: calc(25% - 20px); /* add this */
+  display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+
+}
+
+@media screen and (max-width: 767px) {
+  .card {
+    flex-direction: column;
+  }
+}
+
+.img-card {
+  padding: 20px;
+  flex-basis: 100px; /* add this */
+  max-width: 100px; /* add this */
+}
+
+.card:hover {
+    box-shadow: -2px 3px 12px #d1d1d1;
+}
+
+.img-card app-logo{
+  transition: .3s ease; 
+  border-radius: 999px;
+  
+  padding: 20px;
+}
+
+.app-logo {
+  /* max-width: 70px; */
+  max-height: 70px;
+  object-fit: cover; 
+  border: 1px solid;
+  padding: 5px;
+  border-radius: 999px;
+  border-color: #c4bfbf;
+}
+
+.card-content {
+  /* padding:20px; */
+  text-align:left;
+  height: 170px;
+  overflow: hidden;
+  justify-content: center; /* add this */
+  flex-grow: 1; /* add this */
+}
+
+.card-title {
+  margin-top: 0px;
+  font-weight: 700;
+  font-size: 24px !important;
+}
+
+@media screen and (max-width: 575px) {
+  .card-title {
+    font-size: 20px !important;
+  }
+}
+
+@media screen and (min-width: 576px) and (max-width: 767px) {
+  .card-title {
+    font-size: 22px !important;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .card-title {
+    font-size: 23px !important;
+  }
+}
+
+.card-title a {
+  color: #000;
+  text-decoration: none !important;
+}
+.card-title a:hover {
+  color: #f06548;
+  text-decoration: none !important;
+}
+.card-subtitle {
+  font-size: 14px;
+  color: #999;
+  margin-top: 15px;
+}
+
+</style>
 
 @section('content')
-    <div class="container">
-        <div class="live-preview">
-            <div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="row">
-                            {{-- <div class="col-10">
-                <h5 class="header mt-2">Course</h5>
-            </div>
-            <div class="col-2">
-                <a href="{{route('create-course')}}">
-                    <button type="button" style="width:100%" class="btn btn-primary" >
-                    + Add Course
-                    </button>
-                </a>
-            </div>
-</div>
-<!-- Button trigger modal -->
+<div class="container-fluid">
+    <div class="live-preview">
+        <div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="header mt-2"><i class="fas fa-users"></i> Projects 
+                            <span class="badge badge-secondary"><span style="font-weight: 300; color: #bfbfbf;">List of projects</span></span>
+                        </h5>
+                    </div>
+                    <div class="header-line"></div>
 
-<div class="card p-4 border mt-4">
-<div class="row">
-<table class="table">
-<thead>
-<tr>
-<th scope="col">#</th>
-<th scope="col">Image</th>
-<th scope="col">Golf Course Number</th>
-<th scope="col">Price</th>
-<th scope="col">Capacity</th>
-<th scope="col">Action</th>
-</tr>
-</thead>
+                    <div class="content">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="card d-flex flex-row">
+                                            <div class="col-md-4 col-lg-3 img-card">
+                                                <img class="app-logo" src="{{ asset('images/ALL Caps LOGO1.png') }}">
+                                            </div>
+                                            <div class="col-md-8 col-lg-9 card-content p-3">
+                                                <h4 class="card-title">
+                                                    <a href="#">ALLCaps</a>
+                                                </h4>
+                                                <div class="card-subtitle">
+                                                    <p>Capstone Project Team Monitoring System</p>
+                                                    <p style="font-size: 12px; color: #666;">Developed by Michael Jaskcon</p>
+                                                </div>
+                                            </div>
+                                        </div>
 
-@php
-$count = ($courses->currentPage() - 1) * $courses->perPage() + 1;
-@endphp
+                                        <div class="card d-flex flex-row">
+                                            <div class="col-md-4 col-lg-3 img-card">
+                                                <img class="app-logo" src="{{ asset('images/DEV2DEV.png') }}">
+                                            </div>
+                                            <div class="col-md-8 col-lg-9 card-content p-3">
+                                                <h4 class="card-title">
+                                                    <a href="#">GC Dev2Dev</a>
+                                                </h4>
+                                                <div class="card-subtitle">
+                                                    <p>GC Dev2Dev Lorem Ipsum System</p>
+                                                    <p style="font-size: 12px; color: #666;">Developed by Ken Ammay</p>
+                                                </div>
+                                            </div>
+                                        </div>
 
-@foreach ($courses as $item)
+                                        <div class="card d-flex flex-row">
+                                            <div class="col-md-4 col-lg-3 img-card">
+                                                <img class="app-logo" src="{{ asset('images/GC SHELF LOGO-01.png') }}">
+                                            </div>
+                                            <div class="col-md-8 col-lg-9 card-content p-3">
+                                                <h4 class="card-title">
+                                                    <a href="#">GC SHELF</a>
+                                                </h4>
+                                                <div class="card-subtitle">
+                                                    <p>GC Library System</p>
+                                                    <p style="font-size: 12px; color: #666;">Developed by Lloyd Mariano</p>
+                                                </div>
+                                            </div>
+                                        </div>
 
-<tbody>
-
-<tr>
-<th scope="row">{{ $count++ }}</th>
-<td>
-    @if ($item->photo)
-    <img src="{{ asset('public/course/'.$item->photo) }}" class="img-thumbnail" style="margin-left: auto; margin-right: auto; display: block; height:100px; width:100px;">
-    @else
-        <img src="{{ asset('images/no_image.jpg') }}" class="img-thumbnail default" style="margin-left: auto; margin-right: auto; display: block; height:100px; width:100px;">
-    @endif
-</td>
-<td>{{ $item->name }}</td>
-<td>{{ $item->price }}</td>
-<td>{{ $item->capacity }}</td>
-<td>
-    <a href="{{route('edit-course', $item->course_id)}}">
-    <button type="button" class="btn btn-primary" >
-        Edit
-    </button>
-    </a>
-
-    <a   href="{{ route('delete-course', $item->course_id) }}" onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this course?')){document.getElementById('delete-form-{{ $item->course_id }}').submit();}">
-        <button type="submit"  class="btn btn-danger" >Delete</button>
-        </a>
-
-        <form  id="delete-form-{{$item->course_id}}" action="{{ route('delete-course', $item->course_id) }}" method="post" style="display: none;">
-            @csrf
-            @method('DELETE')
-        </form>
-
-    </form>
-</td>
-</tr>
-@endforeach
-</tbody>
-
-</table>
-{!!  $courses->render() !!}
-</div> --}}
-
+                            
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
                 </div>
-                <!-- end row -->
             </div>
         </div>
     </div>
+</div>
 @endsection

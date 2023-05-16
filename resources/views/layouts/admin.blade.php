@@ -31,7 +31,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.0.18/sweetalert2.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.0.18/sweetalert2.all.min.js"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,500,600&display=swap" />
-
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/css/remixicon.css" rel="stylesheet">
 
 {{-- boostrap CDN --}}
 {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> --}}
@@ -207,11 +207,11 @@ color: #fff;
 
 
 
-                    <!-- {{-- <li class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link menu-link text-white" href="{{route('course')}}">
-                            <i class="ri-layout-3-line"></i> <span data-key="t-layouts">Students</span>
+                            <i class="ri-layout-3-line"></i> <span data-key="t-layouts">Projects</span>
                         </a>
-                    </li> --}} -->
+                    </li>
 
                     <li class="nav-item">
                         <a class="nav-link menu-link text-white" href="{{route('member')}}">

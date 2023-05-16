@@ -36,7 +36,7 @@ class AdminController extends Controller
             return redirect()->route('usertype');
         }
 
-            return redirect()->route('member');
+            return redirect()->route('services');
         }
             // dd("warning","wrong credentials");
             return redirect()->back()->with("warning","wrong credentials");
