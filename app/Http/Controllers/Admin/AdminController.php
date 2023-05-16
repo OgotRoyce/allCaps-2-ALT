@@ -30,16 +30,30 @@ class AdminController extends Controller
      */
     public function authenticated(Request $request)
     {
-        if(auth()->attempt(['email' => $request->get('email'), 'password' => $request->get('password')])){
-            // dd(['email' => $request->get('email'), 'password' => $request->get('password')]);
-        if(in_array(auth()->user()->role,['Adviser'])){
-            return redirect()->route('usertype');
-        }
+        if (auth()->attempt(['email' => $request->get('email'), 'password' => $request->get('password')])) {
+            $auth = auth()->user();
+            switch ($auth->role) {
+                case 'Adviser':
+                    return redirect()->route('course');
+                    break;
+                case 'admin':
+                    return redirect()->route('projects-admin');
+                    break;
+                default:
+                    return redirect()->route('projects-admin');
+                    break;
+            }
 
-            return redirect()->route('services');
+            // dd(['email' => $request->get('email'), 'password' => $request->get('password')]);
+            // if (in_array(auth()->user()->role, ['admin'])) {
+            //     return redirect()->route('tasks'); //usertype
+            // }
+            // // } elseif (in_array(auth()->user()->role, ['Adviser'])) {
+            // //     return redirect()->route('services'); //services
+            // // }
         }
-            // dd("warning","wrong credentials");
-            return redirect()->back()->with("warning","wrong credentials");
+        // dd("warning","wrong credentials");
+        return redirect()->back()->with("warning", "wrong credentials");
     }
 
     /**

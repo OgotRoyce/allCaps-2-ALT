@@ -33,6 +33,24 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::post('/logout', ['as' => 'logout-admin', 'uses' => 'AdminController@logout']);
     });
 
+    ///////////////////////////////////////////////////////////////////////////
+    //FIXED ROUTES REDIRECT
+    Route::group(['prefix' => 'tasks-admin'], function () {
+        Route::get('/', ['as' => 'tasks-admin', 'uses' => "TasksController@index"]);
+    });
+
+    // Route::group(['prefix' => 'advisers'], function () {
+    //     Route::get('/', ['as' => 'advisers', 'uses' => "AdvisersController@index"]);
+    // });
+
+    Route::group(['prefix' => 'projects-admin'], function () {
+        Route::get('/', ['as' => 'projects-admin', 'uses' => "ProjectController@index"]);
+    });
+
+    Route::group(['prefix' => 'students-admin'], function () {
+        Route::get('/', ['as' => 'students-admin', 'uses' => "StudentController@index"]);
+    });
+
     Route::group(['prefix' => 'member'], function () {
         Route::get('/', ['as' => 'member', 'uses' => "MemberController@index"]);
         Route::get('/create', ['as' => 'create-member', 'uses' => "MemberController@create"]);
