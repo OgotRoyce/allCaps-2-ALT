@@ -180,7 +180,7 @@
                                 <div class='project-tasks'>
                                     <i class="task-img fas fa-clipboard-list"></i>
                                     <div class='project-column'>
-                                        <a href="{{ route('view-task') }}" class="project-column-header__link">
+                                        <a href="{{ route('view-task-member') }}" class="project-column-header__link">
                                             <h2 class='project-column-header__title'>{{ $item->title }}</h2>
                                         </a>
                                         <div class='task'>
@@ -189,7 +189,7 @@
                                                 <span>
                                                     <date datetime="2021-11-24T20:00:00"><i
                                                             class="task-icon fas fa-flag"></i>Date Posted:
-                                                        {{ $item->created_at->format('m/d/Y') }}</date>
+                                                        {{ \Carbon\Carbon::parse($item->created_at)->format('F d, Y') }}</date>
                                                 </span>
                                                 <!-- <span class="task-file-count"><i
                                                         class="task-file fas fa-paperclip"></i>2</span> -->

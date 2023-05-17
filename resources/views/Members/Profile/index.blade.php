@@ -17,6 +17,7 @@
 .header-line {
   height: 1px;
   background-color: #bfbfbf;
+  margin-top: 20px;
   margin-bottom: 20px;
 }
 
@@ -24,6 +25,8 @@
 margin-top: 10px;
   font-size: 24px;
   margin-bottom: 8px;
+  color: #212529;
+  font-weight: bold;
 }
 .member-email {
     font-size: 0.8rem;
@@ -73,10 +76,11 @@ margin-top: 10px;
 .profile-usertitle-name {
     text-transform: uppercase;
     margin-top: 10px;
-  color: #5a7391;
+  color: #212529;
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 7px;
+  font-weight: bold;
 }
 
 .profile-usertitle-email {
@@ -89,7 +93,68 @@ margin-top: 10px;
 .profile-content {
   padding: 20px;
   background: #fff;
-  min-height: 460px;
+  border-radius: 18px;
+  height: auto;
+}
+
+.profile-project-head {
+    color: #f06548;
+  font-size: 32px;
+  font-weight: 600;
+    margin-top: 10px;
+  font-size: 30px;
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+.project-container {
+  margin-top: 20px;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.project-img {
+  margin-right: 20px;
+}
+
+.app-logo {
+  max-height: 70px;
+  object-fit: cover;
+  border-radius: 999px;
+  border-color: #c4bfbf;
+  border: 1px solid;
+}
+
+.card-content {
+  text-align: left;
+  overflow: hidden;
+  /* add this */
+  flex-grow: 1;
+}
+
+
+.project-title {
+    margin-top: 0px;
+    font-weight: 700;
+    font-size: 24px !important;
+}
+
+.project-title a {
+    color: #000;
+    text-decoration: none !important;
+}
+
+.project-title a:hover {
+    color: #f06548;
+    text-decoration: none !important;
+}
+
+.project-subtitle {
+    font-size: 14px;
+    color: #999;
+    margin-top: 1
+    px;
 }
 
 </style>
@@ -108,51 +173,45 @@ margin-top: 10px;
     </div>
 </div>
 
-    <!-- <div class="card">
-        <div class="row no-gutters">
-            <div class="col-md-4 d-flex align-items-center justify-content-center">
-                <img class="card-img p-3" src="{{ asset('images/dp.png') }}" style="max-width: 30%;">
-            </div>
-
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="member-name">{{ auth('member')->user()->first_name }} {{ auth('member')->user()->last_name }}</h5>
-                    <h6 class="member-email mb-2 text-muted">Email: {{ auth('member')->user()->email }}</h6>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</div> -->
-
 
 <div class="container-fluid">
     <div class="row profile">
-		<div class="col-md-3">
-			<div class="profile-sidebar">
-				<!-- SIDEBAR USERPIC -->
-				<div class="profile-userpic">
-					<img src="{{ asset('images/dp.png') }}" class="img-responsive" alt="">
-				</div>
-				<!-- END SIDEBAR USERPIC -->
-				<!-- SIDEBAR USER TITLE -->
-				<div class="profile-usertitle">
-					<div class="profile-usertitle-name">
+        <div class="col-md-3">
+            <div class="profile-sidebar">
+                <div class="profile-userpic">
+                    <img src="{{ asset('images/dp.png') }}" class="img-responsive" alt="">
+                </div>
+                <div class="profile-usertitle">
+                    <div class="profile-usertitle-name">
                         <h5 class="member-name">{{ auth('member')->user()->first_name }} {{ auth('member')->user()->last_name }}</h5>
-					</div>
-					<div class="profile-usertitle-email">
-                        <h6 class="member-email mb-2 text-muted">Email: {{ auth('member')->user()->email }}</h6>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-9">
-            <div class="profile-content">
-			   Some user related content goes here...
+                    </div>
+                    <div class="profile-usertitle-email">
+                        <h6 class="member-email mb-2 text-muted"><strong>EMAIL:</strong> {{ auth('member')->user()->email }}</h6>
+                    </div>
+                </div>
             </div>
-		</div>
-	</div>
+        </div>
+        <div class="col-md-9">
+            <div class="profile-content">
+              <div class="profile-project-details">
+                  <h5 class="profile-project-head"><i class="fas fa-folder-open"></i> Projects </h5>
+                  <div class="header-line"></div>
+                  <div class="project-container">
+                      <div class="project-img">
+                          <img class="app-logo" src="{{ asset('images/ALL Caps LOGO1.png') }}">
+                      </div>
+                      <div class="card-content">
+                          <h4 class="project-title">ALLCaps</h4>
+                          <div class="project-subtitle">
+                              <p>Capstone Project Team Monitoring System</p>
+                              <p style="font-size: 12px; color: #666;">Developed by Michael Jaskcon</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>                
+            </div>
+        </div>
+    </div>
 </div>
-
 
 @endsection

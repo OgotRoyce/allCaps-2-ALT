@@ -183,45 +183,25 @@
                                 <div class='project-tasks'>
                                     <i class="task-img fas fa-clipboard-list"></i>
                                     <div class='project-column'>
-                                        <a href="#" class="project-column-header__link">
+                                        <a href="{{ route('view-tasks') }}" class="project-column-header__link">
                                             <h2 class='project-column-header__title'>{{ $item->title }}</h2>
                                         </a>
                                         <div class='task'>
-                                            <p>Due Date: {{ $item->due_date }}</p>
+                                            <p>Due Date: {{ \Carbon\Carbon::parse($item->due_date)->format('F d, Y') }}</p>
                                             <div class='task-stats'>
                                                 <span>
                                                     <date datetime="2021-11-24T20:00:00"><i
                                                             class="task-icon fas fa-flag"></i>Date Posted:
-                                                        {{ $item->created_at->format('m/d/Y') }}</date>
+                                                        {{ \Carbon\Carbon::parse($item->created_at)->format('F d, Y') }}</date>
                                                 </span>
-                                                <span class="task-file-count"><i
-                                                        class="task-file fas fa-paperclip"></i>2</span>
+                                                <!-- <span class="task-file-count"><i
+                                                        class="task-file fas fa-paperclip"></i>2</span> -->
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </main>
                     @endforeach
-                    {{-- <main class='project'>
-                            <div class='project-tasks'>
-                                <i class="task-img fas fa-clipboard-list"></i>
-                                <div class='project-column'>
-                                    <a href="#" class="project-column-header__link">
-                                        <h2 class='project-column-header__title'>Project Poster</h2>
-                                    </a>
-                                    <div class='task'>
-                                        <p>Due Date: March 30, 2023, 5:00 PM</p>
-                                        <div class='task-stats'>
-                                            <span>
-                                                <date datetime="2021-11-24T20:00:00"><i
-                                                        class="task-icon fas fa-flag"></i>Nov 24</date>
-                                            </span>
-                                            <span class="task-file-count"><i class="task-file fas fa-paperclip"></i>1</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </main> --}}
                 </div>
 
             </div>

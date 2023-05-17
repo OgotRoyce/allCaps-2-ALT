@@ -74,7 +74,7 @@
 
     .profile-card {
         border-radius: 18px;
-        background: #fbfcff;
+        background: #fff;
         padding: 18px 12px 42px 14px;
         margin: 28px;
         width: fit-content;
@@ -117,6 +117,7 @@
         font-size: 14px;
         color: #777;
         margin-left: 84px;
+        margin-right: 20px;
     }
 
     .profile-card .avatar {
