@@ -1,4 +1,4 @@
-@extends('layouts.member')
+@extends('layouts.admin')
 <style>
     .header {
         font-family: 'Poppins', sans-serif;
@@ -172,37 +172,5 @@
                             <span class="badge badge-secondary"><span style="font-weight: 300; color: #bfbfbf;">List of
                                     complete and pending tasks</span>
                         </h5>
+                        
                     </div>
-                    <div class="header-line"></div>
-                    @foreach ($tasks as $item)
-                        <div class='app'>
-                            <main class='project'>
-                                <div class='project-tasks'>
-                                    <i class="task-img fas fa-clipboard-list"></i>
-                                    <div class='project-column'>
-                                        <a href="{{ route('view-task') }}" class="project-column-header__link">
-                                            <h2 class='project-column-header__title'>{{ $item->title }}</h2>
-                                        </a>
-                                        <div class='task'>
-                                            <p style="font-size: 18px;">Due Date: {{ \Carbon\Carbon::parse($item->due_date)->format('F d, Y') }}</p>
-                                            <div class='task-stats'>
-                                                <span>
-                                                    <date datetime="2021-11-24T20:00:00"><i
-                                                            class="task-icon fas fa-flag"></i>Date Posted:
-                                                        {{ $item->created_at->format('m/d/Y') }}</date>
-                                                </span>
-                                                <!-- <span class="task-file-count"><i
-                                                        class="task-file fas fa-paperclip"></i>2</span> -->
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </main>
-                    @endforeach
-
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-@endsection

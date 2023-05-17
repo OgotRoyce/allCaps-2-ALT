@@ -14,4 +14,9 @@ class TaskController extends Controller
         $tasks = Task::all();
         return view('Members.Task.index', ['tasks' => $tasks]);
     }
+
+    public function show()
+    {
+        return view('Members.Task.view');
+    }
 }

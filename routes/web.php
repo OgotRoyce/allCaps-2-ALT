@@ -139,6 +139,7 @@ Route::group(['prefix' => 'member', 'namespace' => 'Members'], function () {
 
     Route::group(['prefix' => 'task-member'], function () {
         Route::get('/', ['as' => 'task-member', 'uses' => "TaskController@index"]);
+        Route::get('/show', ['as' => 'view-task', 'uses' => "TaskController@index"]);
     });
 
 
