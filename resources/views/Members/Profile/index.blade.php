@@ -126,7 +126,7 @@ margin-top: 10px;
 </div> -->
 
 
-<div class="container-fluic">
+<div class="container-fluid">
     <div class="row profile">
 		<div class="col-md-3">
 			<div class="profile-sidebar">

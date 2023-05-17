@@ -139,6 +139,23 @@ h2.text-center {
                     </tr>
                 </table>
             </div>
+        </div>
+        <div class="card application-card application-invitation">
+            <div class="card-body">
+                <table>
+                    <tr>
+                    <td style="width:90%"><div class="card-title"><b>Lloyd Mariano</b> applied to your Advisoree.</div></td>
+                    <td style="width:30%">
+                        <div class="d-flex justify-content-end">
+                        <a href="#" class="btn btn-danger mr-1">Accept</a>
+                        <div class="ml-auto">
+                            <a href="#" class="btn btn-light" style="margin-left: 10px;">Dismiss</a>
+                        </div>
+                        </div>
+                    </td>
+                    </tr>
+                </table>
+            </div>
         </div>     
     </div>
   </div>

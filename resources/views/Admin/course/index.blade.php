@@ -21,7 +21,7 @@
 }
 
 
-.profile-card { border-radius: 18px; background: #fbfcff; padding: 18px 12px 42px 14px; margin: 28px; width: fit-content, calc(33.33% - 40px); transition: .3s ease;  }
+.profile-card { border-radius: 18px; background: #fbfcff; padding: 18px 12px 42px 14px; margin: 28px; width: fit-content; transition: .3s ease;  }
 .profile-card:hover { background: #fff; cursor: pointer; box-shadow: -2px 3px 12px #d1d1d1; transform: scale(1.05); }
 .avatar { transition: .3s ease; border-radius: 999px; width: 72px; }
 .avatar:hover { transform: scale(1.2) rotate(22deg);  }
@@ -69,21 +69,13 @@
     </div>
   </div>
 
-  <!-- <div class="content">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-12">
-          <div class="card d-flex flex-row">
+  <div class="row cards-container">
+        <div class="col-md-4 col-lg-3">
             <div class="profile-card">
-              <img class="avatar" src="{{ asset('images/pic.png') }}" alt="Avatar" />
-              <div class="name">Royce Ogot</div>
-              <div class="email">201911397@gordoncollege.edu.ph</div>
-              <a href="#" class="stretched-link"></a>
+                <img class="avatar" src="{{ asset('images/pic.png')}}" alt="Avatar" />
+                <div class="name">Royce Ogot</div>
+                <div class="email">201911397@gordoncollege.edu.ph</div>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </div>
-</div> -->
+</div>
 @endsection

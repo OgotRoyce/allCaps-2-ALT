@@ -172,10 +172,10 @@
                             <span class="badge badge-secondary"><span style="font-weight: 300; color: #bfbfbf;">List of
                                     complete and pending tasks</span>
                         </h5>
-                        <a href="#">
+                        <!-- <a href="#">
                             <button type="button" style="width:100%" class="btn btn-outline-danger float-right">+ Create
                                 New Task</button>
-                        </a>
+                        </a> -->
                     </div>
                     <div class="header-line"></div>
                     <div class='app'>
