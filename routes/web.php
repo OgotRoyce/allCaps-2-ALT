@@ -137,8 +137,8 @@ Route::group(['prefix' => 'member', 'namespace' => 'Members'], function () {
         Route::get('/', ['as' => 'invoice', 'uses' => "InvoiceController@index"]);
     });
 
-    Route::group(['prefix' => 'task'], function () {
-        Route::get('/', ['as' => 'task', 'uses' => "TaskController@index"]);
+    Route::group(['prefix' => 'task-member'], function () {
+        Route::get('/', ['as' => 'task-member', 'uses' => "TaskController@index"]);
     });
 
 

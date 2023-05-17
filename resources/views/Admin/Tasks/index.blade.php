@@ -178,7 +178,6 @@
                         </a>
                     </div>
                     @foreach ($tasks as $item)
-                        <div class="header-line"></div>
                         <div class='app'>
                             <main class='project'>
                                 <div class='project-tasks'>

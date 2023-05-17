@@ -201,7 +201,7 @@ date_default_timezone_set('Asia/Manila');
                     <ul class="navbar-nav" id="navbar-nav">
                         <!-- <li class="menu-title text-white"><span data-key="t-menu">Menu</span></li> -->
                         <li class="nav-item">
-                            <a class="nav-link menu-link text-white" href="{{ route('task') }}">
+                            <a class="nav-link menu-link text-white" href="{{ route('task-member') }}">
                                 <i class="ri-file-list-2-fill"></i> <span data-key="t-dashboards">Tasks</span>
                             </a>
                         </li>
