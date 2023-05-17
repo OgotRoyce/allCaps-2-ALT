@@ -37,6 +37,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     //FIXED ROUTES REDIRECT
     Route::group(['prefix' => 'tasks-admin'], function () {
         Route::get('/', ['as' => 'tasks-admin', 'uses' => "TasksController@index"]);
+        Route::get('/create', ['as' => 'create-tasks', 'uses' => "TasksController@create"]);
+        Route::post('/create', ['as' => 'store-tasks', 'uses' => "TasksController@store"]);
     });
 
     // Route::group(['prefix' => 'advisers'], function () {

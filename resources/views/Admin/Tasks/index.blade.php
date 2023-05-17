@@ -172,34 +172,38 @@
                             <span class="badge badge-secondary"><span style="font-weight: 300; color: #bfbfbf;">List of
                                     complete and pending tasks</span>
                         </h5>
-                        <!-- <a href="#">
+                        <a href="{{ route('create-tasks') }}">
                             <button type="button" style="width:100%" class="btn btn-outline-danger float-right">+ Create
                                 New Task</button>
-                        </a> -->
+                        </a>
                     </div>
-                    <div class="header-line"></div>
-                    <div class='app'>
-                        <main class='project'>
-                            <div class='project-tasks'>
-                                <i class="task-img fas fa-clipboard-list"></i>
-                                <div class='project-column'>
-                                    <a href="#" class="project-column-header__link">
-                                        <h2 class='project-column-header__title'>Project Title Proposal</h2>
-                                    </a>
-                                    <div class='task'>
-                                        <p>Due Date: March 21, 2023, 5:00 PM</p>
-                                        <div class='task-stats'>
-                                            <span>
-                                                <date datetime="2021-11-24T20:00:00"><i
-                                                        class="task-icon fas fa-flag"></i>Nov 24</date>
-                                            </span>
-                                            <span class="task-file-count"><i class="task-file fas fa-paperclip"></i>2</span>
+                    @foreach ($tasks as $item)
+                        <div class="header-line"></div>
+                        <div class='app'>
+                            <main class='project'>
+                                <div class='project-tasks'>
+                                    <i class="task-img fas fa-clipboard-list"></i>
+                                    <div class='project-column'>
+                                        <a href="#" class="project-column-header__link">
+                                            <h2 class='project-column-header__title'>{{ $item->title }}</h2>
+                                        </a>
+                                        <div class='task'>
+                                            <p>Due Date: {{ $item->due_date }}</p>
+                                            <div class='task-stats'>
+                                                <span>
+                                                    <date datetime="2021-11-24T20:00:00"><i
+                                                            class="task-icon fas fa-flag"></i>Date Posted:
+                                                        {{ $item->created_at->format('m/d/Y') }}</date>
+                                                </span>
+                                                <span class="task-file-count"><i
+                                                        class="task-file fas fa-paperclip"></i>2</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </main>
-                        <main class='project'>
+                            </main>
+                    @endforeach
+                    {{-- <main class='project'>
                             <div class='project-tasks'>
                                 <i class="task-img fas fa-clipboard-list"></i>
                                 <div class='project-column'>
@@ -218,10 +222,11 @@
                                     </div>
                                 </div>
                             </div>
-                        </main>
-                    </div>
+                        </main> --}}
                 </div>
+
             </div>
         </div>
+    </div>
     </div>
 @endsection

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class TasksController extends Controller
 {
@@ -12,7 +14,8 @@ class TasksController extends Controller
      */
     public function index()
     {
-        return view('Admin.Tasks.index');
+        $tasks = Task::all();
+        return view('Admin.Tasks.index', ['tasks' => $tasks]);
     }
 
     /**
@@ -20,7 +23,7 @@ class TasksController extends Controller
      */
     public function create()
     {
-        //
+        return view('Admin.Tasks.create');
     }
 
     /**
@@ -29,6 +32,17 @@ class TasksController extends Controller
     public function store(Request $request)
     {
         //
+        $tasks = Task::create([
+            'title' => $request->get('title'),
+            'description' => $request->get('description'),
+            'due_date' => $request->get('due_date'),
+            'attachments' => $request->get('attachments'),
+
+        ]);
+
+        $tasks->save();
+        Session::flash('success', 'Task created!');
+        return redirect()->route('tasks-admin');
     }
 
     /**
