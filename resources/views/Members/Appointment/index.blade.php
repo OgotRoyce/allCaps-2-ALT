@@ -222,7 +222,7 @@ body {
                     <div class="info">
                       <img class="avatar" src="{{ asset('images/pic.png') }}" alt="Avatar">
                       <div class="name-role">
-                        <p class="name">John May</p>
+                        <p class="name">Denise Lou B. Punzalan</p>
                         <p class="role">Adviser</p>
                       </div>
                     </div>
@@ -232,7 +232,7 @@ body {
                     <div class="info">
                       <img class="avatar" src="{{ asset('images/pic.png') }}" alt="Avatar">
                       <div class="name-role">
-                        <p class="name">John May</p>
+                        <p class="name">Ronnie Luy</p>
                         <p class="role">Adviser</p>
                       </div>
                     </div>
@@ -242,7 +242,7 @@ body {
                     <div class="info">
                       <img class="avatar" src="{{ asset('images/pic.png') }}" alt="Avatar">
                       <div class="name-role">
-                        <p class="name">John May</p>
+                        <p class="name">Mayer Sanchez</p>
                         <p class="role">Adviser</p>
                       </div>
                     </div>
@@ -252,7 +252,7 @@ body {
                     <div class="info">
                       <img class="avatar" src="{{ asset('images/pic.png') }}" alt="Avatar">
                       <div class="name-role">
-                        <p class="name">John May</p>
+                        <p class="name">Kenneth Bautista</p>
                         <p class="role">Adviser</p>
                       </div>
                     </div>
@@ -263,7 +263,7 @@ body {
                   <div class="info">
                       <img class="avatar" src="{{ asset('images/pic.png') }}" alt="Avatar">
                       <div class="name-role">
-                        <p class="name">John May</p>
+                        <p class="name">Rey Bautista</p>
                         <p class="role">Adviser</p>
                       </div>
                     </div>
@@ -273,7 +273,7 @@ body {
                     <div class="info">
                       <img class="avatar" src="{{ asset('images/pic.png') }}" alt="Avatar">
                       <div class="name-role">
-                        <p class="name">John May</p>
+                        <p class="name">Loudel Manaloto</p>
                         <p class="role">Adviser</p>
                       </div>
                     </div>
