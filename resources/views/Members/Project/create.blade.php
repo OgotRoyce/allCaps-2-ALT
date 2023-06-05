@@ -30,14 +30,14 @@
                 id="exampleFormControlInput1">
         </div>
         <div class="">
-            <label for="formFile" class="form-label">Attachments: <h5>Add Logo</h5></label>
+            <label for="formFile" class="form-label">Attach your System's Logo</label>
             <input type="file" name="logo" step="any" class="form-control">
         </div>
 
 
         <div class="modal-footer">
             <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-            <button type="submit" class="btn btn-success w-100">Create</button>
+            <button type="submit" class="btn btn-danger w-100">Create Project</button>
         </div>
     </form>
 

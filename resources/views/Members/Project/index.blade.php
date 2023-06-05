@@ -2,6 +2,7 @@
 
 <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
 
+
 <style>
     .header {
         font-family: 'Poppins', sans-serif;
@@ -98,6 +99,45 @@
         color: #999;
         margin-top: 1 px;
     }
+
+/* styles for 404 */
+
+.page_404{ 
+    padding:40px 0; 
+    background:#fff; 
+    font-family: 'Poppins', sans-serif;
+}
+
+.page_404  img{ width:100%;}
+
+.four_zero_four_bg{
+    background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+    height: 400px;
+    background-position: center;
+    
+ }
+ 
+ #create-project-btn {
+  margin-top: 20px;
+}
+ 
+ .four_zero_four_bg h1{
+ font-size:80px;
+ 
+ }
+ 
+  .four_zero_four_bg h3{
+			 font-size:80px;
+			 }
+			 
+.link_404{			 
+	color: #fff!important;
+    padding: 10px 20px;
+    background: #39ac31;
+    margin: 20px 0;
+    display: inline-block;}
+	.contant_box_404{ margin-top:-50px;}
+
 </style>
 
 @section('content')
@@ -132,6 +172,35 @@
             </div>
         </div>
     </div>
+    @if (count($projects) == 0)
+        <!-- display custom 404 page -->
+        <head>
+           
+        </head>
+
+        <body>
+            <section class="page_404">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12 ">
+                            <div class="col-sm-10 col-sm-offset-1  text-center">
+                                <div class="four_zero_four_bg">
+                                    <h1 class="text-center "><b>Oops...</b></h1>
+                                </div>
+
+                                <div class="contant_box_404">
+                                    <h3 class="h2">Looks like you don't have a project yet.</h3>
+                                    <!-- <p>The project you are looking for is not available! Create one.</p> -->
+                                    <a href="{{ route('create-project') }}" id="create-project-btn" class="btn btn-danger">Create A Project</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </body>
+
+    @else 
     @foreach ($projects as $item)
         <div class="container-fluid">
             <div class="live-preview">
@@ -166,4 +235,5 @@
             </div>
         </div>
     @endforeach
+    @endif
 @endsection
