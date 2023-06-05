@@ -154,5 +154,7 @@ Route::group(['prefix' => 'member', 'namespace' => 'Members'], function () {
 
     Route::group(['prefix' => 'project'], function () {
         Route::get('/', ['as' => 'project', 'uses' => "ProjectController@index"]);
+        Route::get('/create', ['as' => 'create-project', 'uses' => "ProjectController@create"]);
+        Route::post('/create', ['as' => 'store-project', 'uses' => "ProjectController@store"]);
     });
 });

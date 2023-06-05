@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Members;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Project;
+use App\Models\Projects;
+use Session;
 
 class ProjectController extends Controller
 {
@@ -13,7 +14,9 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        return view('Members.Project.index');
+        //
+        $projects = Projects::where('user_id', auth('member')->user()->customer_id)->get();
+        return view('Members.Project.index', ['projects' => $projects]);
     }
 
     /**
@@ -22,6 +25,7 @@ class ProjectController extends Controller
     public function create()
     {
         //
+        return view('Members.Project.create');
     }
 
     /**
@@ -30,6 +34,31 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         //
+
+        $logo = $request->file('logo');
+
+        if ($request->hasFile('logo')) {
+            $filenameWithExt = $logo->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $logo->getClientOriginalExtension();
+            $image = $filename . '_' . time() . '.' . $extension;
+            $path = $logo->move('public/images', $image);
+        } else {
+            $image = 'default.png';
+        }
+
+        $projects = Projects::create([
+            'title' => $request->get('title'),
+            'description' => $request->get('description'),
+            'logo' => $request->logo,
+            'user_id' => auth('member')->user()->customer_id,
+
+        ]);
+
+        $projects->logo = $image;
+        $projects->save();
+        Session::flash('success', 'Task created!');
+        return redirect()->route('project');
     }
 
     /**

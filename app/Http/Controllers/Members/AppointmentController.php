@@ -17,6 +17,7 @@ class AppointmentController extends Controller
         // $appt = Appointment::where('user_id',auth('member')->user()->customer_id)->get();
         return view('Members.Appointment.index');
         // return view('Members.Appointment.index_appointment');
+
     }
 
     /**
@@ -54,7 +55,7 @@ class AppointmentController extends Controller
             return redirect()->route('appointment')->with('error', 'Appointment not found.');
         }
 
-        return view('Members.Appointment.edit',['appt' => $appt]);
+        return view('Members.Appointment.edit', ['appt' => $appt]);
     }
 
     /**

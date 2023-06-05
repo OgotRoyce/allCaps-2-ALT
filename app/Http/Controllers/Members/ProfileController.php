@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Members;
 use App\Http\Requests\MemberRequest;
+use App\Models\Projects;
+use Session;
 
 class ProfileController extends Controller
 {
@@ -16,7 +18,10 @@ class ProfileController extends Controller
     {
         // $profile = Members::where('customer_id',auth('member')->user()->customer_id)->first();
         // return view('Members.Profile.index',['profile' => $profile]);
-        return view('Members.Profile.index');
+        // return view('Members.Profile.index');
+
+        $projects = Projects::where('user_id', auth('member')->user()->customer_id)->get();
+        return view('Members.Profile.index', ['projects' => $projects]);
     }
 
     /**
@@ -49,7 +54,7 @@ class ProfileController extends Controller
     public function edit(string $id)
     {
         $profile = Members::find($id);
-        return view('Members.Profile.edit',['profile' => $profile]);
+        return view('Members.Profile.edit', ['profile' => $profile]);
     }
 
     /**

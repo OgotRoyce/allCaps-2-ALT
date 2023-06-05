@@ -169,65 +169,36 @@
                             </h5>
                         </div>
                         <div class="header-line"></div>
-
-                        <div class="content">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="row">
-                                            <div class="card d-flex flex-row">
-                                                <div class="col-md-4 col-lg-3 img-card">
-                                                    <img class="app-logo" src="{{ asset('images/ALL Caps LOGO1.png') }}">
-                                                </div>
-                                                <div class="col-md-8 col-lg-9 card-content p-3">
-                                                    <h4 class="card-title">
-                                                        <a href="#">ALLCaps</a>
-                                                    </h4>
-                                                    <div class="card-subtitle">
-                                                        <p>Capstone Project Team Monitoring System</p>
-                                                        <p style="font-size: 12px; color: #666;">Developed by Michael
-                                                            Jaskcon</p>
+                        @foreach ($projects as $item)
+                            <div class="content">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="row">
+                                                <div class="card d-flex flex-row">
+                                                    <div class="col-md-4 col-lg-3 img-card">
+                                                        <img class="app-logo"
+                                                            src="{{ asset('public/images/' . $item->logo) }}">
+                                                    </div>
+                                                    <div class="col-md-8 col-lg-9 card-content p-3">
+                                                        <h4 class="card-title">
+                                                            <a href="#">{{ $item->title }}</a>
+                                                        </h4>
+                                                        <div class="card-subtitle">
+                                                            <p>{{ $item->description }}</p>
+                                                            <p style="font-size: 12px; color: #666;">Developed by Michael
+                                                                Jaskcon</p>
+                                                        </div>
                                                     </div>
                                                 </div>
+
                                             </div>
-
-                                            <div class="card d-flex flex-row">
-                                                <div class="col-md-4 col-lg-3 img-card">
-                                                    <img class="app-logo" src="{{ asset('images/DEV2DEV.png') }}">
-                                                </div>
-                                                <div class="col-md-8 col-lg-9 card-content p-3">
-                                                    <h4 class="card-title">
-                                                        <a href="#">GC Dev2Dev</a>
-                                                    </h4>
-                                                    <div class="card-subtitle">
-                                                        <p>GC Dev2Dev Lorem Ipsum System</p>
-                                                        <p style="font-size: 12px; color: #666;">Developed by Ken Ammay</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="card d-flex flex-row">
-                                                <div class="col-md-4 col-lg-3 img-card">
-                                                    <img class="app-logo" src="{{ asset('images/GC SHELF LOGO-01.png') }}">
-                                                </div>
-                                                <div class="col-md-8 col-lg-9 card-content p-3">
-                                                    <h4 class="card-title">
-                                                        <a href="#">GC SHELF</a>
-                                                    </h4>
-                                                    <div class="card-subtitle">
-                                                        <p>GC Library System</p>
-                                                        <p style="font-size: 12px; color: #666;">Developed by Lloyd Mariano
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        @endforeach
+
 
                     </div>
                 </div>

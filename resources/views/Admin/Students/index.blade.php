@@ -128,31 +128,35 @@
 </style>
 
 @section('content')
-  <div class="container-fluid">
-    <div class="live-preview">
-      <div class="row">
-        <div class="col-12">
-          <div class="d-flex justify-content-between align-items-center">
-          <h5 class="header mt-2"><i class="fas fa-users"></i> Students
-          <span class="badge badge-secondary"><span style="font-weight: 300; color: #bfbfbf;">List of students</span></h5>
-            <!-- <a href="{{ route('create-member') }}">
-              <button type="button" style="width:100%" class="btn btn-outline-danger float-right">+ Add Student</button>
-            </a> -->
-          </div>
-            <div class="header-line"></div>
-        </div>
-        </div>
-    </div>
-  </div>
-
-  <div class="row cards-container">
-        <div class="col-md-4 col-lg-3">
-            <div class="profile-card">
-                <img class="avatar" src="{{ asset('images/pic.png')}}" alt="Avatar" />
-                <div class="name">Royce Ogot</div>
-                <div class="email">201911397@gordoncollege.edu.ph</div>
+    <div class="container-fluid">
+        <div class="live-preview">
+            <div class="row">
+                <div class="col-12">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="header mt-2"><i class="fas fa-users"></i> Students
+                            <span class="badge badge-secondary"><span style="font-weight: 300; color: #bfbfbf;">List of
+                                    students</span>
+                        </h5>
+                        <!-- <a href="{{ route('create-member') }}">
+                              <button type="button" style="width:100%" class="btn btn-outline-danger float-right">+ Add Student</button>
+                            </a> -->
+                    </div>
+                    <div class="header-line"></div>
+                </div>
             </div>
         </div>
-</div>
-<!-- ./ cards-container -->
-@endsection 
+    </div>
+    @foreach ($students as $item)
+        <div class="row cards-container">
+            <div class="col-md-4 col-lg-3">
+                <div class="profile-card">
+                    <img class="avatar" src="{{ asset('images/pic.png') }}" alt="Avatar" />
+                    <div class="name">{{ $item->first_name }} {{ $item->last_name }}</div>
+                    <div class="email">201911397@gordoncollege.edu.ph</div>
+                </div>
+            </div>
+        </div>
+    @endforeach
+
+    <!-- ./ cards-container -->
+@endsection
