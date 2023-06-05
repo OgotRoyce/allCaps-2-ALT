@@ -201,11 +201,10 @@ date_default_timezone_set('Asia/Manila');
                     <ul class="navbar-nav" id="navbar-nav">
                         <!-- <li class="menu-title text-white"><span data-key="t-menu">Menu</span></li> -->
                         <li class="nav-item">
-                            <a class="nav-link menu-link text-white" href="{{ route('project') }}">
-                                <i class="ri-layout-3-line"></i> <span data-key="t-layouts">Project</span>
+                            <a class="nav-link menu-link text-white" href="{{ route('task-member') }}">
+                                <i class="ri-file-list-2-fill"></i> <span data-key="t-dashboards">Tasks</span>
                             </a>
                         </li>
-
                         <li class="nav-item">
                             <a class="nav-link menu-link text-white" href="{{ route('appointment') }}">
                                 <i class="ri-user-2-fill"></i> <span data-key="t-apps">Advisers</span>
@@ -213,10 +212,11 @@ date_default_timezone_set('Asia/Manila');
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link menu-link text-white" href="{{ route('task-member') }}">
-                                <i class="ri-file-list-2-fill"></i> <span data-key="t-dashboards">Tasks</span>
+                            <a class="nav-link menu-link text-white" href="{{ route('project') }}">
+                                <i class="ri-layout-3-line"></i> <span data-key="t-layouts">Project</span>
                             </a>
                         </li>
+
 
                         <li class="nav-item">
                             <a class="nav-link menu-link text-white" href="{{ route('profile') }}">

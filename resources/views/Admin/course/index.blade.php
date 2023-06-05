@@ -58,7 +58,7 @@
       <div class="col-lg-12">
         <div class="d-flex justify-content-between align-items-center">
           <h5 class="header mt-2">
-            <i class="fas fa-users"></i> Advisees
+            <i class="fas fa-users"></i> Advisoree
             <span class="badge badge-secondary">
               <span style="font-weight: 300; color: #bfbfbf;">List of Students</span>
             </span>
