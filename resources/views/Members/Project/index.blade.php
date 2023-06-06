@@ -37,7 +37,7 @@
         background: #fff;
         cursor: pointer;
         box-shadow: -2px 3px 12px #d1d1d1;
-        transform: scale(1.05);
+        transform: scale(1.02);
     }
 
     .profile-project-head {
@@ -77,6 +77,10 @@
         flex-grow: 1;
     }
 
+    /* .profile-project-details {
+    display: flex;
+    flex-direction: column;
+    } */
 
     .project-title {
         margin-top: 0px;
@@ -98,6 +102,7 @@
         font-size: 14px;
         color: #999;
         margin-top: 1 px;
+        margin-bottom: 0;
     }
 
 /* styles for 404 */
@@ -202,10 +207,9 @@
 
     @else 
     @foreach ($projects as $item)
-        <div class="container-fluid">
-            <div class="live-preview">
-                <div>
-                    <div class="col-md-9">
+        <div class="">
+            <div class="live-preview container-fluid">
+                    <div>
                         <a href="#">
                             <div class="profile-content">
                                 <div class="profile-project-details">
@@ -217,21 +221,20 @@
                                                 <img src="{{ asset('public/images/no_image.jpg') }}"
                                                     class="img-thumbnail default">
                                             @endif
+                                        </div>
                                             <div class="card-content">
                                                 <h4 class="project-title">{{ $item->title }}</h4>
                                                 <div class="project-subtitle">
                                                     <p>{{ $item->description }}</p>
-                                                    <p style="font-size: 12px; color: #666;">Developed by Michael
-                                                        Jaskcon
+                                                    <p style="font-size: 12px; color: #666;">Developed by Michael Jaskcon
                                                     </p>
                                                 </div>
                                             </div>
-                                        </div>
+                                        
                                     </div>
                                 </div>
                         </a>
                     </div>
-                </div>
             </div>
         </div>
     @endforeach

@@ -1,12 +1,38 @@
 @extends('layouts.admin')
 
+<style>
+
+.task-head {
+        /* color: #f06548; */
+        color: #fbfbf;
+        font-size: 32px;
+        font-weight: 300;
+        margin-top: 10px;
+        margin-left: 20px;
+    }
+
+    .header-line {
+        height: 1px;
+        background-color: #bfbfbf;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+</style>
+
 @section('content')
 
     <div class="modal-header">
-        <a href="{{ route('tasks-admin') }}">
-            <button type="button" class="btn btn-outline-danger">Back</button>
-        </a>
+        <div class="col">
+            <a href="{{ route('tasks-admin') }}">
+                <button type="button" class="btn btn-outline-danger">Back</button>
+            </a>
+        </div>
+        <div class="col text-end">
+            <h5 class="task-head mt-2">Create a Task</h5>
+        </div>
     </div>
+
+    <div class="header-line"></div>
     <form action="" method="post" enctype="multipart/form-data" class="row g-3">
         {!! csrf_field() !!}
 
@@ -41,7 +67,7 @@
 
         <div class="modal-footer">
             <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-            <button type="submit" class="btn btn-success w-100">Create Task</button>
+            <button type="submit" class="btn btn-danger w-100">Create Task</button>
         </div>
     </form>
 
