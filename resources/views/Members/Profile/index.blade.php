@@ -200,27 +200,30 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-md-9">
-                        <div class="profile-content">
-                            <div class="profile-project-details">
-                                <h5 class="profile-project-head"><i class="fas fa-folder-open"></i> Projects </h5>
-                                <div class="header-line"></div>
-                                <div class="project-container">
-                                    <div class="project-img">
-                                        <img class="app-logo" src="{{ asset('images/ALL Caps LOGO1.png') }}">
-                                    </div>
-                                    <div class="card-content">
-                                        <h4 class="project-title">ALLCaps</h4>
-                                        <div class="project-subtitle">
-                                            <p>Capstone Project Team Monitoring System</p>
-                                            <p style="font-size: 12px; color: #666;">Developed by Michael Jaskcon</p>
+                    @foreach ($projects as $item)
+                        <div class="col-md-9">
+                            <div class="profile-content">
+                                <div class="profile-project-details">
+                                    <h5 class="profile-project-head"><i class="fas fa-folder-open"></i> Projects </h5>
+                                    <div class="header-line"></div>
+                                    <div class="project-container">
+                                        <div class="project-img">
+                                            <img class="app-logo" src="{{ asset('public/images/' . $item->logo) }}">
+                                        </div>
+                                        <div class="card-content">
+                                            <h4 class="project-title">{{ $item->title }}</h4>
+                                            <div class="project-subtitle">
+                                                <p>{{ $item->description }}</p>
+                                                <p style="font-size: 12px; color: #666;">Developed by
+                                                    {{ auth('member')->user()->first_name }}
+                                                    {{ auth('member')->user()->last_name }}</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         @endsection

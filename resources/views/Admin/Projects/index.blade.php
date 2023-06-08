@@ -186,8 +186,9 @@
                                                         </h4>
                                                         <div class="card-subtitle">
                                                             <p>{{ $item->description }}</p>
-                                                            <p style="font-size: 12px; color: #666;">Developed by Michael
-                                                                Jaskcon</p>
+                                                            <p style="font-size: 12px; color: #666;">Developed by
+                                                                {{ $item->user->first_name }}
+                                                                {{ $item->user->last_name }}</p>
                                                         </div>
                                                     </div>
                                                 </div>

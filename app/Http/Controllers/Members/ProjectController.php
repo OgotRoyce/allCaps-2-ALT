@@ -14,9 +14,12 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
-        $projects = Projects::where('user_id', auth('member')->user()->customer_id)->get();
-        return view('Members.Project.index', ['projects' => $projects]);
+        $user = auth('member')->user(); // Get the authenticated user
+        $projects = Projects::where('user_id', $user->customer_id)
+            ->with('user') // Eager load the user details
+            ->get(); // Retrieve projects associated with the user
+
+        return view('Members.Project.index', compact('projects'));
     }
 
     /**

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Appointment;
 use App\Http\Requests\AppointmentRequest;
+use App\Models\User;
 
 class AppointmentController extends Controller
 {
@@ -14,12 +15,16 @@ class AppointmentController extends Controller
      */
     public function index()
     {
-        // $appt = Appointment::where('user_id',auth('member')->user()->customer_id)->get();
-        return view('Members.Appointment.index');
-        // return view('Members.Appointment.index_appointment');
+        $advisers = User::where('role', 'Adviser')->get();
 
+        return view('Members.Appointment.index', ['advisers' => $advisers]);
     }
 
+
+
+    // $appt = Appointment::where('user_id',auth('member')->user()->customer_id)->get();
+
+    // return view('Members.Appointment.index_appointment');
     /**
      * Show the form for creating a new resource.
      */

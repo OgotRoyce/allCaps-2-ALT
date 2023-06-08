@@ -105,44 +105,49 @@
         margin-bottom: 0;
     }
 
-/* styles for 404 */
+    /* styles for 404 */
 
-.page_404{ 
-    padding:40px 0; 
-    background:#fff; 
-    font-family: 'Poppins', sans-serif;
-}
+    .page_404 {
+        padding: 40px 0;
+        background: #fff;
+        font-family: 'Poppins', sans-serif;
+    }
 
-.page_404  img{ width:100%;}
+    .page_404 img {
+        width: 100%;
+    }
 
-.four_zero_four_bg{
-    background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
-    height: 400px;
-    background-position: center;
-    
- }
- 
- #create-project-btn {
-  margin-top: 20px;
-}
- 
- .four_zero_four_bg h1{
- font-size:80px;
- 
- }
- 
-  .four_zero_four_bg h3{
-			 font-size:80px;
-			 }
-			 
-.link_404{			 
-	color: #fff!important;
-    padding: 10px 20px;
-    background: #39ac31;
-    margin: 20px 0;
-    display: inline-block;}
-	.contant_box_404{ margin-top:-50px;}
+    .four_zero_four_bg {
+        background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+        height: 400px;
+        background-position: center;
 
+    }
+
+    #create-project-btn {
+        margin-top: 20px;
+    }
+
+    .four_zero_four_bg h1 {
+        font-size: 80px;
+
+    }
+
+    .four_zero_four_bg h3 {
+        font-size: 80px;
+    }
+
+    .link_404 {
+        color: #fff !important;
+        padding: 10px 20px;
+        background: #39ac31;
+        margin: 20px 0;
+        display: inline-block;
+    }
+
+    .contant_box_404 {
+        margin-top: -50px;
+    }
 </style>
 
 @section('content')
@@ -179,8 +184,9 @@
     </div>
     @if (count($projects) == 0)
         <!-- display custom 404 page -->
+
         <head>
-           
+
         </head>
 
         <body>
@@ -196,7 +202,8 @@
                                 <div class="contant_box_404">
                                     <h3 class="h2">Looks like you don't have a project yet.</h3>
                                     <!-- <p>The project you are looking for is not available! Create one.</p> -->
-                                    <a href="{{ route('create-project') }}" id="create-project-btn" class="btn btn-danger">Create A Project</a>
+                                    <a href="{{ route('create-project') }}" id="create-project-btn"
+                                        class="btn btn-danger">Create A Project</a>
                                 </div>
                             </div>
                         </div>
@@ -204,11 +211,10 @@
                 </div>
             </section>
         </body>
-
-    @else 
-    @foreach ($projects as $item)
-        <div class="">
-            <div class="live-preview container-fluid">
+    @else
+        @foreach ($projects as $item)
+            <div class="">
+                <div class="live-preview container-fluid">
                     <div>
                         <a href="#">
                             <div class="profile-content">
@@ -222,21 +228,23 @@
                                                     class="img-thumbnail default">
                                             @endif
                                         </div>
-                                            <div class="card-content">
-                                                <h4 class="project-title">{{ $item->title }}</h4>
-                                                <div class="project-subtitle">
-                                                    <p>{{ $item->description }}</p>
-                                                    <p style="font-size: 12px; color: #666;">Developed by Michael Jaskcon
-                                                    </p>
-                                                </div>
+                                        <div class="card-content">
+                                            <h4 class="project-title">{{ $item->title }}</h4>
+                                            <div class="project-subtitle">
+                                                <p>{{ $item->description }}</p>
+                                                <p style="font-size: 12px; color: #666;">Developed by
+                                                    {{ auth('member')->user()->first_name }}
+                                                    {{ auth('member')->user()->last_name }}
+                                                </p>
                                             </div>
-                                        
+                                        </div>
+
                                     </div>
                                 </div>
                         </a>
                     </div>
+                </div>
             </div>
-        </div>
-    @endforeach
+        @endforeach
     @endif
 @endsection

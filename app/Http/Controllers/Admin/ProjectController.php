@@ -11,9 +11,8 @@ class ProjectController extends Controller
     //
     public function index(Request $request)
     {
+        $projects = Projects::with('user')->get();
 
-
-        $projects = Projects::all();
         return view('Admin.Projects.index', ['projects' => $projects]);
     }
 }

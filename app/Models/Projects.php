@@ -21,6 +21,6 @@ class Projects extends Model
 
     public function user()
     {
-        return $this->belongsTo(Members::class, 'customer_id');
+        return $this->belongsTo(Members::class, 'user_id');
     }
 }
