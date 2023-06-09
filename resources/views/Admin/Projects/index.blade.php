@@ -56,7 +56,6 @@
         background-color: #fff;
         border-radius: 10px !important;
         box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-        transition: box-shadow .25s;
         height: 80%;
         flex-basis: calc(25% - 20px);
         /* add this */
@@ -66,6 +65,7 @@
         flex-direction: row;
         align-items: center;
         gap: 20px;
+        transition: .3s ease;
 
     }
 
@@ -85,12 +85,14 @@
 
     .card:hover {
         box-shadow: -2px 3px 12px #d1d1d1;
+        cursor: pointer;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        transform: scale(1.05);
     }
 
     .img-card app-logo {
         transition: .3s ease;
         border-radius: 999px;
-
         padding: 20px;
     }
 
@@ -102,6 +104,11 @@
         padding: 5px;
         border-radius: 999px;
         border-color: #c4bfbf;
+        transition: .3s ease;
+    }
+
+    .app-logo:hover {
+        transform: scale(1.2) rotate(22deg);
     }
 
     .card-content {

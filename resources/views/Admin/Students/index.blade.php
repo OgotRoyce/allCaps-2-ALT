@@ -64,6 +64,31 @@
         color: #424242;
     }
 
+    /* search input */
+    #accordion_search_bar_container {
+    position: relative;
+        &:after { 
+            content: '\e003';
+            font-family: Glyphicons Halflings;
+            width: 18px;
+            height: 18px;
+            position: absolute;
+            right: 10px;
+            bottom: 10px; 
+        }  
+
+        #accordion_search_bar {
+            display: block;
+            margin: 10px auto;
+            width: 100%;
+            padding: 7px 10px;
+            border: 1px solid #c4bfbf;
+            border-radius: 25px;
+            outline: 0;
+        }
+    }
+
+
     .cards-container {
         display: flex;
         flex-wrap: wrap;
@@ -76,22 +101,22 @@
         border-radius: 18px;
         background: #fff;
         padding: 18px 12px 42px 14px;
-        margin: 28px;
-        width: fit-content;
+        margin: 0 0 28px 0; /* modified */
+        width: fit-content, calc(33.33% - 40px);
         transition: .3s ease;
     }
 
     .profile-card:hover {
         background: #fff;
         cursor: pointer;
-        box-shadow: -2px 3px 12px #d1d1d1;
-        transform: scale(1.05);
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        transform: scale(1.01);
     }
 
     .avatar {
         transition: .3s ease;
-        border-radius: 999px;
         width: 72px;
+        object-fit: cover;
     }
 
     .avatar:hover {
@@ -146,17 +171,44 @@
             </div>
         </div>
     </div>
-    @foreach ($students as $item)
-        <div class="row cards-container">
+
+    <div id="accordion_search_bar_container">
+      <input type="search" 
+         id="accordion_search_bar" 
+         placeholder="Search"/>
+  </div>
+    
+    <div class="row cards-container">
+        @foreach ($students as $item)
             <div class="col-md-4 col-lg-3">
                 <div class="profile-card">
                     <img class="avatar" src="{{ asset('images/pic.png') }}" alt="Avatar" />
                     <div class="name">{{ $item->first_name }} {{ $item->last_name }}</div>
-                    <div class="email">201911397@gordoncollege.edu.ph</div>
+                    <div class="email">{{ $item->email }}</div>
                 </div>
             </div>
-        </div>
-    @endforeach
+        @endforeach
+    </div>
+    
 
     <!-- ./ cards-container -->
 @endsection
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#accordion_search_bar').on('keyup', function() {
+            var value = $(this).val().toLowerCase();
+            $('.profile-card').filter(function() {
+                var match = $(this).text().toLowerCase().indexOf(value) > -1;
+                $(this).toggle(match);
+                if (match) {
+                    $(this).prependTo('.cards-container');
+                }
+            });
+        });
+    });
+</script>
+
+

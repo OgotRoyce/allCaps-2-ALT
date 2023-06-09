@@ -61,14 +61,15 @@
     }
 
     .wrapper-fluid {
-        /* existing code */
         display: flex;
-        justify-content: center;
-        align-items: center;
+        flex-wrap: wrap;
+        align-content: center;
+        justify-content: flex-start;
+        flex-direction: row;
     }
 
     .user_select_wrap {
-        background: #fff;
+        background: #e8e8ed;
         /* max-width: 750px; */
         width: 100%;
         /* change this from "fit-content, calc(33.33% - 40px)" to "100%" */
@@ -76,6 +77,7 @@
         border-radius: 18px;
         margin-top: 20px;
         transition: .3s ease;
+        margin: 0 0 28px 0; /* modified */
         margin-left: auto;
         /* add this to center the wrapper horizontally */
         margin-right: auto;
@@ -93,23 +95,25 @@
         margin-top: 20px;
     }
 
-    .user_select_wrap .user_select {
+    .user_select {
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
+        align-content: center;
+        justify-content: flex-start;
+        flex-direction: row;
     }
 
-    .user_select_wrap .user_select .user_item {
-        width: 31%;
-        margin: 10px 0;
-        border: 1px solid var(--border-clr);
-        border-radius: 15px;
-        position: relative;
-        padding: 20px;
-        transition: 0.5s ease;
+    .user_item {
+        border-radius: 18px;
+        background: #fff;
+        padding: 18px 12px 42px 14px;
+        margin: 0 0 28px 0; /* modified */
+        width: fit-content, calc(33.33% - 40px);
+        transition: .3s ease;
+        margin-right: 20px; /* added */
     }
 
-    .user_select_wrap .user_select .user_item input {
+    .user_item input {
         opacity: 0;
         position: absolute;
         top: 0;
@@ -120,34 +124,34 @@
         cursor: pointer
     }
 
-    .user_select_wrap .user_select .user_item .info {
+    .user_item .info {
         display: flex;
         align-items: center;
     }
 
-    .user_select_wrap .user_select .user_item .info .name-role {
+    .user_item .info .name-role {
         display: flex;
         flex-direction: column;
         margin-left: 10px;
     }
 
-    .user_select_wrap .user_select .user_item .info .name-role .name {
+    .user_item .info .name-role .name {
         font-weight: bold;
         font-size: 18px;
         margin-bottom: -1px;
     }
 
-    .user_select_wrap .user_select .user_item .info .name-role .role {
+    .user_item .info .name-role .role {
         color: var(--sub-text-clr);
         font-size: 14px;
     }
 
-    .user_select_wrap .user_select .user_item .info img {
+    .user_item .info img {
         margin-right: 5px;
         border-radius: 50%;
     }
 
-    .user_select_wrap .user_select .user_item .checkmark {
+    .user_item .checkmark {
         opacity: 0;
         position: absolute;
         top: -10px;
@@ -161,7 +165,7 @@
 
     }
 
-    .user_select_wrap .user_select .user_item .checkmark:before {
+    .user_item .checkmark:before {
         content: "";
         position: absolute;
         top: 6px;
@@ -190,7 +194,7 @@
         background: var(--btn-hover-clr);
     }
 
-    .user_select_wrap .user_select .user_item.active {
+    .user_item.active {
         background: var(--white);
         box-shadow: 0 0 6px 2px rgba(0, 0, 0, .1);
         border-color: #ff6600 !important;
@@ -200,7 +204,7 @@
         /* add this to set the border style */
     }
 
-    .user_select_wrap .user_select .user_item.active input:checked~.checkmark {
+    .user_item.active input:checked~.checkmark {
         opacity: 1;
     }
 
@@ -213,8 +217,8 @@
     .user_item:hover {
         background: #fff;
         cursor: pointer;
-        box-shadow: -2px 3px 12px #d1d1d1;
-        transform: scale(1.05);
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        transform: scale(1.01);
     }
 </style>
 @section('content')
@@ -229,35 +233,38 @@
                         </h5>
                     </div>
                     <div class="header-line"></div>
-                    <div>
+                </div>
+            </div>
+        </div>
+    </div>
+
                         <div class="wrapper-fluid">
                             <div class="user_select_wrap">
                                 <div class="title">
                                     <p>Select an adviser below</p>
                                 </div>
-                                @foreach ($advisers as $item)
+                                    
                                     <div class="user_select">
-                                        <div class="user_item">
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                            <div class="info">
-                                                <img class="avatar" src="{{ asset('images/pic.png') }}" alt="Avatar">
-                                                <div class="name-role">
-                                                    <p class="name">{{ $item->name }}</p>
-                                                    <p class="role">{{ $item->role }}</p>
+                                        @foreach ($advisers as $item)
+                                            <div class="col-md-4 col-lg-3">
+                                                <div class="user_item">
+                                                    <!-- <input type="checkbox" class="checkbox-input">> -->
+                                                    <span class="checkmark"></span>
+                                                    <div class="info">
+                                                        <img class="avatar" src="{{ asset('images/pic.png') }}" alt="Avatar">
+                                                        <div class="name-role">
+                                                            <p class="name">{{ $item->name }}</p>
+                                                            <p class="role">{{ $item->role }}</p>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-
+                                        @endforeach
                                     </div>
-                                @endforeach
+                                    
                                 <button>Choose</button>
                             </div>
                         </div>
-
-                    </div>
-                </div>
-            </div>
         @endsection
         <!-- JAVASCRIPT -->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

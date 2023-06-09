@@ -139,7 +139,7 @@ date_default_timezone_set('Asia/Manila');
         padding: 6px 12px;
         border-radius: 4px;
         text-decoration: none;
-        margin-top: 500px;
+        margin-top: 350px;
         box-shadow: none;
         transition: none;
     }

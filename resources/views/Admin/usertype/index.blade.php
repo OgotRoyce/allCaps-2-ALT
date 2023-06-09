@@ -20,12 +20,49 @@
   margin-bottom: 20px;
 }
 
-.cards-container { display: flex; flex-wrap: wrap; align-content: center; justify-content: flex-start; flex-direction: row; }
-.profile-card { border-radius: 18px; background: #fbfcff; padding: 18px 12px 42px 14px; margin: 28px; width: fit-content, calc(33.33% - 40px); transition: .3s ease;  }
-.profile-card:hover { background: #fff; cursor: pointer; box-shadow: -2px 3px 12px #d1d1d1; transform: scale(1.05); }
-.avatar { transition: .3s ease; border-radius: 999px; width: 72px; }
-.avatar:hover { transform: scale(1.2) rotate(22deg);  }
-.name { font-weight: 900; position: relative; margin-top: -64px; font-size: 14px; margin-left: 84px; margin-right: 36px; }
+    .cards-container {
+        display: flex;
+        flex-wrap: wrap;
+        align-content: center;
+        justify-content: flex-start;
+        flex-direction: row;
+    }
+
+    .profile-card {
+        border-radius: 18px;
+        background: #fff;
+        padding: 18px 12px 42px 14px;
+        margin: 0 0 28px 0; /* modified */
+        width: fit-content, calc(33.33% - 40px);
+        transition: .3s ease;
+    }
+
+    .profile-card:hover {
+        background: #fff;
+        cursor: pointer;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        transform: scale(1.01);
+    }
+
+    .avatar {
+        transition: .3s ease;
+        width: 72px;
+        object-fit: cover;
+    }
+
+    .avatar:hover {
+        transform: scale(1.2) rotate(22deg);
+    }
+
+    .name {
+        font-weight: 900;
+        position: relative;
+        margin-top: -64px;
+        font-size: 14px;
+        margin-left: 84px;
+        margin-right: 36px;
+    }
+    
 .profile-card .name {
   /* existing rules */
   font-size: 18px;
