@@ -1,8 +1,7 @@
 @extends('layouts.admin')
 
 <style>
-
-.task-head {
+    .task-head {
         /* color: #f06548; */
         color: #fbfbf;
         font-size: 32px;
@@ -33,9 +32,10 @@
     </div>
 
     <div class="header-line"></div>
-    <form action="" method="post" enctype="multipart/form-data" class="row g-3">
+    <form action="{{ route('update-tasks', ['id' => $task->id]) }}" method="post" enctype="multipart/form-data"
+        class="row g-3">
         {!! csrf_field() !!}
-
+        @method('PUT')
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -48,16 +48,16 @@
         <div class="">
             <label for="exampleFormControlInput1" class="form-label">Title</label>
             <input type="text" name="title" class="form-control" id="exampleFormControlInput1"
-                value="{{ old('title') }}">
+                value="{{ $task->title ?? old('title') }}">
         </div>
         <div class="">
             <label for="formFile" class="form-label">Description</label>
-            <input type="text" name="description" class="form-control" value="{{ old('description') }}"
-                id="exampleFormControlInput1">
+            <input type="text" name="description" class="form-control"
+                value="{{ $task->description ?? old('description') }}" id="exampleFormControlInput1">
         </div>
         <div class="form-group" style="margin-top: 10px">
             <label for="inputState">Due Date:</label>
-            <input type="date" class="form-control" name="due_date" value="{{ old('due_date') }}">
+            <input type="date" class="form-control" name="due_date" value="{{ $task->due_date ?? old('due_date') }}">
         </div>
 
         <div class="">
@@ -70,5 +70,6 @@
             <button type="submit" class="btn btn-danger w-100">Save changes</button>
         </div>
     </form>
+
 
 @endsection

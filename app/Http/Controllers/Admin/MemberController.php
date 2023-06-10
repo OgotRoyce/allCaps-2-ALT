@@ -42,9 +42,9 @@ class MemberController extends Controller
             $filenameWithExt = $photo->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $photo->getClientOriginalExtension();
-            $image = $filename.'_'.time().'.'.$extension;
+            $image = $filename . '_' . time() . '.' . $extension;
             $path = $photo->move('public/images/users', $image);
-        
+
             $member = Members::create([
                 'account_code' => strtoupper(Str::random(10)),
                 'first_name' => $request->get('first_name'),
@@ -53,13 +53,12 @@ class MemberController extends Controller
                 'password' => bcrypt($request->get('password')),
                 'photo' => $image,
             ]);
-        
+
             $member->save();
-        
         } else {
             // Set default image filename or return an error message
         }
-        
+
         return redirect()->route('member')->with('success', 'Members created!');
 
         // return back()->with('success', 'Course created successfully.');

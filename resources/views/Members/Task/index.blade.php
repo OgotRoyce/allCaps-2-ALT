@@ -59,16 +59,17 @@
     }
 
     .project-tasks {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start; /* Add this line */
-    margin-bottom: 1rem;
-    width: 100%;
-    grid-column-gap: 1.5rem;
-    margin-left: 1rem;
-    border-bottom: 1px solid;
-    border-image: linear-gradient(to right, transparent, #34495e, transparent) 1;
-}
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        /* Add this line */
+        margin-bottom: 1rem;
+        width: 100%;
+        grid-column-gap: 1.5rem;
+        margin-left: 1rem;
+        border-bottom: 1px solid;
+        border-image: linear-gradient(to right, transparent, #34495e, transparent) 1;
+    }
 
 
     .task-img {
@@ -77,7 +78,7 @@
         color: #ff6600;
         margin-top: -1rem;
     }
-    
+
     .project-column {
 
         &-heading {
@@ -165,7 +166,7 @@
         display: flex;
         align-items: center;
         position: relative;
-        cursor: pointer;    
+        cursor: pointer;
         color: #212529;
         font-weight: 700;
         font-size: 20px;
@@ -199,7 +200,7 @@
     .accordion-img {
         margin-right: 1rem;
         font-size: 20px;
-        color:#424242;
+        color: #424242;
     }
 
     @media(max-width:767px) {
@@ -232,23 +233,27 @@
                                     <div class='app'>
                                         <main class='project'>
                                             @foreach ($tasks as $item)
-                                            <div class='project-tasks'>
-                                                <i class="task-img fas fa-clipboard-list"></i>
-                                                <div class='project-column'>
-                                                    <a href="{{ route('view-task-member') }}" class="project-column-header__link">
-                                                        <h2 class='project-column-header__title'>{{ $item->title }}</h2>
-                                                    </a>
-                                                    <div class='task'>
-                                                        <p>Due Date: {{ \Carbon\Carbon::parse($item->due_date)->format('F d, Y') }}</p>
-                                                        <!-- <div class='task-stats'>
-                                                            <span>
-                                                                <date datetime="2021-11-24T20:00:00"><i class="task-icon fas fa-flag"></i>Date Posted: {{ \Carbon\Carbon::parse($item->created_at)->format('F d, Y') }}</date>
-                                                            </span>
-                                                            <span class="task-file-count"><i class="task-file fas fa-paperclip"></i>2</span>
-                                                        </div> -->
+                                                <div class='project-tasks'>
+                                                    <i class="task-img fas fa-clipboard-list"></i>
+                                                    <div class='project-column'>
+                                                        <a href="{{ route('view-task-member', $item->id) }}"
+                                                            class="project-column-header__link">
+                                                            <h2 class='project-column-header__title'>{{ $item->title }}
+                                                            </h2>
+                                                        </a>
+                                                        <div class='task'>
+                                                            <p>Due Date:
+                                                                {{ \Carbon\Carbon::parse($item->due_date)->format('F d, Y') }}
+                                                            </p>
+                                                            <!-- <div class='task-stats'>
+                                                                        <span>
+                                                                            <date datetime="2021-11-24T20:00:00"><i class="task-icon fas fa-flag"></i>Date Posted: {{ \Carbon\Carbon::parse($item->created_at)->format('F d, Y') }}</date>
+                                                                        </span>
+                                                                        <span class="task-file-count"><i class="task-file fas fa-paperclip"></i>2</span>
+                                                                    </div> -->
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
                                             @endforeach
                                         </main>
                                     </div>
@@ -258,38 +263,37 @@
                     </div>
 
 
-                    </div>
                 </div>
             </div>
         </div>
     </div>
     </div>
+    </div>
 
 
-<script>
-const accordionItemHeaders = document.querySelectorAll(".accordion-item-header");
+    <script>
+        const accordionItemHeaders = document.querySelectorAll(".accordion-item-header");
 
-accordionItemHeaders.forEach(accordionItemHeader => {
-  accordionItemHeader.addEventListener("click", event => {
-    
-    // Uncomment in case you only want to allow for the display of only one collapsed item at a time!
-    
-    // const currentlyActiveAccordionItemHeader = document.querySelector(".accordion-item-header.active");
-    // if(currentlyActiveAccordionItemHeader && currentlyActiveAccordionItemHeader!==accordionItemHeader) {
-    //   currentlyActiveAccordionItemHeader.classList.toggle("active");
-    //   currentlyActiveAccordionItemHeader.nextElementSibling.style.maxHeight = 0;
-    // }
+        accordionItemHeaders.forEach(accordionItemHeader => {
+            accordionItemHeader.addEventListener("click", event => {
 
-    accordionItemHeader.classList.toggle("active");
-    const accordionItemBody = accordionItemHeader.nextElementSibling;
-    if(accordionItemHeader.classList.contains("active")) {
-      accordionItemBody.style.maxHeight = accordionItemBody.scrollHeight + "px";
-    }
-    else {
-      accordionItemBody.style.maxHeight = 0;
-    }
-    
-  });
-});
-</script>
+                // Uncomment in case you only want to allow for the display of only one collapsed item at a time!
+
+                // const currentlyActiveAccordionItemHeader = document.querySelector(".accordion-item-header.active");
+                // if(currentlyActiveAccordionItemHeader && currentlyActiveAccordionItemHeader!==accordionItemHeader) {
+                //   currentlyActiveAccordionItemHeader.classList.toggle("active");
+                //   currentlyActiveAccordionItemHeader.nextElementSibling.style.maxHeight = 0;
+                // }
+
+                accordionItemHeader.classList.toggle("active");
+                const accordionItemBody = accordionItemHeader.nextElementSibling;
+                if (accordionItemHeader.classList.contains("active")) {
+                    accordionItemBody.style.maxHeight = accordionItemBody.scrollHeight + "px";
+                } else {
+                    accordionItemBody.style.maxHeight = 0;
+                }
+
+            });
+        });
+    </script>
 @endsection

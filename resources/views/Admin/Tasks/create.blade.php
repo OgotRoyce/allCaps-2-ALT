@@ -1,8 +1,7 @@
 @extends('layouts.admin')
 
 <style>
-
-.task-head {
+    .task-head {
         /* color: #f06548; */
         color: #fbfbf;
         font-size: 32px;
@@ -67,8 +66,9 @@
 
         <div class="">
             <label for="formFile" class="form-label">Attachments:</label>
-            <input type="file" name="attachments" step="any" class="form-control">
+            <input type="file" name="attachments[]" multiple class="form-control">
         </div>
+
 
         <div class="modal-footer">
             <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->

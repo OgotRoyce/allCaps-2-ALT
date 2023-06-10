@@ -39,7 +39,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::get('/', ['as' => 'tasks-admin', 'uses' => "TasksController@index"]);
         Route::get('/create', ['as' => 'create-tasks', 'uses' => "TasksController@create"]);
         Route::post('/create', ['as' => 'store-tasks', 'uses' => "TasksController@store"]);
-        Route::get('/show', ['as' => 'view-tasks', 'uses' => "TasksController@show"]);
+        Route::get('/show/{id}', ['as' => 'view-tasks', 'uses' => "TasksController@show"]);
+        Route::get('/edit/{id}', ['as' => 'edit-tasks', 'uses' => "TasksController@edit"]);
+        Route::put('/update/{id}', ['as' => 'update-tasks', 'uses' => "TasksController@update"]); //Task with s for admin
     });
 
     // Route::group(['prefix' => 'advisers'], function () {
@@ -140,7 +142,7 @@ Route::group(['prefix' => 'member', 'namespace' => 'Members'], function () {
 
     Route::group(['prefix' => 'task-member'], function () {
         Route::get('/', ['as' => 'task-member', 'uses' => "TaskController@index"]);
-        Route::get('/show', ['as' => 'view-task-member', 'uses' => "TaskController@show"]);
+        Route::get('/show/{id}', ['as' => 'view-task-member', 'uses' => "TaskController@show"]); //Task without s for Members
     });
 
 
