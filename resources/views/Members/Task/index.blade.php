@@ -5,14 +5,11 @@
         font-size: 32px;
         color: #f06548;
         display: flex;
-        /* add this to enable flexbox */
         align-items: center;
-        /* add this to center items vertically */
     }
 
     .header i {
         margin-right: 10px;
-        /* adjust this value to increase/decrease the space */
     }
 
     .header-line {
@@ -23,10 +20,7 @@
 
     :root {
         --bg: transparent;
-        --header: #fbf4f6;
         --text: #2e2e2f;
-        --white: #ffffff;
-        --light-grey: #c4cad3;
     }
 
     * {
@@ -40,15 +34,9 @@
         color: var(--text);
     }
 
-    @mixin display {
-        display: flex;
-        align-items: center;
-    }
-
     .app {
         background-color: var(--bg);
         width: 100%;
-        min-height: 100vh;
     }
 
     h1 {
@@ -56,15 +44,11 @@
     }
 
     .project {
-        padding: 2rem;
+        padding: 10px;
         display: inline-block;
-        /* border: 1px solid #bfbfbf; */
         background: #fff;
         width: 100%;
-        border-radius: 18px;
-        margin-bottom: 20px;
     }
-
 
     .project-info {
         padding: 2rem 0;
@@ -75,23 +59,25 @@
     }
 
     .project-tasks {
-        display: flex;
-        align-items: center;
-        /* add this to center items vertically */
-        margin-bottom: 1rem;
-        /* adjust this value as needed */
-        width: 100%;
-        grid-column-gap: 1.5rem;
-    }
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Add this line */
+    margin-bottom: 1rem;
+    width: 100%;
+    grid-column-gap: 1.5rem;
+    margin-left: 1rem;
+    border-bottom: 1px solid;
+    border-image: linear-gradient(to right, transparent, #34495e, transparent) 1;
+}
+
 
     .task-img {
         margin-right: 0.5rem;
-        /* adjust this value to increase/decrease the space between the icon and the text */
         font-size: 3rem;
-        /* adjust this value to change the size of the icon */
         color: #ff6600;
+        margin-top: -1rem;
     }
-
+    
     .project-column {
 
         &-heading {
@@ -100,8 +86,7 @@
             justify-content: space-between;
 
             &__title {
-                font-size: 20px;
-
+                font-size: 14px;
             }
         }
     }
@@ -109,16 +94,12 @@
     .project-column-header {
         margin-bottom: 1rem;
         justify-content: space-between;
-
-        &__title {
-            font-size: 20px;
-
-        }
     }
 
     .project-column-header__title {
         color: #212529;
-        font-weight: 700;
+        font-weight: 600;
+        font-size: 18px;
     }
 
     .project-column-header__link:hover {
@@ -160,6 +141,72 @@
     .task-file-count {
         color: #c4bfbf !important;
     }
+
+    /* accordion list */
+
+    .accordion {
+        width: 100%;
+        max-width: 100%;
+        margin: 2rem auto;
+    }
+
+    .accordion-item {
+        background-color: #fff;
+        color: #111;
+        margin: 1rem 0;
+        border-radius: 0.5rem;
+        width: 100%;
+    }
+
+    .accordion-item-header {
+        padding: 0.5rem 3rem 0.5rem 1rem;
+        min-height: 3.5rem;
+        line-height: 1.25rem;
+        display: flex;
+        align-items: center;
+        position: relative;
+        cursor: pointer;    
+        color: #212529;
+        font-weight: 700;
+        font-size: 20px;
+        margin-left: 1rem;
+    }
+
+    .accordion-item-header::after {
+        content: "\002B";
+        font-size: 2rem;
+        position: absolute;
+        right: 1rem;
+    }
+
+    .accordion-item-header.active::after {
+        content: "\2212";
+    }
+
+    .accordion-item-body {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+        width: 100%;
+    }
+
+    .accordion-item-body-content {
+        padding: 10px;
+        border-top: 1px solid;
+        border-image: linear-gradient(to right, transparent, #34495e, transparent) 1;
+    }
+
+    .accordion-img {
+        margin-right: 1rem;
+        font-size: 20px;
+        color:#424242;
+    }
+
+    @media(max-width:767px) {
+        html {
+            font-size: 14px;
+        }
+    }
 </style>
 
 @section('content')
@@ -174,35 +221,75 @@
                         </h5>
                     </div>
                     <div class="header-line"></div>
-                    @foreach ($tasks as $item)
-                        <div class='app'>
-                            <main class='project'>
-                                <div class='project-tasks'>
-                                    <i class="task-img fas fa-clipboard-list"></i>
-                                    <div class='project-column'>
-                                        <a href="{{ route('view-task-member') }}" class="project-column-header__link">
-                                            <h2 class='project-column-header__title'>{{ $item->title }}</h2>
-                                        </a>
-                                        <div class='task'>
-                                            <p style="font-size: 18px;">Due Date: {{ \Carbon\Carbon::parse($item->due_date)->format('F d, Y') }}</p>
-                                            <div class='task-stats'>
-                                                <span>
-                                                    <date datetime="2021-11-24T20:00:00"><i
-                                                            class="task-icon fas fa-flag"></i>Date Posted:
-                                                        {{ \Carbon\Carbon::parse($item->created_at)->format('F d, Y') }}</date>
-                                                </span>
-                                                <!-- <span class="task-file-count"><i
-                                                        class="task-file fas fa-paperclip"></i>2</span> -->
+                    <div class="accordion">
+                        <div class="accordion-item">
+                            <div class="accordion-item-header">
+                                <i class="accordion-img fas fa-folder-open"></i>
+                                Task 1
+                            </div>
+                            <div class="accordion-item-body">
+                                <div class="accordion-item-body-content">
+                                    <div class='app'>
+                                        <main class='project'>
+                                            @foreach ($tasks as $item)
+                                            <div class='project-tasks'>
+                                                <i class="task-img fas fa-clipboard-list"></i>
+                                                <div class='project-column'>
+                                                    <a href="{{ route('view-task-member') }}" class="project-column-header__link">
+                                                        <h2 class='project-column-header__title'>{{ $item->title }}</h2>
+                                                    </a>
+                                                    <div class='task'>
+                                                        <p>Due Date: {{ \Carbon\Carbon::parse($item->due_date)->format('F d, Y') }}</p>
+                                                        <!-- <div class='task-stats'>
+                                                            <span>
+                                                                <date datetime="2021-11-24T20:00:00"><i class="task-icon fas fa-flag"></i>Date Posted: {{ \Carbon\Carbon::parse($item->created_at)->format('F d, Y') }}</date>
+                                                            </span>
+                                                            <span class="task-file-count"><i class="task-file fas fa-paperclip"></i>2</span>
+                                                        </div> -->
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
+                                            @endforeach
+                                        </main>
                                     </div>
                                 </div>
-                            </main>
-                    @endforeach
+                            </div>
+                        </div>
+                    </div>
 
+
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     </div>
+
+
+<script>
+const accordionItemHeaders = document.querySelectorAll(".accordion-item-header");
+
+accordionItemHeaders.forEach(accordionItemHeader => {
+  accordionItemHeader.addEventListener("click", event => {
+    
+    // Uncomment in case you only want to allow for the display of only one collapsed item at a time!
+    
+    // const currentlyActiveAccordionItemHeader = document.querySelector(".accordion-item-header.active");
+    // if(currentlyActiveAccordionItemHeader && currentlyActiveAccordionItemHeader!==accordionItemHeader) {
+    //   currentlyActiveAccordionItemHeader.classList.toggle("active");
+    //   currentlyActiveAccordionItemHeader.nextElementSibling.style.maxHeight = 0;
+    // }
+
+    accordionItemHeader.classList.toggle("active");
+    const accordionItemBody = accordionItemHeader.nextElementSibling;
+    if(accordionItemHeader.classList.contains("active")) {
+      accordionItemBody.style.maxHeight = accordionItemBody.scrollHeight + "px";
+    }
+    else {
+      accordionItemBody.style.maxHeight = 0;
+    }
+    
+  });
+});
+</script>
 @endsection
