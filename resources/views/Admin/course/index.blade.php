@@ -28,6 +28,8 @@
         margin: 0 0 28px 0; /* modified */
         width: fit-content, calc(33.33% - 40px);
         transition: .3s ease;
+        border: 1px solid #bfbfbf;
+        margin-top: 20px;
     }
 
     .advisee-card:hover {
@@ -236,7 +238,7 @@
       clip: rect(0, 11.25rem, 11.25rem, 5.625rem);
       background: #8a8a8a;
     }
-
+    
     .circle-graph-percents {
       content: "";
       position: absolute;
@@ -301,13 +303,13 @@
                       <h5 >Available slots under your Advisory</h5>
                     </div>
                     
-                    <div class="circle-graph" data-circle-graph data-percent="0">
+                    <div class="circle-graph" data-circle-graph data-percent="20">
                       <div class="circle-graph-progress">
                         <div class="circle-graph-progress-fill"></div>
                       </div>
                       <div class="circle-graph-percents">
                         <div class="circle-graph-percents-wrapper">
-                          <span class="circle-graph-percents-number">0</span>
+                          <span class="circle-graph-percents-number">2</span>
                           <span class="circle-graph-percents-units">of 10</span>
                         </div>
                       </div>
@@ -320,16 +322,34 @@
                         <div class="advisee-project-details">
                             <h5 class="advisee-project-head"><i class="fas fa-users"></i> List of Advisee</h5>
                             <div class="header-line"></div>
-                            <div class="project-container">
+                            <div class="row cards-container">
+                                      <div class="col-md-4 col-lg-5">
+                                          <div class="advisee-card">
+                                              <img class="avatar" src="{{ asset('images/pic.png')}}" alt="Avatar" />
+                                              <div class="name">Royce Ogot</div>
+                                              <div class="email">201911397@gordoncollege.edu.ph</div>
+                                          </div>
+                                      </div>
+                                      <div class="col-md-4 col-lg-5">
+                                          <div class="advisee-card">
+                                              <img class="avatar" src="{{ asset('images/pic.png')}}" alt="Avatar" />
+                                              <div class="name">Ken ammay</div>
+                                              <div class="email">201913563@gordoncollege.edu.ph</div>
+                                          </div>
+                                      </div>
+
+                                </div>
+                            <!-- <div class="project-container">
                             <div class="wrapper">
-                                <!-- <div class="four_zero_four_bg">
+                                <div class="four_zero_four_bg">
                                     <h1 class="text-center"><b>Oops...</b></h1>
-                                </div> -->
+                                </div>
+  
                                 <div class="contant_box_404">
                                     <h3 class="h2">Looks like you don't have any advisee yet.</h3>                                
                                 </div>
                             </div>
-                                <div class="card-content"></div>
+                                <div class="card-content"></div> -->
                             </div>
                         </div>
                     </div>
@@ -337,15 +357,7 @@
             </div>
         </div>
 
-  <!-- <div class="row cards-container">
-        <div class="col-md-4 col-lg-3">
-            <div class="advisee-card">
-                <img class="avatar" src="{{ asset('images/pic.png')}}" alt="Avatar" />
-                <div class="name">Royce Ogot</div>
-                <div class="email">201911397@gordoncollege.edu.ph</div>
-            </div>
-        </div>
-</div> -->
+
 @endsection
 <script> 
 $("[data-circle-graph]").each(function() {

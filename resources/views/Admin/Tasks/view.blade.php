@@ -160,11 +160,14 @@ h2.text-center {
 .submit-header {
   margin-left: 20px;
   font-family: 'Poppins', sans-serif;
-  font-size: 32px;
+  font-size: 24px;
   color: #f06548;
-  display: flex; /* add this to enable flexbox */
-  align-items: center; /* add this to center items vertically */
 }
+
+.submit-header a:hover {
+  text-decoration: underline;
+}
+
 
 .card.display-none{
   display: none;
@@ -176,39 +179,48 @@ h2.text-center {
 @section('content')
 
 <div class="container-fluid">
-                <a href="{{route('tasks-admin')}}">
-                <button type="button" class="btn back-btn btn-outline-danger">Back</button>
-                </a>
-    <div class="row task">
-                
-            <div class="task-content">
-            <button type="button" class="btn edit-btn float-end"><i class="fas fa-edit"></i></button>
-                <div class="task-detail-name">
-                    <h5 class="task-detail-head">Create a Project</h5>
-                    <div class="due-date">
-                        <p><i class="fas fa-clock" style="margin-right: 5px;"></i><strong>Due Date:</strong> May 20, 2023</p>
-                    </div>
-                    <div class="date-posted"> 
-                    <p><i class="task-icon fas fa-flag" style="margin-right: 5px;"></i><strong>Date Posted:</strong> May 17, 2023</p>
-                    </div>
-                </div>
-                <div class="header-line"></div>
-                    <div class="task-details">
-                        <p>Make sure to accomplish this and have it signed by your Project Adviser after he/she reviewed and approved the contents of your Presentation files.</p>
-                    </div>
-                <div class="task-attachments">      
-                    <h6 class="task-attachments-name"><i class="fas fa-paperclip" style="margin-right: 5px;"></i><strong>Attachments</strong></h6>
-                    <div class="task-attachments-card">
-                        <div class="card-body ">
-                        
-                        </div>
-                    </div>
-				</div>
-                <div class="header-line"></div>
-            </div>
-		</div>
-	</div>
+  <div class="modal-header row align-items-center">
+    <div class="col">
+      <a href="{{ route('tasks-admin') }}">
+        <button type="button" class="btn back-btn btn-outline-danger">Back</button>
+      </a>
+    </div>
+    <div class="col text-end">
+      <a href="#">
+        <h5 class="submit-header mb-0"><i class="fas fa-file me-2"></i> Submissions</h5>
+      </a>
+    </div>
+  </div>
+  <div class="row task">
+    <div class="task-content">
+      <button type="button" class="btn edit-btn float-end"><i class="fas fa-edit"></i></button>
+      <div class="task-detail-name">
+        <h5 class="task-detail-head">Create a Project</h5>
+        <div class="due-date">
+          <p><i class="fas fa-clock me-1"></i><strong>Due Date:</strong> May 20, 2023</p>
+        </div>
+        <div class="date-posted">
+          <p><i class="task-icon fas fa-flag me-1"></i><strong>Date Posted:</strong> May 17, 2023</p>
+        </div>
+      </div>
+      <hr class="header-line">
+      <div class="task-details">
+        <p>Make sure to accomplish this and have it signed by your Project Adviser after he/she reviewed and approved the contents of your Presentation files.</p>
+      </div>
+      <div class="task-attachments">
+        <h6 class="task-attachments-name"><i class="fas fa-paperclip me-1"></i><strong>Attachments</strong></h6>
+        <div class="task-attachments-card">
+          <div class="card-body">
+            <!-- Your attachments content here -->
+          </div>
+        </div>
+      </div>
+      <hr class="header-line">
+    </div>
+  </div>
 </div>
+
+<!-- </div>
 <div class="col-12">
         <div class="d-flex justify-content-between align-items-center">
           <h5 class="submit-header mt-2"><i class="fas fa-file" style="margin-right: 10px;"></i> Submissions</h5>
@@ -248,5 +260,5 @@ h2.text-center {
                 </table>
             </div>
         </div>    
-      </div>
+      </div> -->
 @endsection

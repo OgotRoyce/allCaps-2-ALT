@@ -46,6 +46,11 @@
             </div>
         @endif
         <div class="">
+            <label for="exampleFormControlInput1" class="form-label">Task</label>
+            <input type="text" name="task-title" class="form-control" id="exampleFormControlInput1"
+                value="{{ old('task-title') }}">
+        </div>
+        <div class="">
             <label for="exampleFormControlInput1" class="form-label">Title</label>
             <input type="text" name="title" class="form-control" id="exampleFormControlInput1"
                 value="{{ old('title') }}">

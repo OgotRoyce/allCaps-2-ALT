@@ -179,15 +179,20 @@
   </div>
     
     <div class="row cards-container">
-        @foreach ($students as $item)
-            <div class="col-md-4 col-lg-3">
-                <div class="profile-card">
-                    <img class="avatar" src="{{ asset('images/pic.png') }}" alt="Avatar" />
-                    <div class="name">{{ $item->first_name }} {{ $item->last_name }}</div>
-                    <div class="email">{{ $item->email }}</div>
-                </div>
+    @php
+        $sorted_students = $students->sortBy('last_name')->values()->all();
+    @endphp
+    @foreach ($sorted_students as $item)
+        <div class="col-md-4 col-lg-3">
+            <div class="profile-card">
+                <img class="avatar" src="{{ asset('images/pic.png') }}" alt="Avatar" />
+                <div class="name">{{ $item->last_name }}, {{ $item->first_name }}</div>
+                <div class="email">{{ $item->email }}</div>
             </div>
-        @endforeach
+        </div>
+    @endforeach
+</div>
+
     </div>
     
 
