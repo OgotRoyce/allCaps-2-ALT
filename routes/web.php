@@ -22,7 +22,7 @@ Route::get('/Adviser', function () {
 });
 
 
-//Adviser route
+//Admin routes
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
     Route::group(['prefix' => 'login',], function () {
@@ -65,7 +65,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
 });
 
-
+//Adviser routes
 Route::group(['prefix' => 'adviser', 'namespace' => 'Adviser'], function () {
 
     Route::group(['prefix' => 'login',], function () {
@@ -84,15 +84,15 @@ Route::group(['prefix' => 'adviser', 'namespace' => 'Adviser'], function () {
     });
     Route::group(['prefix' => 'adviser_task',], function () {
         Route::get('/', ['as' => 'adviser_task', 'uses' => 'TasksController@index']);
-        Route::get('/create/{id}', ['as' => 'create_tasks', 'uses' => "TasksController@create"]);
-        Route::post('/AddTask', ['as' => 'add_new_task', 'uses' => "TasksController@AddTask"]);
-        Route::post('/store', ['as' => 'store_tasks', 'uses' => "TasksController@store"]);
-        Route::get('/show/{id}', ['as' => 'view_tasks', 'uses' => "TasksController@show"]);
-        Route::get('/edit/{id}', ['as' => 'edit_tasks', 'uses' => "TasksController@edit"]);
-        Route::put('/update/{id}', ['as' => 'update_acts', 'uses' => "TasksController@update"]);
-        Route::put('/UpdateTask/{id}', ['as' => 'update_tasks', 'uses' => "TasksController@UpdateTask"]);
-        Route::delete('/destroy/{id}', ['as' => 'delete_acts', 'uses' => "TasksController@destroy"]);
-        Route::delete('/DeleteTask/{code}', ['as' => 'delete_tasks', 'uses' => "TasksController@DeleteTask"]);//Task with s for admin
+        Route::get('/create/{id}', ['as' => 'create_adviser_tasks', 'uses' => "TasksController@create"]);
+        Route::post('/AddTask', ['as' => 'add_adviser_task', 'uses' => "TasksController@AddTask"]);
+        Route::post('/store', ['as' => 'store_adviser_tasks', 'uses' => "TasksController@store"]);
+        Route::get('/show/{id}', ['as' => 'view_adviser_tasks', 'uses' => "TasksController@show"]);
+        Route::get('/edit/{id}', ['as' => 'edit_adviser_tasks', 'uses' => "TasksController@edit"]);
+        Route::put('/update/{id}', ['as' => 'update_adviser_acts', 'uses' => "TasksController@update"]);
+        Route::put('/UpdateTask/{id}', ['as' => 'update_adviser_tasks', 'uses' => "TasksController@UpdateTask"]);
+        Route::delete('/destroy/{id}', ['as' => 'delete_adviser_acts', 'uses' => "TasksController@destroy"]);
+        Route::delete('/DeleteTask/{code}', ['as' => 'delete_adviser_tasks', 'uses' => "TasksController@DeleteTask"]);
     });
     
 
@@ -109,16 +109,8 @@ Route::group(['prefix' => 'student', 'namespace' => 'Student'], function () {
     });
 
     Route::group(['prefix' => 'task_student'], function () {
-        Route::get('/', ['as' => 'task_student', 'uses' => "TasksController@index"]);
-        Route::get('/create/{id}', ['as' => 'create_tasks', 'uses' => "TasksController@create"]);
-        Route::post('/AddTask', ['as' => 'add_new_task', 'uses' => "TasksController@AddTask"]);
-        Route::post('/store', ['as' => 'store_tasks', 'uses' => "TasksController@store"]);
-        Route::get('/show/{id}', ['as' => 'view_tasks', 'uses' => "TasksController@show"]);
-        Route::get('/edit/{id}', ['as' => 'edit_tasks', 'uses' => "TasksController@edit"]);
-        Route::put('/update/{id}', ['as' => 'update_acts', 'uses' => "TasksController@update"]);
-        Route::put('/UpdateTask/{id}', ['as' => 'update_tasks', 'uses' => "TasksController@UpdateTask"]);
-        Route::delete('/destroy/{id}', ['as' => 'delete_acts', 'uses' => "TasksController@destroy"]);
-        Route::delete('/DeleteTask/{code}', ['as' => 'delete_tasks', 'uses' => "TasksController@DeleteTask"]);//Task with s for admin
+        Route::get('/', ['as' => 'task_student', 'uses' => "TasksController@index"]); 
+        Route::get('/show/{id}', ['as' => 'view_student_tasks', 'uses' => "TasksController@show"]);      
     });
 
     Route::group(['prefix' => 'student_adviser',], function () {

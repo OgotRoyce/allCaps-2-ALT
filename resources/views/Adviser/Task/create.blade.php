@@ -32,7 +32,7 @@
     </div>
 
     <div class="header-line"></div>
-    <form action="{{route('store_tasks')}}" method="post" enctype="multipart/form-data" class="row g-3">
+    <form action="{{route('store_adviser_tasks')}}" method="post" enctype="multipart/form-data" class="row g-3">
         {!! csrf_field() !!}
 
         @if ($errors->any())

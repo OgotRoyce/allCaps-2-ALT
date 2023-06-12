@@ -32,7 +32,7 @@
     </div>
 
     <div class="header-line"></div>
-    <form action="{{ route('update_acts', ['id' => $acts->id]) }}" method="post" enctype="multipart/form-data"
+    <form action="{{ route('update_adviser_acts', ['id' => $acts->id]) }}" method="post" enctype="multipart/form-data"
         class="row g-3">
         {!! csrf_field() !!}
         @method('PUT')

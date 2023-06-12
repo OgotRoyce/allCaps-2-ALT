@@ -176,18 +176,18 @@
 </style>
 
 @section('content')
-    @if ($tasks)
+    @if ($acts)
         <div class="container-fluid">
             <div class="row task">
                 <div class="col-md-3">
                     <div class="task-sidebar">
-                        <a href="{{ route('task-member') }}" style="margin-left: 20px;">
+                        <a href="{{ route('task_student',) }}" style="margin-left: 20px;">
                             <button type="button" class="btn btn-outline-danger">Back</button>
                         </a>
                         <div class="task-usertitle-name">
                             <h5 class="task-head">
                                 My Work
-                                @if (\Carbon\Carbon::parse($tasks->due_date)->isPast())
+                                @if (\Carbon\Carbon::parse($acts->due_date)->isPast())
                                     <span style="color: #e24f4c; margin-left: 10rem;">Late</span>
                                 @endif
                             </h5>
@@ -198,40 +198,54 @@
                             <h6 class="member-email mb-2">Files Uploaded</h6>
                         </div>
                         <div class="card file-upload-card">
-                            <div class="card-body ">
-
-                            </div>
+                            <div class="card-body" id="file-name"></div>
                         </div>
                         <div class="header-line flex-grow-1 ml-3"></div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-danger w-100"><i class="fas fa-plus"></i> Attach
-                                File</button>
+                            <button type="button" class="btn btn-danger w-100" id="attach-file-btn"><i class="fas fa-plus"></i> Attach File</button>
+                            <input type="file" hidden id="file-input">
+                        
+                            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                            <script>
+                                $(document).ready(function() {
+                                    $('#attach-file-btn').click(function() {
+                                        $('#file-input').click();
+                                    });
+                        
+                                    $('#file-input').change(function() {
+                                        var fileName = $(this).val().split('\\').pop();
+                                        $('#file-name').text(fileName);
+                                    });
+                                });
+                            </script>
+
+                                <button type="submit" class="btn btn-success w-100" id="attach-file-btn">Submit</button>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-9">
                     <div class="task-content">
                         <div class="task-detail-name">
-                            <h5 class="task-detail-head">{{ $tasks->title }}</h5>
+                            <h5 class="task-detail-head">{{ $acts->title }}</h5>
                             <div class="due-date">
                                 <p><i class="fas fa-clock" style="margin-right: 5px;"></i><strong>Due Date:</strong>
-                                    {{ \Carbon\Carbon::parse($tasks->due_date)->format('F d, Y') }}</p>
+                                    {{ \Carbon\Carbon::parse($acts->due_date)->format('F d, Y') }}</p>
                             </div>
                             <div class="date-posted">
                                 <p><i class="task-icon fas fa-flag" style="margin-right: 5px;"></i><strong>Date
-                                        Posted:</strong> {{ $tasks->created_at->format('F d, Y') }}</p>
+                                        Posted:</strong> {{ $acts->created_at->format('F d, Y') }}</p>
                             </div>
                         </div>
                         <div class="header-line"></div>
                         <div class="task-details">
-                            <p>{{ $tasks->description }}</p>
+                            <p>{{ $acts->description }}</p>
                         </div>
                         <div class="task-attachments">
                             <h6 class="task-attachments-name"><i class="fas fa-paperclip"
                                     style="margin-right: 5px;"></i><strong>Attachments</strong></h6>
                             <div class="task-attachments-card">
                                 <div class="card-body ">
-
+                                    <a href="{{ asset('file/' . $acts->attachments) }}" download>{{ $acts->attachments }}</a>
                                 </div>
                             </div>
                         </div>

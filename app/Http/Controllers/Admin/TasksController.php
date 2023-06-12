@@ -51,6 +51,7 @@ class TasksController extends Controller
         
             public function DeleteTask($code)
             {
+                // dd($code);
                 $tasks = Task::where('task_code', $code)->get(); 
             
                 // Delete activities with the same task code

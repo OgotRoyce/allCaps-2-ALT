@@ -222,47 +222,76 @@
                         </h5>
                     </div>
                     <div class="header-line"></div>
+
+                    @foreach ($tasks as $task)
                     <div class="accordion">
                         <div class="accordion-item">
                             <div class="accordion-item-header">
-                                <i class="accordion-img fas fa-folder-open"></i>
-                                Task 1
+                                <div class="left-content">
+                                    <i class="accordion-img fas fa-folder-open"></i>
+                                    <!-- Task Title -->
+                                    {{ $task->task }}
+                                </div>
+                                {{-- <div class="right-content">  
+                
+                                    <i class="accordion-img fas fa-pencil-alt" style="color: #DD6B55" data-bs-target="#exampleModalToggle-{{ $task->id }}" data-bs-toggle="modal"></i>
+                
+                                    <a class="delete-button" onclick="event.preventDefault(); DeleteTaskConfirmation()">
+                                    <i class="accordion-img fas fa-trash"  style="color: #DD6B55" ></i>
+                                    </a>             
+                                        <form id="delete-form" action="{{ route('delete_tasks',$task->task_code) }}" method="POST" class="d-none">
+                                            {!! csrf_field() !!}
+                                            @method('DELETE')
+                                        </form>
+                                </div> --}}
+                                
                             </div>
+                            
+                
                             <div class="accordion-item-body">
                                 <div class="accordion-item-body-content">
                                     <div class='app'>
                                         <main class='project'>
-                                            @foreach ($tasks as $item)
+                                            @foreach ($acts as $act)
+                
+                                            @if ($act->task_code === $task->task_code)
+                
                                                 <div class='project-tasks'>
+                                                    <a href="{{ route('view_student_tasks', $act->id) }}" class="project-column-header__link">
                                                     <i class="task-img fas fa-clipboard-list"></i>
                                                     <div class='project-column'>
-                                                        <a href="{{ route('view_tasks', $item->id) }}"
-                                                            class="project-column-header__link">
-                                                            <h2 class='project-column-header__title'>{{ $item->title }}
-                                                            </h2>
+                                                            <h2 class='project-column-header__title'>{{ $act->title }}</h2>
                                                         </a>
+                                                        
                                                         <div class='task'>
-                                                            <p>Due Date:
-                                                                {{ \Carbon\Carbon::parse($item->due_date)->format('F d, Y') }}
-                                                            </p>
-                                                            <!-- <div class='task-stats'>
-                                                                        <span>
-                                                                            <date datetime="2021-11-24T20:00:00"><i class="task-icon fas fa-flag"></i>Date Posted: {{ \Carbon\Carbon::parse($item->created_at)->format('F d, Y') }}</date>
-                                                                        </span>
-                                                                        <span class="task-file-count"><i class="task-file fas fa-paperclip"></i>2</span>
-                                                                    </div> -->
+                                                            <p>Due Date: {{ \Carbon\Carbon::parse($act->due_date)->format('F d, Y') }}</p>
                                                         </div>
                                                     </div>
+                                                    {{-- <div class="project-tasks-delete"> 
+                                                        <a class="delete-button" onclick="event.preventDefault(); DeleteActivityConfirmation()">
+                                                            <i class="accordion-img fas fa-trash"  style="color: #8a8a8a" ></i>
+                                                            </a>             
+                                                                <form id="delete-acts" action="{{ route('delete_acts',$act->id) }}" method="POST" class="d-none">
+                                                                    {!! csrf_field() !!}
+                                                                    @method('DELETE')
+                                                                </form>
+                                                            </div> --}}
                                                 </div>
+                
+                                                @endif
+                                                
                                             @endforeach
+                
+                                            {{-- <a href="{{ route('create_tasks', $task->id) }}">
+                                                <button type="button" style="width:100%" class="btn btn-outline-danger float-right input-group-text">+ Create Activity</button>
+                                            </a> --}}
                                         </main>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
+                @endforeach
                 </div>
             </div>
         </div>

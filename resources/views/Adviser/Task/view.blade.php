@@ -206,7 +206,7 @@
         @if ($acts)
             <div class="row task">
                 <div class="task-content">
-                    <a href="{{ route('edit_tasks', ['id' => $acts->id]) }}" class="btn edit-btn float-end"><i
+                    <a href="{{ route('edit_adviser_tasks', ['id' => $acts->id]) }}" class="btn edit-btn float-end"><i
                             class="fas fa-edit"></i></a>
                     <div class="task-detail-name">
                         <h5 class="task-detail-head">{{ $acts->title }}</h5>

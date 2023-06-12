@@ -261,19 +261,17 @@ complete and pending tasks</span>
                     <!-- Task Title -->
                     {{ $task->task }}
                 </div>
+
                 <div class="right-content">  
+                    <i class="accordion-img fas fa-pencil-alt" style="color: #DD6B55" data-bs-target="#exampleModalToggle-{{ $task->id }}" data-bs-toggle="modal"></i>
 
-                    <i class="accordion-img fas fa-pencil-alt" style="color: rgb(48, 133, 214)" data-bs-target="#exampleModalToggle-{{ $task->id }}" data-bs-toggle="modal"></i>
-
-                    <a class="delete-button" onclick="event.preventDefault(); DeleteTaskConfirmation()">
-                    <i class="accordion-img fas fa-trash"  style="color: #DD6B55" ></i>
+                    <a class="delete-button" onclick="event.preventDefault(); DeleteTaskConfirmation('{{ $task->id }}')">
+                        <i class="accordion-img fas fa-trash" style="color: #DD6B55"></i>
                     </a>             
-                        <form id="delete-form" action="{{ route('delete_tasks',$task->task_code) }}" method="POST" class="d-none">
-                            {!! csrf_field() !!}
-                            @method('DELETE')
-                        </form>
-             
-                    
+                    <form id="delete-form-{{ $task->id }}" action="{{ route('delete_adviser_tasks', $task->task_code) }}" method="POST" class="d-none">
+                        {!! csrf_field() !!}
+                        @method('DELETE')
+                    </form>     
                 </div>
             </div>
 
@@ -286,7 +284,7 @@ complete and pending tasks</span>
                             @if ($act->task_code === $task->task_code)
 
                                 <div class='project-tasks'>
-                                    <a href="{{ route('view_tasks', $act->id) }}" class="project-column-header__link">
+                                    <a href="{{ route('view_adviser_tasks', $act->id) }}" class="project-column-header__link">
                                     <i class="task-img fas fa-clipboard-list"></i>
                                     <div class='project-column'>
                                             <h2 class='project-column-header__title'>{{ $act->title }}</h2>
@@ -297,13 +295,21 @@ complete and pending tasks</span>
                                         </div>
 
                                         <div class="delete-button"> 
-                                        <a class="delete-button" onclick="event.preventDefault(); DeleteActivityConfirmation()">
+                                        <a class="delete-button" onclick="event.preventDefault(); DeleteActivityConfirmation('{{ $act->id }}')">
+                                            <i class="accordion-img fas fa-trash" style="color: #DD6B55"></i>
+                                        </a>             
+                                        <form id="delete-acts-{{ $act->id }}" action="{{ route('delete_adviser_acts', $act->id) }}" method="POST" class="d-none">
+                                            {!! csrf_field() !!}
+                                            @method('DELETE')
+                                        </form>      
+                                        
+                                        {{-- <a class="delete-button" onclick="event.preventDefault(); DeleteActivityConfirmation()">
                                             <i class="accordion-img fas fa-trash"  style="color: #DD6B55" ></i>
                                             </a>             
-                                                <form id="delete-acts" action="{{ route('delete_acts',$act->id) }}" method="POST" class="d-none">
+                                                <form id="delete-acts" action="{{ route('delete_adviser_acts',$act->id) }}" method="POST" class="d-none">
                                                     {!! csrf_field() !!}
                                                     @method('DELETE')
-                                                </form>
+                                                </form> --}}
                                             </div>
 
                                     </div>
@@ -313,7 +319,7 @@ complete and pending tasks</span>
                                 
                             @endforeach
 
-                            <a href="{{ route('create_tasks', $task->id) }}">
+                            <a href="{{ route('create_adviser_tasks', $task->id) }}">
                                 <button type="button" style="width:100%" class="btn btn-outline-danger float-right input-group-text">+ Create Activity</button>
                             </a>
                         </main>
@@ -363,39 +369,39 @@ complete and pending tasks</span>
    
 
 <script>
-    function DeleteActivityConfirmation() {
-        Swal.fire({
-            title: 'Are you sure?',
-            text: 'You are about to delete this activity!',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#3085d6',
-            confirmButtonText: 'delete'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                document.getElementById('delete-acts').submit();
-            }
-        });
-    }
+    function DeleteActivityConfirmation(actId) {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: 'You are about to delete the activity.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById('delete-acts-' + actId).submit();
+        }
+    });
+}
 </script>
 
 <script>
-    function DeleteTaskConfirmation() {
-        Swal.fire({
-            title: 'Are you sure?',
-            text: 'You are about to delete this task!',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#3085d6',
-            confirmButtonText: 'delete'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                document.getElementById('delete-form').submit();
-            }
-        });
-    }
+       function DeleteTaskConfirmation(taskId) {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: 'You are about to delete the task.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById('delete-form-' + taskId).submit();
+        }
+    });
+}
 </script>
 
 <script>
