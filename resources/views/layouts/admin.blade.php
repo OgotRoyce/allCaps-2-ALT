@@ -207,14 +207,13 @@ date_default_timezone_set('Asia/Manila');
                     <div id="two-column-menu">
                     </div>
 
-                    @if (auth()->user()->role === 'admin')
                     <h2 class="role mt-2 text-center"> ADMIN </h2>
                         <ul class="navbar-nav" id="navbar-nav">
                             <!-- <li class="menu-title text-white"><span data-key="t-menu">Menu</span></li> -->
 
 
                             <li class="nav-item">
-                                <a class="nav-link menu-link text-white" href="{{ route('tasks-admin') }}">
+                                <a class="nav-link menu-link text-white" href="{{ route('tasks_admin') }}">
                                     {{-- services --}}
 
 
@@ -224,7 +223,7 @@ date_default_timezone_set('Asia/Manila');
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link menu-link text-white" href="{{ route('usertype') }}">
+                                <a class="nav-link menu-link text-white" href="{{ route('adviser') }}">
                                     {{-- appointment --}}
                                     <i class="ri-user-2-fill"></i> <span data-key="t-pages">Advisers</span>
                                 </a>
@@ -233,14 +232,14 @@ date_default_timezone_set('Asia/Manila');
 
 
                             <li class="nav-item">
-                                <a class="nav-link menu-link text-white" href="{{ route('projects-admin') }}">
+                                <a class="nav-link menu-link text-white" href="{{ route('projects_admin') }}">
                                     {{-- course --}}
                                     <i class="ri-layout-3-line"></i> <span data-key="t-layouts">Projects</span>
                                 </a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link menu-link text-white" href="{{ route('students-admin') }}">
+                                <a class="nav-link menu-link text-white" href="{{ route('students_admin') }}">
                                     {{-- member --}}
 
                                     <i class="ri-team-fill"></i> <span data-key="t-dashboards">Students</span>
@@ -248,51 +247,13 @@ date_default_timezone_set('Asia/Manila');
                                 </a>
                             </li>
 
-
-                    @endif
-
-
-                    @if (auth()->user()->role === 'Adviser')
-                    <h5 class="role mt-2"> ADVISER </h5>
-                        <ul class="navbar-nav" id="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link menu-link text-white" href="{{ route('member') }}">
-                                    <i class="ri-folder-user-fill"></i> <span
-                                        data-key="t-dashboards">Applications</span>
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link menu-link text-white" href="{{ route('course') }}">
-                                    <i class="ri-team-fill"></i> <span data-key="t-dashboards">Advisoree</span>
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link menu-link text-white" href="{{ route('tasks-admin') }}">
-                                    <i class="ri-file-list-2-fill"></i> <span data-key="t-dashboards">Task</span>
-                                </a>
-                            </li>
-
-                    @endif
-                    <!--
-                    <li class="nav-item" >
-                        <a class="nav-link menu-link text-white" href="{{ route('logout-admin') }}" onclick="event.preventDefault(); if(confirm('Are you sure you want to logout?')) { document.getElementById('logout-form').submit(); }">
-                            <i class="mdi mdi-logout text-white fs-16 align-middle me-1"></i>{{ __('Logout') }}
-                        </a>
-                        <form id="logout-form" action="{{ route('logout-admin') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
-                    </li>  -->
-
-                    </ul>
                 </div>
                 <!-- <div class="logout-container">
-                <a class="logout-button" href="{{ route('logout-admin') }}" onclick="event.preventDefault(); if(confirm('Are you sure you want to logout?')) { document.getElementById('logout-form').submit(); }">
+                <a class="logout-button" href="{{ route('logout_admin') }}" onclick="event.preventDefault(); if(confirm('Are you sure you want to logout?')) { document.getElementById('logout-form').submit(); }">
                     <i class="mdi mdi-logout text-white fs-16 align-middle me-1"></i>{{ __('Logout') }}
                 </a>
 
-                <form id="logout-form" action="{{ route('logout-admin') }}" method="POST" class="d-none">
+                <form id="logout-form" action="{{ route('logout_admin') }}" method="POST" class="d-none">
                     @csrf
                 </form>
             </div>  -->
@@ -301,7 +262,7 @@ date_default_timezone_set('Asia/Manila');
                         <i class="mdi mdi-logout text-white fs-16 align-middle me-1"></i>{{ __('Logout') }}
                     </a>
 
-                    <form id="logout-form" action="{{ route('logout-admin') }}" method="POST" class="d-none">
+                    <form id="logout-form" action="{{ route('logout_admin') }}" method="POST" class="d-none">
                         @csrf
                     </form>
                 </div>

@@ -27,9 +27,10 @@ class RoleRequest extends FormRequest
         // dd($id);
 
       $rules =[
-            'name' => ['required'],
+            'first_name' => ['required'],
+            'last_name' => ['required'],
             'email' => ['required'],
-            'role' => ['required'],
+            'program' => ['required'],
             'password' => [
                 Password::min(8)
                 ->mixedCase()

@@ -162,9 +162,9 @@
                             <span class="badge badge-secondary"><span style="font-weight: 300; color: #bfbfbf;">List of
                                     students</span>
                         </h5>
-                        <!-- <a href="{{ route('create-member') }}">
+                        <a href="{{ route('create_student') }}">
                               <button type="button" style="width:100%" class="btn btn-outline-danger float-right">+ Add Student</button>
-                            </a> -->
+                            </a>
                     </div>
                     <div class="header-line"></div>
                 </div>
@@ -185,7 +185,9 @@
     @foreach ($sorted_students as $item)
         <div class="col-md-4 col-lg-3">
             <div class="profile-card">
-                <img class="avatar" src="{{ asset('images/pic.png') }}" alt="Avatar" />
+                {{-- <img class="avatar" src="{{ asset('images/pic.png') }}" alt="Avatar" /> --}}
+                <img class="avatar" src="{{ asset('pictures/'.($item->photo ? $item->photo : 'pic.png')) }}"  />
+
                 <div class="name">{{ $item->last_name }}, {{ $item->first_name }}</div>
                 <div class="email">{{ $item->email }}</div>
             </div>

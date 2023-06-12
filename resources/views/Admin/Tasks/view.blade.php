@@ -193,7 +193,7 @@
     <div class="container-fluid">
         <div class="modal-header row align-items-center">
             <div class="col">
-                <a href="{{ route('tasks-admin') }}">
+                <a href="{{ route('tasks_admin') }}">
                     <button type="button" class="btn back-btn btn-outline-danger">Back</button>
                 </a>
             </div>
@@ -203,18 +203,18 @@
                 </a>
             </div>
         </div>
-        @if ($task)
+        @if ($acts)
             <div class="row task">
                 <div class="task-content">
-                    <a href="{{ route('edit-tasks', ['id' => $task->id]) }}" class="btn edit-btn float-end"><i
+                    <a href="{{ route('edit_tasks', ['id' => $acts->id]) }}" class="btn edit-btn float-end"><i
                             class="fas fa-edit"></i></a>
                     <div class="task-detail-name">
-                        <h5 class="task-detail-head">{{ $task->title }}</h5>
+                        <h5 class="task-detail-head">{{ $acts->title }}</h5>
                         <div class="due-date">
                             <p>
                                 <i class="fas fa-clock me-1"></i>
                                 <strong>Due Date:</strong>
-                                {{ \Carbon\Carbon::parse($task->due_date)->format('F d, Y') }}
+                                {{ \Carbon\Carbon::parse($acts->due_date)->format('F d, Y') }}
                             </p>
 
 
@@ -223,23 +223,26 @@
                             <p>
                                 <i class="task-icon fas fa-flag me-1"></i>
                                 <strong>Date Posted:</strong>
-                                {{ $task->created_at->format('F d, Y') }}
+                                {{ $acts->created_at->format('F d, Y') }}
                             </p>
 
                         </div>
                         <hr class="header-line">
                         <div class="task-details">
-                            <p>{{ $task->description }}</p>
+                            <p>{{ $acts->description }}</p>
                         </div>
                         <div class="task-attachments">
                             <h6 class="task-attachments-name"><i
                                     class="fas fa-paperclip me-1"></i><strong>Attachments</strong>
                             </h6>
-                            <div class="task-attachments-card">
-                                <div class="card-body">
+                            <div class="task-attachments-card text-left">
+                                <div class="card-body" style="text-align: left;">
+                                    <a href="{{ asset('file/' . $acts->attachments) }}" download>{{ $acts->attachments }}</a>
                                     <!-- Your attachments content here -->
                                 </div>
+                                
                             </div>
+                            
                         </div>
                         <hr class="header-line">
                     </div>

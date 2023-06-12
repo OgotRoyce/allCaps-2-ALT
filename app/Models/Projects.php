@@ -4,8 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Members;
-
 
 class Projects extends Model
 {
@@ -16,11 +14,10 @@ class Projects extends Model
         'description',
         'logo',
         'user_id'
-
     ];
 
     public function user()
     {
-        return $this->belongsTo(Members::class, 'user_id');
+        return $this->belongsTo(Student::class, 'user_id');
     }
 }

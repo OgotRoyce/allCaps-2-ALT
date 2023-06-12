@@ -22,7 +22,7 @@
 
     <div class="modal-header">
         <div class="col">
-            <a href="{{ route('tasks-admin') }}">
+            <a href="{{ route('view_tasks', ['id' => $acts->id] ) }}">
                 <button type="button" class="btn btn-outline-danger">Back</button>
             </a>
         </div>
@@ -32,7 +32,7 @@
     </div>
 
     <div class="header-line"></div>
-    <form action="{{ route('update-tasks', ['id' => $task->id]) }}" method="post" enctype="multipart/form-data"
+    <form action="{{ route('update_acts', ['id' => $acts->id]) }}" method="post" enctype="multipart/form-data"
         class="row g-3">
         {!! csrf_field() !!}
         @method('PUT')
@@ -48,23 +48,30 @@
         <div class="">
             <label for="exampleFormControlInput1" class="form-label">Title</label>
             <input type="text" name="title" class="form-control" id="exampleFormControlInput1"
-                value="{{ $task->title ?? old('title') }}">
+                value="{{ $acts->title ?? old('title') }}">
         </div>
         <div class="">
             <label for="formFile" class="form-label">Description</label>
             <input type="text" name="description" class="form-control"
-                value="{{ $task->description ?? old('description') }}" id="exampleFormControlInput1">
+                value="{{ $acts->description ?? old('description') }}" id="exampleFormControlInput1">
         </div>
         <div class="form-group" style="margin-top: 10px">
             <label for="inputState">Due Date:</label>
-            <input type="date" class="form-control" name="due_date" value="{{ $task->due_date ?? old('due_date') }}">
+            <input type="date" class="form-control" name="due_date" value="{{ $acts->due_date ?? old('due_date') }}">
         </div>
 
         <div class="">
             <label for="formFile" class="form-label">Attachments:</label>
-            <input type="file" name="attachments" step="any" class="form-control">
+            @if($acts->attachments)
+                <input type="file" name="attachments[]" multiple class="form-control">
+                <p>Current File: {{ $acts->attachments }}</p>
+            @else
+                <input type="file" name="attachments[]" multiple class="form-control" value="{{ old('attachments') }}">
+            @endif
         </div>
-
+        
+        
+        
         <div class="modal-footer">
             <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
             <button type="submit" class="btn btn-danger w-100">Save changes</button>

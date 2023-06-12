@@ -22,7 +22,7 @@
 
     <div class="modal-header">
         <div class="col">
-            <a href="{{ route('tasks-admin') }}">
+            <a href="{{ route('tasks_admin') }}">
                 <button type="button" class="btn btn-outline-danger">Back</button>
             </a>
         </div>
@@ -32,7 +32,7 @@
     </div>
 
     <div class="header-line"></div>
-    <form action="" method="post" enctype="multipart/form-data" class="row g-3">
+    <form action="{{route('store_tasks')}}" method="post" enctype="multipart/form-data" class="row g-3">
         {!! csrf_field() !!}
 
         @if ($errors->any())
@@ -44,11 +44,15 @@
                 </ul>
             </div>
         @endif
-        <div class="">
-            <label for="exampleFormControlInput1" class="form-label">Task</label>
-            <input type="text" name="task-title" class="form-control" id="exampleFormControlInput1"
-                value="{{ old('task-title') }}">
+
+        @if($tasks)
+        <div class="" hidden>
+            <label for="exampleFormControlInput1" class="form-label" >Task</label>
+            <input type="text" name="task_code" class="form-control" id="exampleFormControlInput1"
+                value="{{$tasks->task_code}}" >
         </div>
+        @endif
+
         <div class="">
             <label for="exampleFormControlInput1" class="form-label">Title</label>
             <input type="text" name="title" class="form-control" id="exampleFormControlInput1"
@@ -75,5 +79,7 @@
             <button type="submit" class="btn btn-danger w-100">Create Task</button>
         </div>
     </form>
+
+
 
 @endsection
