@@ -207,7 +207,7 @@ date_default_timezone_set('Asia/Manila');
                         </li>
                         <li class="nav-item">
                             <a class="nav-link menu-link text-white" href="{{ route('student_adviser') }}">
-                                <i class="ri-user-2-fill"></i> <span data-key="t-apps">Advisers</span>
+                                <i class="ri-user-2-fill"></i> <span data-key="t-apps">Adviser</span>
                             </a>
                         </li>
 
