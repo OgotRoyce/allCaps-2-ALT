@@ -89,6 +89,30 @@ h2.text-center {
   transition: opacity 2s;
 }
 
+.avatar {
+  transition: .3s ease;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 999px;
+  margin-right: 20px;
+}
+
+.card-title {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.application-card {
+  margin-bottom: 20px;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.application-card .card-body {
+  padding: 20px;
+}
 
 </style>
 
@@ -104,58 +128,57 @@ h2.text-center {
       </div>
     </div>
 
-    <div class="row container-fluid application-container">
-      <h2 class="text-center">Pending Applications</h2>
-        <div class="card application-card application-invitation">
-            <div class="card-body">
-                <table>
-                    <tr>
-                    <td style="width:90%"><div class="card-title"><b>Jose Manalo</b> applied to your Advisoree.</div></td>
-                    <td style="width:30%">
-                        <div class="d-flex justify-content-end">
-                        <a href="#" class="btn btn-danger mr-1">Accept</a>
-                        <div class="ml-auto">
-                            <a href="#" class="btn btn-light" style="margin-left: 10px;">Dismiss</a>
-                        </div>
-                        </div>
-                    </td>
-                    </tr>
-                </table>
-            </div>
-        </div>     
-        <div class="card application-card application-invitation">
-            <div class="card-body">
-                <table>
-                    <tr>
-                    <td style="width:90%"><div class="card-title"><b>Von Tandoc</b> applied to your Advisoree.</div></td>
-                    <td style="width:30%">
-                        <div class="d-flex justify-content-end">
-                        <a href="#" class="btn btn-danger mr-1">Accept</a>
-                        <div class="ml-auto">
-                            <a href="#" class="btn btn-light" style="margin-left: 10px;">Dismiss</a>
-                        </div>
-                        </div>
-                    </td>
-                    </tr>
-                </table>
-            </div>
+    <div class="card application-card application-invitation">
+      <div class="card-body d-flex justify-content-between">
+        <div class="d-flex align-items-center">
+          <img class="avatar" src="{{ asset('images/pic.png')}}" alt="Avatar" />
+          <div class="card-title"><b>Royce Ogot</b> applied to your Advisoree.</div>
         </div>
-        <div class="card application-card application-invitation">
-            <div class="card-body">
-                <table>
-                    <tr>
-                    <td style="width:90%"><div class="card-title"><b>Lloyd Mariano</b> applied to your Advisoree.</div></td>
-                    <td style="width:30%">
-                        <div class="d-flex justify-content-end">
-                        <a href="#" class="btn btn-danger mr-1">Accept</a>
-                        <div class="ml-auto">
-                            <a href="#" class="btn btn-light" style="margin-left: 10px;">Dismiss</a>
-                        </div>
-                        </div>
-                    </td>
-                    </tr>
-                </table>
-            </div>
+        <div class="d-flex">
+          <a href="#" class="btn btn-danger  d-flex align-items-center justify-content-center mr-1">Accept</a>
+          <a href="#" class="btn btn-light  d-flex align-items-center justify-content-center" style="margin-left: 10px;">Dismiss</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card application-card application-invitation">
+      <div class="card-body d-flex justify-content-between">
+        <div class="d-flex align-items-center">
+          <img class="avatar" src="{{ asset('images/pic.png')}}" alt="Avatar" />
+          <div class="card-title"><b>Ken Ammay</b> applied to your Advisoree.</div>
+        </div>
+        <div class="d-flex">
+          <a href="#" class="btn btn-danger  d-flex align-items-center justify-content-center mr-1">Accept</a>
+          <a href="#" class="btn btn-light  d-flex align-items-center justify-content-center" style="margin-left: 10px;">Dismiss</a>
+        </div>
+      </div>
+    </div>
+        
+    <div class="card application-card application-invitation">
+      <div class="card-body d-flex justify-content-between">
+        <div class="d-flex align-items-center">
+          <img class="avatar" src="{{ asset('images/pic.png')}}" alt="Avatar" />
+          <div class="card-title"><b>Leicel Velasquez</b> applied to your Advisoree.</div>
+        </div>
+        <div class="d-flex">
+          <a href="#" class="btn btn-danger  d-flex align-items-center justify-content-center mr-1">Accept</a>
+          <a href="#" class="btn btn-light  d-flex align-items-center justify-content-center" style="margin-left: 10px;">Dismiss</a>
+        </div>
+      </div>
+    </div>
+        
+    <div class="card application-card application-invitation">
+      <div class="card-body d-flex justify-content-between">
+        <div class="d-flex align-items-center">
+          <img class="avatar" src="{{ asset('images/pic.png')}}" alt="Avatar" />
+          <div class="card-title"><b>Yasmin Asistido</b> applied to your Advisoree.</div>
+        </div>
+        <div class="d-flex">
+          <a href="#" class="btn btn-danger  d-flex align-items-center justify-content-center mr-1">Accept</a>
+          <a href="#" class="btn btn-light  d-flex align-items-center justify-content-center" style="margin-left: 10px;">Dismiss</a>
+        </div>
+      </div>
+    </div>
         </div>     
     </div>
   </div>
@@ -166,19 +189,54 @@ h2.text-center {
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $(document).ready(function() {
+$(document).ready(function() {
   $(".btn-light").on("click", function(e){
     e.preventDefault();
-    $(this).closest(".application-card").addClass("display-none");
+    
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You want to dismiss this application?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, dismiss it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Perform the action after user confirms
+        $(this).closest(".application-card").addClass("display-none");
+        Swal.fire(
+          'Dismissed!',
+          'The application has been dismissed.',
+          'success'
+        )
+      }
+    })
   });
-});
-</script>
-
-<script>
-    $(document).ready(function() {
+  
   $(".btn-danger").on("click", function(e){
     e.preventDefault();
-    $(this).closest(".application-card").addClass("display-none");
+    
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You want to accept this application?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, accept it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Perform the action after user confirms
+        $(this).closest(".application-card").addClass("display-none");
+        Swal.fire(
+          'Accepted!',
+          'Student has been added to your Advisees.',
+          'success'
+        )
+      }
+    })
   });
 });
+
 </script>

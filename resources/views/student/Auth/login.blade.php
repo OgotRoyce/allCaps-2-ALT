@@ -194,7 +194,7 @@
         {!! csrf_field() !!}
 
         <div class="text-center mt-2">
-            <h5 class="text_primary">Welcome!</h5>
+            <h5 class="text_primary">Welcome Student!</h5>
         </div>
         <div class="title_container">
             <p class="title">Login to your Account</p>

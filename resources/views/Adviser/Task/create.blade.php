@@ -22,7 +22,7 @@
 
     <div class="modal-header">
         <div class="col">
-            <a href="{{ route('tasks_admin') }}">
+            <a href="{{ route('adviser_task') }}">
                 <button type="button" class="btn btn-outline-danger">Back</button>
             </a>
         </div>

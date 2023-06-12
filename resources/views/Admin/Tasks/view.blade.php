@@ -235,12 +235,12 @@
                             <h6 class="task-attachments-name"><i
                                     class="fas fa-paperclip me-1"></i><strong>Attachments</strong>
                             </h6>
+                                                                <!-- Your attachments content here -->
                             <div class="task-attachments-card text-left">
                                 <div class="card-body" style="text-align: left;">
                                     <a href="{{ asset('file/' . $acts->attachments) }}" download>{{ $acts->attachments }}</a>
-                                    <!-- Your attachments content here -->
-                                </div>
-                                
+
+                                </div>             
                             </div>
                             
                         </div>

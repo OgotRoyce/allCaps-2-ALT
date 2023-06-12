@@ -1,5 +1,4 @@
 @extends('layouts.student')
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.0.18/sweetalert2.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.0.18/sweetalert2.all.min.js"></script>
 
@@ -210,9 +209,15 @@
 
     .avatar {
         transition: .3s ease;
-        border-radius: 999px;
-        width: 70px;
+        width: 72px;
+        height: 72px;
+        object-fit: cover;
     }
+
+    .avatar:hover {
+        transform: scale(1.2) rotate(22deg);
+    }
+
 
     .user_item:hover {
         background: #fff;
@@ -251,7 +256,7 @@
                                                     <!-- <input type="checkbox" class="checkbox-input">> -->
                                                     <span class="checkmark"></span>
                                                     <div class="info">
-                                                        <img class="avatar" src="{{ asset('images/pic.png') }}" alt="Avatar">
+                                                        <img class="avatar" src="{{ asset('pictures/'.($item->photo ? $item->photo : 'pic.png')) }}"  />
                                                         <div class="name-role">
                                                             <p class="name">{{ $item->first_name }} {{ $item->last_name }}</p>
                                                             <p class="role">{{ $item->program }}</p>
@@ -262,7 +267,7 @@
                                         @endforeach
                                     </div>
                                     
-                                <button>Choose</button>
+                                    <button type="button" id="choose-adviser-btn" class="btn btn-danger">Choose</button>
                             </div>
                         </div>
         @endsection
@@ -288,38 +293,57 @@
                 });
             });
         </script>
-        <script>
-            document.querySelector('button').addEventListener('click', function() {
-                // Get the selected advisers
-                var selectedAdvisers = document.querySelectorAll('.user_item.active');
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var user_items = $(".user_item");
+        var selected_item;
 
-                // Check if at least one adviser is selected
-                if (selectedAdvisers.length > 0) {
-                    // Show confirmation dialog
-                    swal({
-                        icon: 'warning',
-                        title: 'Are you sure?',
-                        text: 'Do you want to select the adviser(s)?',
-                        showCancelButton: true,
-                        confirmButtonText: 'Yes',
-                        cancelButtonText: 'No'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            // User confirmed, show success message
-                            swal({
-                                icon: 'success',
-                                title: 'Adviser selected!',
-                                text: 'You have successfully selected the adviser(s).'
-                            });
-                        }
-                    });
-                } else {
-                    // Show error message
-                    swal({
-                        icon: 'error',
-                        title: 'No adviser selected!',
-                        text: 'Please select one adviser.'
-                    });
-                }
-            });
-        </script>
+        user_items.on("click", function() {
+            if (selected_item != null) {
+                // Unselect previously selected item
+                selected_item.removeClass("active");
+                selected_item.children("input").prop("checked", false);
+            }
+
+            // Select new item and update selected_item variable
+            $(this).addClass("active");
+            $(this).children("input").prop("checked", true);
+            selected_item = $(this);
+        });
+
+        $("#choose-adviser-btn").on("click", function() {
+            // Get the selected advisers
+            var selectedAdvisers = $(".user_item.active");
+
+            // Check if at least one adviser is selected
+            if (selectedAdvisers.length > 0) {
+                // Show confirmation dialog
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Are you sure?',
+                    text: 'Do you want to select this adviser?',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes',
+                    cancelButtonText: 'No'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // User confirmed, show success message
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Adviser selected!',
+                            text: 'You have successfully selected your adviser.'
+                        });
+                    }
+                });
+            } else {
+                // Show error message
+                Swal.fire({
+                    icon: 'error',
+                    title: 'No adviser selected!',
+                    text: 'Please select one adviser.'
+                });
+            }
+        });
+    });
+</script>

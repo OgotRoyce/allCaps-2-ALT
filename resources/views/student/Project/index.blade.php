@@ -166,28 +166,28 @@
             </div> --}}
 
 
+
     <div class="container-fluid">
         <div class="live-preview">
-            <div class="row">
-                <div class="col-12">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <h5 class="header mt-2"><i class="fas fa-folder-open"></i>My Projects </h5>
-                        <a href="{{ route('create_project') }}">
-                            <button type="button" style="width:100%" class="btn btn-outline-danger float-right">+ Add
-                                Project</button>
-                        </a>
-                    </div>
-                    <div class="header-line"></div>
-                </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="d-flex justify-content-between align-items-center">
+                <h5 class="header mt-2"><i class="fas fa-folder-open"></i>My Projects </h5>
+                @if (count($projects) == 0)
+                  <a href="{{ route('create_project') }}">
+                    <button type="button" class="btn btn-outline-danger float-right">+ Add Project</button>
+                  </a>
+                @else
+                  <button type="button" class="btn btn-outline-danger float-right" disabled>+ Add Project</button>
+                @endif
+              </div>
+              <div class="header-line"></div>
             </div>
+          </div>
         </div>
-    </div>
+      </div>
     @if (count($projects) == 0)
         <!-- display custom 404 page -->
-
-        <head>
-
-        </head>
 
         <body>
             <section class="page_404">
@@ -247,5 +247,6 @@
                 </div>
             </div>
         @endforeach
+        
     @endif
 @endsection

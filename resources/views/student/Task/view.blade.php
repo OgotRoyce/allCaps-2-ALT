@@ -202,7 +202,7 @@
                         </div>
                         <div class="header-line flex-grow-1 ml-3"></div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger w-100" id="attach-file-btn"><i class="fas fa-plus"></i> Attach File</button>
+                            <button type="button" class="btn btn-outline-danger w-100" id="attach-file-btn"><i class="fas fa-plus"></i> Attach File</button>
                             <input type="file" hidden id="file-input">
                         
                             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -219,7 +219,7 @@
                                 });
                             </script>
 
-                                <button type="submit" class="btn btn-success w-100" id="attach-file-btn">Submit</button>
+                                <button type="submit" class="btn btn-danger w-100" id="attach-file-btn">Submit</button>
                         </div>
                     </div>
                 </div>

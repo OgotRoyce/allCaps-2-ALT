@@ -187,7 +187,7 @@
             <img src="path/to/image.jpg" alt="allcaps logo">
         </div> -->
         <div class="text-center mt-2">
-            <h5 class="text_primary">Welcome!</h5>
+            <h5 class="text_primary">Welcome Admin!</h5>
         </div>
         <div class="title_container">
             <p class="title">Login to your Account</p>

@@ -29,6 +29,7 @@
     }
 
     .profile-card {
+        position: relative;
         border-radius: 18px;
         background: #fff;
         padding: 18px 12px 42px 14px;
@@ -47,6 +48,7 @@
     .avatar {
         transition: .3s ease;
         width: 72px;
+        height: 72px;
         object-fit: cover;
     }
 
@@ -67,6 +69,7 @@
   /* existing rules */
   font-size: 18px;
   margin-bottom: 8px;
+  color:#2c2a29;
 }
 .profile-card .adv-role {
   font-size: 16px;
@@ -86,6 +89,18 @@
   width: 72px;
   padding: 10px;
 }
+
+.right-content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 20px;
+}
+
+.right-content i {
+    font-size: 16px;
+}
+
 
 </style>
 
@@ -149,7 +164,7 @@
                         {{-- <i class="accordion-img fas fa-pencil-alt" style="color: rgb(48, 133, 214)" data-bs-target="#exampleModalToggle-{{$item->id}}" data-bs-toggle="modal"></i> --}}
                 
                         <a class="delete-button" onclick="event.preventDefault(); DeleteTaskConfirmation()">
-                        <i class="accordion-img fas fa-trash"  style="color: #DD6B55" ></i>
+                        <i class="accordion-img fas fa-trash"  style="color: #8a8a8a" ></i>
                         </a>             
                             <form id="delete-form" action="{{ route('delete_adviser',$item->id) }}" method="POST" class="d-none">
                                 {!! csrf_field() !!}
@@ -180,7 +195,7 @@
             showCancelButton: true,
             confirmButtonColor: '#d33',
             cancelButtonColor: '#3085d6',
-            confirmButtonText: 'delete'
+            confirmButtonText: 'Delete'
         }).then((result) => {
             if (result.isConfirmed) {
                 document.getElementById('delete-form').submit();

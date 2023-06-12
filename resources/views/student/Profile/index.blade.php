@@ -201,12 +201,13 @@
                             </div>
                         </div>
                     </div>
-                    @foreach ($projects as $item)
+
                         <div class="col-md-9">
                             <div class="profile-content">
                                 <div class="profile-project-details">
                                     <h5 class="profile-project-head"><i class="fas fa-folder-open"></i> Projects </h5>
                                     <div class="header-line"></div>
+                                    @foreach ($projects as $item)
                                     <div class="project-container">
                                         <div class="project-img">
                                             {{-- <img class="app-logo" src="{{ asset('public/images/' . $item->logo) }}"> --}}
@@ -222,10 +223,11 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+
                 </div>
             </div>
         @endsection

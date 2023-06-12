@@ -305,7 +305,7 @@ complete and pending tasks</span>
                                     </div>
                                     <div class="project-tasks-delete"> 
                                         <a class="delete-button" onclick="event.preventDefault(); DeleteActivityConfirmation('{{ $act->id }}')">
-                                            <i class="accordion-img fas fa-trash" style="color: #DD6B55"></i>
+                                            <i class="accordion-img fas fa-trash" style="color: #8a8a8a"></i>
                                         </a>             
                                         <form id="delete-acts-{{ $act->id }}" action="{{ route('delete_adviser_acts', $act->id) }}" method="POST" class="d-none">
                                             {!! csrf_field() !!}
@@ -371,12 +371,12 @@ complete and pending tasks</span>
     function DeleteActivityConfirmation(actId) {
     Swal.fire({
         title: 'Are you sure?',
-        text: 'You are about to delete the activity.',
+        text: 'You are about to delete this task.',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonText: 'Yes, Delete it!'
     }).then((result) => {
         if (result.isConfirmed) {
             document.getElementById('delete-acts-' + actId).submit();
@@ -389,12 +389,12 @@ complete and pending tasks</span>
    function DeleteTaskConfirmation(taskId) {
     Swal.fire({
         title: 'Are you sure?',
-        text: 'You are about to delete the task.',
+        text: 'You are about to delete this task.\nThe tasks within this will also be deleted.',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonText: 'Yes, Delete it!'
     }).then((result) => {
         if (result.isConfirmed) {
             document.getElementById('delete-form-' + taskId).submit();

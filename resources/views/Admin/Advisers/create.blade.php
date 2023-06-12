@@ -66,10 +66,13 @@
                     </select>
                 </div>
 
-                <div class="">
+                <div class="form-group">
                     <label for="formFile" class="form-label">Password</label>
-                    <input type="password" name="password"  class="form-control" id="exampleFormControlInput1">
-                </div>
+                    <div class="input-group">
+                      <input type="password" name="password"  class="form-control" id="exampleFormControlInput1">
+                      <button type="button" class="btn btn-outline-danger" id="show-password-toggle">Show Password</button>
+                    </div>
+                  </div>
 
                     <!-- ito yung picture upload function, place holder lang muna  -->
                 <div class="">
@@ -83,4 +86,15 @@
                 </div>
             </form>
 
+            <script>
+                const showPasswordToggle = document.getElementById('show-password-toggle');
+                const passwordField = document.getElementsByName('password')[0];
+                
+                showPasswordToggle.addEventListener('click', function () {
+                    const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+                    passwordField.setAttribute('type', type);
+                    this.textContent = type === 'password' ? 'Show Password' : 'Hide Password';
+                });
+            </script>
+            
 @endsection

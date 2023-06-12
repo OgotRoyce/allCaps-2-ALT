@@ -16,6 +16,10 @@
         margin-top: 20px;
         margin-bottom: 20px;
     }
+
+    textarea {
+        resize: vertical;
+    }
 </style>
 
 @section('content')
@@ -58,10 +62,15 @@
             <input type="text" name="title" class="form-control" id="exampleFormControlInput1"
                 value="{{ old('title') }}">
         </div>
-        <div class="">
+        {{-- <div class="">
             <label for="formFile" class="form-label">Description</label>
             <input type="text" name="description" class="form-control" value="{{ old('description') }}"
                 id="exampleFormControlInput1">
+        </div> --}}
+        <div class="">
+            <label for="formFile" class="form-label">Description</label>
+            <textarea name="description" class="form-control" 
+                      rows="3">{{ old('description') }}</textarea>
         </div>
         <div class="form-group" style="margin-top: 10px">
             <label for="inputState">Due Date:</label>

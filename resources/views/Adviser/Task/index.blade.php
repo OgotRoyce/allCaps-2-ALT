@@ -1,5 +1,4 @@
 @extends('layouts.adviser')
-
 <style>
     .header {
         font-family: 'Poppins', sans-serif;
@@ -72,7 +71,12 @@
         border-image: linear-gradient(to right, transparent, #34495e, transparent) 1;
     }
 
-
+    .project-tasks-delete {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 10px;
+} 
     .task-img {
         margin-right: 0.5rem;
         font-size: 3rem;
@@ -227,6 +231,10 @@
             font-size: 14px;
         }
     }
+    .input-group-form {
+    margin-right: 1rem;
+}
+
 </style>
 
 @section('content')
@@ -240,17 +248,18 @@
 complete and pending tasks</span>
 </h5>
 
-<form action="{{ route('add_new_task')}}" method="post"> 
+
+{{-- <form action="{{ route('add_new_task')}}" method="post"> 
     {!! csrf_field() !!}
 <div class="input-group mb-3">
-    <input type="text" class="form-control" placeholder="New Task" aria-label="Recipient's username" aria-describedby="basic-addon2" name="task" required>
+    <input type="text" class="form-control input-group-form" placeholder="New Task" aria-label="Recipient's username" aria-describedby="basic-addon2" name="task" required>
         <span > 
         <button type="submit" style="width:100%" class="btn btn-outline-danger float-right input-group-text" >+ Create New Task</button>
     </span>
   </div>
-</form>
-
+</form> --}}
 </div>
+<div class="header-line"></div>
 
 @foreach ($tasks as $task)
     <div class="accordion">
@@ -293,26 +302,16 @@ complete and pending tasks</span>
                                         <div class='task'>
                                             <p>Due Date: {{ \Carbon\Carbon::parse($act->due_date)->format('F d, Y') }}</p>
                                         </div>
-
-                                        <div class="delete-button"> 
+                                    </div>
+                                        <div class="project-tasks-delete"> 
                                         <a class="delete-button" onclick="event.preventDefault(); DeleteActivityConfirmation('{{ $act->id }}')">
-                                            <i class="accordion-img fas fa-trash" style="color: #DD6B55"></i>
+                                            <i class="accordion-img fas fa-trash" style="color: #8a8a8a"></i>
                                         </a>             
                                         <form id="delete-acts-{{ $act->id }}" action="{{ route('delete_adviser_acts', $act->id) }}" method="POST" class="d-none">
                                             {!! csrf_field() !!}
                                             @method('DELETE')
                                         </form>      
-                                        
-                                        {{-- <a class="delete-button" onclick="event.preventDefault(); DeleteActivityConfirmation()">
-                                            <i class="accordion-img fas fa-trash"  style="color: #DD6B55" ></i>
-                                            </a>             
-                                                <form id="delete-acts" action="{{ route('delete_adviser_acts',$act->id) }}" method="POST" class="d-none">
-                                                    {!! csrf_field() !!}
-                                                    @method('DELETE')
-                                                </form> --}}
                                             </div>
-
-                                    </div>
                                 </div>
 
                                 @endif
@@ -320,7 +319,7 @@ complete and pending tasks</span>
                             @endforeach
 
                             <a href="{{ route('create_adviser_tasks', $task->id) }}">
-                                <button type="button" style="width:100%" class="btn btn-outline-danger float-right input-group-text">+ Create Activity</button>
+                                <button type="button" style="width:100%" class="btn btn-outline-danger float-right input-group-text">+ Add Activity</button>
                             </a>
                         </main>
                     </div>

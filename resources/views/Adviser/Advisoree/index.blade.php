@@ -333,7 +333,7 @@
                                           <div class="col-md-4 col-lg-5">
                                               <div class="advisee-card">
                                                   <img class="avatar" src="{{ asset('images/pic.png')}}" alt="Avatar" />
-                                                  <div class="name">Ken ammay</div>
+                                                  <div class="name">Ken Ammay</div>
                                                   <div class="email">201913563@gordoncollege.edu.ph</div>
                                               </div>
                                           </div>
