@@ -72,7 +72,12 @@
         border-image: linear-gradient(to right, transparent, #34495e, transparent) 1;
     }
 
-
+    .project-tasks-delete {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 10px;
+} 
     .task-img {
         margin-right: 0.5rem;
         font-size: 3rem;
@@ -227,6 +232,10 @@
             font-size: 14px;
         }
     }
+    .input-group-form {
+    margin-right: 1rem;
+}
+
 </style>
 
 @section('content')
@@ -243,14 +252,14 @@ complete and pending tasks</span>
 <form action="{{ route('add_new_task')}}" method="post"> 
     {!! csrf_field() !!}
 <div class="input-group mb-3">
-    <input type="text" class="form-control" placeholder="New Task" aria-label="Recipient's username" aria-describedby="basic-addon2" name="task" required>
+    <input type="text" class="form-control input-group-form" placeholder="New Task" aria-label="Recipient's username" aria-describedby="basic-addon2" name="task" required>
         <span > 
         <button type="submit" style="width:100%" class="btn btn-outline-danger float-right input-group-text" >+ Create New Task</button>
     </span>
   </div>
 </form>
-
 </div>
+<div class="header-line"></div>
 
 @foreach ($tasks as $task)
     <div class="accordion">
@@ -263,7 +272,7 @@ complete and pending tasks</span>
                 </div>
                 <div class="right-content">  
 
-                    <i class="accordion-img fas fa-pencil-alt" style="color: rgb(48, 133, 214)" data-bs-target="#exampleModalToggle-{{ $task->id }}" data-bs-toggle="modal"></i>
+                    <i class="accordion-img fas fa-pencil-alt" style="color: #DD6B55" data-bs-target="#exampleModalToggle-{{ $task->id }}" data-bs-toggle="modal"></i>
 
                     <a class="delete-button" onclick="event.preventDefault(); DeleteTaskConfirmation()">
                     <i class="accordion-img fas fa-trash"  style="color: #DD6B55" ></i>
@@ -272,10 +281,10 @@ complete and pending tasks</span>
                             {!! csrf_field() !!}
                             @method('DELETE')
                         </form>
-             
-                    
                 </div>
+                
             </div>
+            
 
             <div class="accordion-item-body">
                 <div class="accordion-item-body-content">
@@ -295,18 +304,16 @@ complete and pending tasks</span>
                                         <div class='task'>
                                             <p>Due Date: {{ \Carbon\Carbon::parse($act->due_date)->format('F d, Y') }}</p>
                                         </div>
-
-                                        <div class="delete-button"> 
+                                    </div>
+                                    <div class="project-tasks-delete"> 
                                         <a class="delete-button" onclick="event.preventDefault(); DeleteActivityConfirmation()">
-                                            <i class="accordion-img fas fa-trash"  style="color: #DD6B55" ></i>
+                                            <i class="accordion-img fas fa-trash"  style="color: #8a8a8a" ></i>
                                             </a>             
                                                 <form id="delete-acts" action="{{ route('delete_acts',$act->id) }}" method="POST" class="d-none">
                                                     {!! csrf_field() !!}
                                                     @method('DELETE')
                                                 </form>
                                             </div>
-
-                                    </div>
                                 </div>
 
                                 @endif
@@ -348,11 +355,11 @@ complete and pending tasks</span>
                     @method("PUT")
 
                     <div class="mb-3">
-                        <label for="taskInput-{{ $task->id }}" class="form-label">Task</label>
+                        <label for="taskInput-{{ $task->id }}" class="form-label">Task Name</label>
                         <input type="text" class="form-control" id="taskInput-{{ $task->id }}" name="task" value="{{ $task->task }}">
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary" >Update</button>
+                        <button type="submit" class="btn btn-danger" >Update</button>
                     </div>
                 </form>
             </div>
@@ -371,7 +378,7 @@ complete and pending tasks</span>
             showCancelButton: true,
             confirmButtonColor: '#d33',
             cancelButtonColor: '#3085d6',
-            confirmButtonText: 'delete'
+            confirmButtonText: 'Delete'
         }).then((result) => {
             if (result.isConfirmed) {
                 document.getElementById('delete-acts').submit();
@@ -389,7 +396,7 @@ complete and pending tasks</span>
             showCancelButton: true,
             confirmButtonColor: '#d33',
             cancelButtonColor: '#3085d6',
-            confirmButtonText: 'delete'
+            confirmButtonText: 'Delete'
         }).then((result) => {
             if (result.isConfirmed) {
                 document.getElementById('delete-form').submit();
