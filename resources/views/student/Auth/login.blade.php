@@ -122,7 +122,7 @@
         border-radius: 7px;
         outline: none;
         cursor: pointer;
-        background-color: #FFAC1C;
+        background-color:#ff6600;
         color: white;
     }
     .sign-in_ggl {
@@ -177,7 +177,7 @@
     }
     .text_primary {
         /* font-size: 0.75rem; */
-        color: #FFAC1C;
+        color: #ff6600;
     }
     .custom-btn {
         background-color: #FFAC1C;
