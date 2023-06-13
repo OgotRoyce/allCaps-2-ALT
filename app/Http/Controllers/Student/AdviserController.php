@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Student;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Adviser;
+use App\Models\Projects;
+use Illuminate\Support\Facades\Auth;
 
 class AdviserController extends Controller
 {
@@ -55,7 +57,14 @@ class AdviserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $user =  auth('student')->user();
+        $project = Projects::where('user_id', $user->id)->first();
+
+        $project->adviser_id = $id;
+
+        $project->save();
+        return back();
+        // Projects::update()
     }
 
     /**

@@ -206,8 +206,8 @@
         @if ($acts)
             <div class="row task">
                 <div class="task-content">
-                    <a href="{{ route('edit_adviser_tasks', ['id' => $acts->id]) }}" class="btn edit-btn float-end"><i
-                            class="fas fa-edit"></i></a>
+                    {{-- <a href="{{ route('edit_adviser_tasks', ['id' => $acts->id]) }}" class="btn edit-btn float-end"><i
+                            class="fas fa-edit"></i></a> --}}
                     <div class="task-detail-name">
                         <h5 class="task-detail-head">{{ $acts->title }}</h5>
                         <div class="due-date">
@@ -237,12 +237,13 @@
                             </h6>
                             <div class="task-attachments-card text-left">
                                 <div class="card-body" style="text-align: left;">
-                                    <a href="{{ asset('file/' . $acts->attachments) }}" download>{{ $acts->attachments }}</a>
+                                    <a href="{{ asset('file/' . $acts->attachments) }}"
+                                        download>{{ $acts->attachments }}</a>
                                     <!-- Your attachments content here -->
                                 </div>
-                                
+
                             </div>
-                            
+
                         </div>
                         <hr class="header-line">
                     </div>
@@ -251,44 +252,44 @@
     </div>
 
     <!-- </div>
-                                        <div class="col-12">
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                  <h5 class="submit-header mt-2"><i class="fas fa-file" style="margin-right: 10px;"></i> Submissions</h5>
-                                                </div>
-                                                <div class="header-line"></div>
-                                                <div class="card submission-card">
-                                                    <div class="card-body">
-                                                        <table>
-                                                            <tr>
-                                                            <td style="width:90%"><div class="card-title"><b>Jose Manalo</b> submitted.</div></td>
-                                                            <td style="width:30%">
-                                                                <div class="d-flex justify-content-end">
-                                                                <a href="#" class="btn btn-danger mr-1">Accept</a>
-                                                                <div class="ml-auto">
-                                                                    <a href="#" class="btn btn-light mr-1" style="margin-left: 10px;">View</a>
-                                                                </div>
-                                                                </div>
-                                                            </td>
-                                                            </tr>
-                                                        </table>
+                                            <div class="col-12">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                      <h5 class="submit-header mt-2"><i class="fas fa-file" style="margin-right: 10px;"></i> Submissions</h5>
                                                     </div>
-                                                </div>
-                                                <div class="card submission-card">
-                                                    <div class="card-body">
-                                                        <table>
-                                                            <tr>
-                                                            <td style="width:90%"><div class="card-title"><b>Ken Ammay</b> submitted.</div></td>
-                                                            <td style="width:30%">
-                                                                <div class="d-flex justify-content-end">
-                                                                <a href="#" class="btn btn-danger mr-1">Accept</a>
-                                                                <div class="ml-auto">
-                                                                    <a href="#" class="btn btn-light mr-1" style="margin-left: 10px;">View</a>
-                                                                </div>
-                                                                </div>
-                                                            </td>
-                                                            </tr>
-                                                        </table>
+                                                    <div class="header-line"></div>
+                                                    <div class="card submission-card">
+                                                        <div class="card-body">
+                                                            <table>
+                                                                <tr>
+                                                                <td style="width:90%"><div class="card-title"><b>Jose Manalo</b> submitted.</div></td>
+                                                                <td style="width:30%">
+                                                                    <div class="d-flex justify-content-end">
+                                                                    <a href="#" class="btn btn-danger mr-1">Accept</a>
+                                                                    <div class="ml-auto">
+                                                                        <a href="#" class="btn btn-light mr-1" style="margin-left: 10px;">View</a>
+                                                                    </div>
+                                                                    </div>
+                                                                </td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                              </div> -->
+                                                    <div class="card submission-card">
+                                                        <div class="card-body">
+                                                            <table>
+                                                                <tr>
+                                                                <td style="width:90%"><div class="card-title"><b>Ken Ammay</b> submitted.</div></td>
+                                                                <td style="width:30%">
+                                                                    <div class="d-flex justify-content-end">
+                                                                    <a href="#" class="btn btn-danger mr-1">Accept</a>
+                                                                    <div class="ml-auto">
+                                                                        <a href="#" class="btn btn-light mr-1" style="margin-left: 10px;">View</a>
+                                                                    </div>
+                                                                    </div>
+                                                                </td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                  </div> -->
 @endsection

@@ -32,7 +32,7 @@
     </div>
 
     <div class="header-line"></div>
-    <form action="{{route('store_adviser_tasks')}}" method="post" enctype="multipart/form-data" class="row g-3">
+    <form action="{{ route('store_adviser_tasks') }}" method="post" enctype="multipart/form-data" class="row g-3">
         {!! csrf_field() !!}
 
         @if ($errors->any())
@@ -45,12 +45,12 @@
             </div>
         @endif
 
-        @if($tasks)
-        <div class="" hidden>
-            <label for="exampleFormControlInput1" class="form-label" >Task</label>
-            <input type="text" name="task_code" class="form-control" id="exampleFormControlInput1"
-                value="{{$tasks->task_code}}" >
-        </div>
+        @if ($tasks)
+            <div class="" hidden>
+                <label for="exampleFormControlInput1" class="form-label">Task</label>
+                <input type="text" name="task_code" class="form-control" id="exampleFormControlInput1"
+                    value="{{ $tasks->task_code }}">
+            </div>
         @endif
 
         <div class="">
@@ -58,10 +58,14 @@
             <input type="text" name="title" class="form-control" id="exampleFormControlInput1"
                 value="{{ old('title') }}">
         </div>
-        <div class="">
+        {{-- <div class="">
             <label for="formFile" class="form-label">Description</label>
             <input type="text" name="description" class="form-control" value="{{ old('description') }}"
                 id="exampleFormControlInput1">
+        </div>+ --}}
+        <div class="">
+            <label for="formFile" class="form-label">Description</label>
+            <textarea name="description" class="form-control" rows="3">{{ old('description') }}</textarea>
         </div>
         <div class="form-group" style="margin-top: 10px">
             <label for="inputState">Due Date:</label>

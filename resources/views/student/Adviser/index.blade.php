@@ -76,7 +76,8 @@
         border-radius: 18px;
         margin-top: 20px;
         transition: .3s ease;
-        margin: 0 0 28px 0; /* modified */
+        margin: 0 0 28px 0;
+        /* modified */
         margin-left: auto;
         /* add this to center the wrapper horizontally */
         margin-right: auto;
@@ -106,10 +107,12 @@
         border-radius: 18px;
         background: #fff;
         padding: 18px 12px 42px 14px;
-        margin: 0 0 28px 0; /* modified */
+        margin: 0 0 28px 0;
+        /* modified */
         width: fit-content, calc(33.33% - 40px);
         transition: .3s ease;
-        margin-right: 20px; /* added */
+        margin-right: 20px;
+        /* added */
     }
 
     .user_item input {
@@ -243,57 +246,84 @@
         </div>
     </div>
 
-                        <div class="wrapper-fluid">
-                            <div class="user_select_wrap">
-                                <div class="title">
-                                    <p>Select an adviser below</p>
-                                </div>
-                                    
-                                    <div class="user_select">
-                                        @foreach ($advisers as $item)
-                                            <div class="col-md-4 col-lg-3">
-                                                <div class="user_item">
-                                                    <!-- <input type="checkbox" class="checkbox-input">> -->
-                                                    <span class="checkmark"></span>
-                                                    <div class="info">
-                                                        <img class="avatar" src="{{ asset('pictures/'.($item->photo ? $item->photo : 'pic.png')) }}"  />
-                                                        <div class="name-role">
-                                                            <p class="name">{{ $item->first_name }} {{ $item->last_name }}</p>
-                                                            <p class="role">{{ $item->program }}</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                    
-                                    <button type="button" id="choose-adviser-btn" class="btn btn-danger">Choose</button>
-                            </div>
-                        </div>
-        @endsection
-        <!-- JAVASCRIPT -->
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                var user_items = document.querySelectorAll(".user_item");
-                var selected_item;
+    <div class="wrapper-fluid">
+        <div class="user_select_wrap">
+            <div class="title">
+                <p>Select an adviser below</p>
+            </div>
 
-                user_items.forEach(function(item) {
-                    item.addEventListener("click", function() {
-                        if (selected_item != null) {
-                            // unselect previously selected item
-                            selected_item.classList.remove("active");
-                            selected_item.children[0].checked = false;
+            <div class="user_select">
+                @foreach ($advisers as $item)
+                    <div class="col-md-4 col-lg-3">
+                        <div class="user_item">
+                            <!-- <input type="checkbox" class="checkbox-input">> -->
+                            <span class="checkmark"></span>
+                            <div class="info">
+                                <img class="avatar"
+                                    src="{{ asset('pictures/' . ($item->photo ? $item->photo : 'pic.png')) }}" />
+                                <div class="name-role">
+                                    <p class="name">{{ $item->first_name }} {{ $item->last_name }}</p>
+                                    <p class="role">{{ $item->program }}</p>
+                                </div>
+                            </div>
+                            <a class="delete-button"
+                                onclick="event.preventDefault(); DeleteTaskConfirmation('{{ $item->id }}')">
+                                <i class="accordion-img fas fa-trash" style="color: #DD6B55"></i>
+                            </a>
+                            <form id="delete-form-{{ $item->id }}" action="{{ route('choose_adviser', $item->id) }}"
+                                method="POST" class="d-none">
+                                {!! csrf_field() !!}
+                                {{-- @method('POST') --}}
+                            </form>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+
+            <script>
+                function DeleteTaskConfirmation(taskId) {
+                    Swal.fire({
+                        title: 'Are you sure?',
+                        text: 'Do you want to select this adviser?',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            document.getElementById('delete-form-' + taskId).submit();
                         }
-                        // select new item and update selected_item variable
-                        item.classList.add("active");
-                        item.children[0].checked = true;
-                        selected_item = item;
                     });
-                });
-            });
-        </script>
+                }
+            </script>
+            <button type="button" id="choose-adviser-btn" class="btn btn-danger">Choose</button>
+        </div>
+    </div>
+@endsection
+<!-- JAVASCRIPT -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var user_items = document.querySelectorAll(".user_item");
+        var selected_item;
+        user_items.forEach(function(item) {
+            item.addEventListener("click", function() {
+                if (selected_item != null) {
+                    // unselect previously selected item
+                    selected_item.classList.remove("active");
+                    selected_item.children[0].checked = false;
+                }
+                // select new item and update selected_item variable
+                item.classList.add("active");
+                item.children[0].checked = true;
+                selected_item = item;
+            });
+        });
+    });
+</script>
 <script>
     $(document).ready(function() {
         var user_items = $(".user_item");
@@ -315,7 +345,6 @@
         $("#choose-adviser-btn").on("click", function() {
             // Get the selected advisers
             var selectedAdvisers = $(".user_item.active");
-
             // Check if at least one adviser is selected
             if (selectedAdvisers.length > 0) {
                 // Show confirmation dialog
@@ -329,6 +358,20 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         // User confirmed, show success message
+                        $.ajax({
+                                url: '/student/student_adviser/update_adviser',
+                                type: 'POST',
+                                dataType: 'JSON',
+                                data: {
+                                    adviser_id:
+                                }
+                            })
+                            .done(function() {
+
+                            })
+                            .fail(function() {
+
+                            })
                         Swal.fire({
                             icon: 'success',
                             title: 'Adviser selected!',

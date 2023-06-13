@@ -41,13 +41,13 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::put('/update/{id}', ['as' => 'update_acts', 'uses' => "TasksController@update"]);
         Route::put('/UpdateTask/{id}', ['as' => 'update_tasks', 'uses' => "TasksController@UpdateTask"]);
         Route::delete('/destroy/{id}', ['as' => 'delete_acts', 'uses' => "TasksController@destroy"]);
-        Route::delete('/DeleteTask/{code}', ['as' => 'delete_tasks', 'uses' => "TasksController@DeleteTask"]);//Task with s for admin
+        Route::delete('/DeleteTask/{code}', ['as' => 'delete_tasks', 'uses' => "TasksController@DeleteTask"]); //Task with s for admin
     });
 
     Route::group(['prefix' => 'projects_admin'], function () {
         Route::get('/', ['as' => 'projects_admin', 'uses' => "ProjectController@index"]);
     });
-    
+
     Route::group(['prefix' => 'students_admin'], function () {
         Route::get('/', ['as' => 'students_admin', 'uses' => "StudentController@index"]);
         Route::get('/create', ['as' => 'create_student', 'uses' => "StudentController@create"]);
@@ -62,7 +62,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::put('/update/{id}', ['as' => 'update_adviser', 'uses' => "AdviserController@update"]);
         Route::delete('/delete/{id}', ['as' => 'delete_adviser', 'uses' => "AdviserController@destroy"]);
     });
-
 });
 
 //Adviser routes
@@ -80,7 +79,6 @@ Route::group(['prefix' => 'adviser', 'namespace' => 'Adviser'], function () {
 
     Route::group(['prefix' => 'advisoree',], function () {
         Route::get('/', ['as' => 'advisoree', 'uses' => 'AdvisoreeController@index']);
-
     });
     Route::group(['prefix' => 'adviser_task',], function () {
         Route::get('/', ['as' => 'adviser_task', 'uses' => 'TasksController@index']);
@@ -94,8 +92,6 @@ Route::group(['prefix' => 'adviser', 'namespace' => 'Adviser'], function () {
         Route::delete('/destroy/{id}', ['as' => 'delete_adviser_acts', 'uses' => "TasksController@destroy"]);
         Route::delete('/DeleteTask/{code}', ['as' => 'delete_adviser_tasks', 'uses' => "TasksController@DeleteTask"]);
     });
-    
-
 });
 
 
@@ -109,25 +105,22 @@ Route::group(['prefix' => 'student', 'namespace' => 'Student'], function () {
     });
 
     Route::group(['prefix' => 'task_student'], function () {
-        Route::get('/', ['as' => 'task_student', 'uses' => "TasksController@index"]); 
-        Route::get('/show/{id}', ['as' => 'view_student_tasks', 'uses' => "TasksController@show"]);      
+        Route::get('/', ['as' => 'task_student', 'uses' => "TasksController@index"]);
+        Route::get('/show/{id}', ['as' => 'view_student_tasks', 'uses' => "TasksController@show"]);
     });
 
     Route::group(['prefix' => 'student_adviser',], function () {
         Route::get('/', ['as' => 'student_adviser', 'uses' => 'AdviserController@index']);
-
+        Route::post('/update/{id}', ['as' => 'choose_adviser', 'uses' => 'AdviserController@update']);
     });
 
     Route::group(['prefix' => 'project',], function () {
         Route::get('/', ['as' => 'project', 'uses' => 'ProjectController@index']);
         Route::get('/create', ['as' => 'create_project', 'uses' => 'ProjectController@create']);
         Route::post('/create', ['as' => 'store_project', 'uses' => 'ProjectController@store']);
-
     });
 
     Route::group(['prefix' => 'student_profile',], function () {
         Route::get('/', ['as' => 'student_profile', 'uses' => 'ProfileController@index']);
-
     });
-
 });

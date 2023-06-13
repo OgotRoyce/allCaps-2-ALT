@@ -18,7 +18,7 @@ class StudentController extends Controller
         return view('Admin.Students.index', ['students' => $students]);
     }
 
-       /**
+    /**
      * Show the form for creating a new resource.
      */
     public function create()
@@ -49,8 +49,6 @@ class StudentController extends Controller
                 'password' => bcrypt($request->get('password')),
                 'photo' => $image,
             ]);
-
-
         } else {
             // Set default image filename or return an error message
         }
@@ -83,7 +81,7 @@ class StudentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(MemberRequest $request, string $id)
+    public function update(Request $request, string $id)
     {
         $member = Student::find($id);
         $input = $request->all();
@@ -99,5 +97,4 @@ class StudentController extends Controller
         Student::destroy($id);
         return back()->with('success', 'Deleted successfully.');
     }
-
 }
