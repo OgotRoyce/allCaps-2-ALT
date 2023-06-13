@@ -247,8 +247,8 @@
                 <div class="col-12">
                     <div class="d-flex justify-content-between align-items-center">
                         <h5 class="header mt-2"><i class="fas fa-list"></i> Tasks
-                            <span class="badge badge-secondary"><span style="font-weight: 300; color: #bfbfbf;">List of
-                                    complete and pending tasks</span>
+                            {{-- <span class="badge badge-secondary"><span style="font-weight: 300; color: #bfbfbf;">List of
+                                    complete and pending tasks</span> --}}
                         </h5>
 
                         <form action="{{ route('add_new_task') }}" method="post">

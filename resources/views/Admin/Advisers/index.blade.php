@@ -151,7 +151,7 @@
             <div class="col-md-4 col-lg-3">
                 <div class="profile-card">
                 {{-- <img class="avatar" src="{{ asset('images/pic.png') }}" alt="Avatar" /> --}}
-                <a href="{{ route('edit_adviser', $item->id) }}" >
+                <a href="{{ route('view_adviser', $item->id) }}" >
                 <img class="avatar" src="{{ asset('pictures/'.($item->photo ? $item->photo : 'pic.png')) }}"  />
                     <div class="name">{{ $item->first_name }} {{ $item->last_name }}</div>
                 </a>

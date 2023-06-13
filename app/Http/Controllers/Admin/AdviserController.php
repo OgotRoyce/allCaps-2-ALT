@@ -68,7 +68,8 @@ class AdviserController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $user = adviser::find($id);
+        return view('Admin.Advisers.view', ['user' => $user]);
     }
 
     /**

@@ -61,6 +61,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::get('/edit/{id}', ['as' => 'edit_adviser', 'uses' => "AdviserController@edit"]);
         Route::put('/update/{id}', ['as' => 'update_adviser', 'uses' => "AdviserController@update"]);
         Route::delete('/delete/{id}', ['as' => 'delete_adviser', 'uses' => "AdviserController@destroy"]);
+        Route::get('/show/{id}', ['as' => 'view_adviser', 'uses' => "AdviserController@show"]);
     });
 });
 
