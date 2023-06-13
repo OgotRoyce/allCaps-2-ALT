@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::table('student', function (Blueprint $table) {
             $table->string('adviser_id')->before('created_at');
+            $table->string('status')->default('pending');
         });
     }
 
@@ -27,6 +28,7 @@ return new class extends Migration
     {
         Schema::table('student', function (Blueprint $table) {
             $table->dropColumn('adviser_id');
+            $table->dropColumn('status');
         });
     }
 };
