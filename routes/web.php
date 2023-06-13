@@ -76,6 +76,8 @@ Route::group(['prefix' => 'adviser', 'namespace' => 'Adviser'], function () {
 
     Route::group(['prefix' => 'application',], function () {
         Route::get('/', ['as' => 'application', 'uses' => 'AppController@index']);
+        Route::post('/acceptPendingRequest/{id}', ['as' => 'acceptPendingRequest', 'uses' => 'AppController@acceptPendingRequest']);
+        Route::post('/declinePendingRequest/{id}', ['as' => 'declinePendingRequest', 'uses' => 'AppController@declinePendingRequest']);
     });
 
     Route::group(['prefix' => 'advisoree',], function () {

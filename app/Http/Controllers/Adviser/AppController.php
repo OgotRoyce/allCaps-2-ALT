@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Adviser;
 
 use App\Http\Controllers\Controller;
+use App\Models\Adviser;
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class AppController extends Controller
@@ -12,7 +14,9 @@ class AppController extends Controller
      */
     public function index()
     {
-        return view('Adviser.Application.index');
+        $adviser =  auth('adviser')->user();
+        $all = Student::where('adviser_id', $adviser->id)->where('status', 'pending')->get();
+        return view('Adviser.Application.index', compact('all'));
     }
 
     /**
@@ -52,7 +56,6 @@ class AppController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
     }
 
     /**
@@ -61,5 +64,31 @@ class AppController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+
+    function acceptPendingRequest(string $id)
+    {
+        $student = Student::find($id);
+        $student->status = 'accepted';
+
+        $adviserId = $student->adviser_id;
+        $adviser = Adviser::find($adviserId);
+        if ($adviser->counter == 10) {
+            return back()->withErrors(['status' => 'Student Not Accepted, You have reached your current limit of 10 students']);
+        }
+
+        $adviser->counter = (int)$adviser->counter + 1;
+        $adviser->save();
+        $student->save();
+        return back()->withErrors(['status' => 'Student Accepted']);
+    }
+
+    function declinePendingRequest(string $id)
+    {
+        $student = Student::find($id);
+        $student->status = 'declined';
+        $student->save();
+        return back()->with(['status' => 'Student Declined']);
     }
 }
