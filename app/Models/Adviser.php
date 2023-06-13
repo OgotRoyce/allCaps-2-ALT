@@ -11,12 +11,13 @@ class Adviser extends Authenticatable
     use HasFactory;
     protected $table = 'adviser';
     protected $fillable = [
-    'account_code',
-    'first_name',
-    'last_name',
-    'email',
-    'program',
-    'password',
-    'photo',
-];
+        'adviser_id',
+        'first_name',
+        'last_name',
+        'email',
+        'program',
+        'password',
+        'photo',
+        'counter'
+    ];
 }

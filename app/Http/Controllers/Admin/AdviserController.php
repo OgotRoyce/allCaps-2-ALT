@@ -44,7 +44,7 @@ class AdviserController extends Controller
             $path = $photo->move('pictures', $image);
 
         $user = adviser::create([
-            'account_code' => strtoupper(Str::random(10)),
+            'adviser_id' => strtoupper(Str::random(10)),
             'first_name' => $request->get('first_name'),
             'last_name' => $request->get('last_name'),
             'email' => $request->get('email'),
