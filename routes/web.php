@@ -48,6 +48,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::get('/', ['as' => 'projects_admin', 'uses' => "ProjectController@index"]);
     });
 
+    Route::group(['prefix' => 'submissions_admin'], function () {
+        Route::get('/', ['as' => 'submissions_admin', 'uses' => "SubmissionController@index"]);
+    });
+
     Route::group(['prefix' => 'students_admin'], function () {
         Route::get('/', ['as' => 'students_admin', 'uses' => "StudentController@index"]);
         Route::get('/create', ['as' => 'create_student', 'uses' => "StudentController@create"]);

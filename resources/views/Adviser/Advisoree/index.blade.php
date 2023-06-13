@@ -339,17 +339,6 @@
                                           </div>
     
                                     </div>
-                                <!-- <div class="project-container">
-                                <div class="wrapper">
-                                    <div class="four_zero_four_bg">
-                                        <h1 class="text-center"><b>Oops...</b></h1>
-                                    </div>
-      
-                                    <div class="contant_box_404">
-                                        <h3 class="h2">Looks like you don't have any advisee yet.</h3>                                
-                                    </div>
-                                </div>
-                                    <div class="card-content"></div> -->
                                 </div>
                             </div>
                         </div>

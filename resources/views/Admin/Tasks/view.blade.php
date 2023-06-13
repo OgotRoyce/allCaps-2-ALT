@@ -198,7 +198,7 @@
                 </a>
             </div>
             <div class="col text-end">
-                <a href="#">
+                <a href="{{ route('submissions_admin') }}">
                     <h5 class="submit-header mb-0"><i class="fas fa-file me-2"></i> Submissions</h5>
                 </a>
             </div>
