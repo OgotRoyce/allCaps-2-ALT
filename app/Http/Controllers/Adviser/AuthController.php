@@ -24,7 +24,7 @@ class AuthController extends Controller
             return redirect()->route('application');
         }
         // dd("warning", "wrong credentials");
-        return redirect()->back()->with("warning", "wrong credentials");
+        return redirect()->back()->with("warning", "Wrong Credentials");
     }
 
 

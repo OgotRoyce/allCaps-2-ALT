@@ -18,12 +18,11 @@
     .header-line {
         height: 1px;
         background-color: #bfbfbf;
-        margin-top: 20px;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
     }
 
     .back-btn {
-        margin-bottom: 20px;
+        /* margin-bottom: 20px; */
     }
 
     .advisee-card {
