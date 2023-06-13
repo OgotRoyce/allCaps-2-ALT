@@ -1,4 +1,4 @@
-@extends('layouts.adviser')
+@extends('layouts.admin')
 <style>
     .header {
         font-family: 'Poppins', sans-serif;
