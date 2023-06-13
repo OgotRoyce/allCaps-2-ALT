@@ -98,11 +98,14 @@
 
     .profile-userpic {
         text-align: center;
-        margin-top: 20px;
         margin-bottom: 20px;
+        float: left; /* add this */
+        margin-right: 40px; /* add this */
+        margin-left: 20px; 
     }
 
     .profile-userpic img {
+        object-fit: cover;
         float: none;
         margin: 0 auto;
         width: 150px;
@@ -118,26 +121,25 @@
 
 
     .profile-usertitle {
-        text-align: center;
         margin-top: 20px;
-        align-items: center;
+        overflow: hidden; /* add this */
+
     }
 
     .profile-usertitle-name {
-        text-transform: uppercase;
         margin-top: 10px;
         color: #212529;
-        font-size: 16px;
-        font-weight: 600;
+        font-size: 36px;
+        font-weight: 900;
         margin-bottom: 7px;
-        font-weight: bold;
+        white-space: nowrap; /* add this */
+        overflow: hidden; /* add this */
+        text-overflow: ellipsis; /* add this */
     }
 
     .profile-usertitle-email {
-        color: #5b9bd1;
-        font-size: 12px;
-        font-weight: 600;
-        margin-bottom: 15px;
+        font-size: 20px;
+      color: #777;
     }
     
         /* advisee */
@@ -312,24 +314,22 @@
 
     <div class="container-fluid">
         <div class="row profile">
-            <div class="col">
                 <div class="profile-sidebar">
                     <div class="profile-userpic">
                         {{-- <img src="{{ asset('images/dp.png') }}" class="img-responsive" alt=""> --}}
                         <img class="img-responsive" src="{{ asset('pictures/'.( $user->photo ? $user->photo : 'pic.png')) }}"  />
                     </div>
                     <div class="profile-usertitle">
-                        <div class="profile-usertitle-name">
-                            <h5 class="member-name">{{ $user->first_name }}
+                        <div>
+                            <h5 class="profile-usertitle-name">{{ $user->first_name }}
                                 {{ $user->last_name }}</h5>
                         </div>
-                        <div class="profile-usertitle-email">
-                            <h6 class="member-email mb-2 text-muted"><strong>EMAIL:</strong>
+                        <div>
+                            <h6 class="profile-usertitle-email"><strong>Email:</strong>
                                 {{ $user->email }}</h6>
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
         <div class="row advisee">
           <div class="col-md-3">
