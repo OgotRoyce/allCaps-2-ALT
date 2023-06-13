@@ -268,7 +268,8 @@
                             </div>
                             <a class="delete-button"
                                 onclick="event.preventDefault(); DeleteTaskConfirmation('{{ $item->id }}')">
-                                <i class="accordion-img fas fa-trash" style="color: #DD6B55"></i>
+                                {{-- <i class="accordion-img fas fa-trash" style="color: #DD6B55"></i> --}}
+                                <button type="button"  class="btn btn-danger">Choose</button>
                             </a>
                             <form id="delete-form-{{ $item->id }}" action="{{ route('choose_adviser', $item->id) }}"
                                 method="POST" class="d-none">
@@ -297,7 +298,7 @@
                     });
                 }
             </script>
-            <button type="button" id="choose-adviser-btn" class="btn btn-danger">Choose</button>
+          
         </div>
     </div>
 @endsection

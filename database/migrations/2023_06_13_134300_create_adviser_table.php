@@ -8,12 +8,14 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('adviser', function (Blueprint $table) {
             $table->id();
-            $table->string('account_code');
+            $table->string('adviser_id');
             $table->string('first_name', 96);
             $table->string('last_name', 96);
             $table->string('email', 96)->unique();
@@ -26,8 +28,10 @@ return new class extends Migration
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('adviser');
     }

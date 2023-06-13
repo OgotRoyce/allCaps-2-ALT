@@ -18,6 +18,7 @@ class Student extends Authenticatable
         'last_name',
         'email',
         'password',
-        'photo'
+        'photo',
+        'adviser_id'
     ];
 }
