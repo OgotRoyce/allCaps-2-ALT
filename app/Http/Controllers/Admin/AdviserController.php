@@ -6,17 +6,18 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\RoleRequest;
 use App\Models\adviser;
+use App\Models\Student;
 use Str;
 
 class AdviserController extends Controller
 {
-     /**
+    /**
      * Display a listing of the resource.
      */
     public function index()
     {
         $adviser = adviser::all();
-        return view('Admin.Advisers.index',['adviser' => $adviser]);
+        return view('Admin.Advisers.index', ['adviser' => $adviser]);
         // return view('Admin.Advisers.index');
     }
 
@@ -43,20 +44,19 @@ class AdviserController extends Controller
             $image = $filename . '_' . time() . '.' . $extension;
             $path = $photo->move('pictures', $image);
 
-        $user = adviser::create([
-            'adviser_id' => strtoupper(Str::random(10)),
-            'first_name' => $request->get('first_name'),
-            'last_name' => $request->get('last_name'),
-            'email' => $request->get('email'),
-            'program' => $request->get('program'),
-            'password' => bcrypt($request->get('password')),
-            'photo' => $image,
+            $user = adviser::create([
+                'adviser_id' => strtoupper(Str::random(10)),
+                'first_name' => $request->get('first_name'),
+                'last_name' => $request->get('last_name'),
+                'email' => $request->get('email'),
+                'program' => $request->get('program'),
+                'password' => bcrypt($request->get('password')),
+                'photo' => $image,
 
-        ]);
-
-    } else {
-        // Set default image filename or return an error message
-    }
+            ]);
+        } else {
+            // Set default image filename or return an error message
+        }
 
         return redirect()->route('adviser')->with([
             'success' => 'Adviser created!'
@@ -66,11 +66,34 @@ class AdviserController extends Controller
     /**
      * Display the specified resource.
      */
+
+    // public function show(string $id)
+    // {
+    //     $user = adviser::find($id);
+    //     return view('Admin.Advisers.view', ['user' => $user]);
+    // }
     public function show(string $id)
     {
-        $user = adviser::find($id);
-        return view('Admin.Advisers.view', ['user' => $user]);
+        $adviser = Adviser::find($id);
+        $studentsCount = Student::where('adviser_id', $adviser->id)->count();
+
+        $students = Student::where('adviser_id', $adviser->id)->get();
+
+        return view('Admin.Advisers.view', [
+            'adviser' => $adviser,
+            'studentsCount' => $studentsCount,
+            'students' => $students
+        ]);
     }
+
+
+    public function studentsCount($id)
+    {
+        $studentsCount = Student::where('adviser_id', $id)->count();
+
+        return response()->json(['count' => $studentsCount]);
+    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -81,7 +104,7 @@ class AdviserController extends Controller
         if (!$user) {
             return redirect()->route('adviser')->with('error', 'user not found.');
         }
-        return view('Admin.Advisers.edit',['user' => $user]);
+        return view('Admin.Advisers.edit', ['user' => $user]);
     }
 
     /**
