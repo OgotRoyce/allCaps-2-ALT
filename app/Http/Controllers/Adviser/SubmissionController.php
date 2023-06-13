@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Adviser;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -15,11 +15,10 @@ class SubmissionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index($task_code)
-    {  
+    {
         $acts = Output::where('task_code', $task_code)->get();
         // dd($acts);
-        return view('Admin.Submission.index', ['acts' => $acts]);
-        
+        return view('Adviser.Submission.index', ['acts' => $acts]);
     }
 
     /**
@@ -40,7 +39,7 @@ class SubmissionController extends Controller
      */
     public function store(Request $request)
     {
-
+        //
     }
 
     /**
@@ -74,7 +73,10 @@ class SubmissionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $acts = Output::find($id);
+        $acts->status = 'reviewed';
+        $acts->save();
+        return back()->with('success', 'Updated successfully');
     }
 
     /**

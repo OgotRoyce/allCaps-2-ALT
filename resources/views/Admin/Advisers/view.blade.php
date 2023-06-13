@@ -400,8 +400,9 @@
                                 <div class="col-md-4 col-lg-5">
                                     @foreach ($students as $item)
                                         <div class="advisee-card">
-                                            <img class="avatar" src="{{ asset('images/' . $item->photo) }}"
-                                                alt="Avatar" />
+                                            {{-- <img class="avatar" src="{{ asset('images/' . $item->photo) }}"
+                                                alt="Avatar" /> --}}
+                                                <img class="avatar" src="{{ asset('pictures/'.($item->photo ? $item->photo : 'pic.png')) }}"  />
                                             <div class="name">{{ $item->first_name }} {{ $item->last_name }}</div>
                                             <div class="email">{{ $item->email }}</div>
                                         </div>

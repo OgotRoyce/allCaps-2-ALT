@@ -190,6 +190,7 @@
 
                 <div class="name">{{ $item->last_name }}, {{ $item->first_name }}</div>
                 <div class="email">{{ $item->email }}</div>
+                <div class="email">Group: {{ $item->group_name }}</div>
             </div>
         </div>
     @endforeach

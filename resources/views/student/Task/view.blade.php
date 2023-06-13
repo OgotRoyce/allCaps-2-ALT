@@ -181,7 +181,7 @@
             <div class="row task">
                 <div class="col-md-3">
                     <div class="task-sidebar">
-                        <a href="{{ route('task_student',) }}" style="margin-left: 20px;">
+                        <a href="{{ route('task_student') }}" style="margin-left: 20px;">
                             <button type="button" class="btn btn-outline-danger">Back</button>
                         </a>
                         <div class="task-usertitle-name">
@@ -198,13 +198,49 @@
                             <h6 class="member-email mb-2">Files Uploaded</h6>
                         </div>
                         <div class="card file-upload-card">
-                            <div class="card-body" id="file-name"></div>
+                            <div class="card-body" id="file-name">
+                               
+                                @foreach ($accout as $accouts)
+                                    
+                                @if ($accouts->attachments)
+                                @foreach (explode(',', $accouts->attachments) as $attachment)
+                                    <a href="{{ asset('file/' . $attachment) }}" download>{{ $attachment }}</a><br>
+                                @endforeach
+                            @endif
+                            @endforeach
+                            </div>
+
                         </div>
                         <div class="header-line flex-grow-1 ml-3"></div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-outline-danger w-100" id="attach-file-btn"><i class="fas fa-plus"></i> Attach File</button>
-                            <input type="file" hidden id="file-input">
+                        <form action="{{route('submit_task')}}" method="POST" class="header-line flex-grow-1 ml-3" enctype="multipart/form-data" > 
+                            {!! csrf_field() !!}
+                            <input type="text" name="student_id" hidden value="{{auth('student')->user()->account_code}}">
+                            <input type="text" name="first_name" hidden value="{{auth('student')->user()->first_name}}">
+                            <input type="text" name="last_name" hidden value="{{auth('student')->user()->last_name}}">
+                            <input type="text" name="adviser_id" hidden value="{{auth('student')->user()->adviser_id}}">
+                            <input type="text" name="task_code" hidden value="{{$acts->task_code}}">
+                            <input type="text" name="title" hidden value="{{$acts->title}}">
+                            <input type="text" name="description" hidden value="{{$acts->description}}">
+                            <input type="date" name="due_date" hidden value="{{$acts->due_date}}">
+                            {{-- <p> {{$acts->due_date}}</p> --}}
+                            <input type="file" name="attachments[]" multiple hidden id="file-input">
+
+                            @foreach ($accout as $accouts)
+                            @if ($accouts->attachments)
+                                <button type="submit" class="btn btn-danger w-100" id="attach-file-btn"><i class="fas fa-sync-alt"></i> Resubmit</button>
+                                <p align=center>Already Submited</p>
+                            @endif
+                        @endforeach
                         
+                        @if ($accout->isEmpty())
+                            <button type="submit" class="btn btn-danger w-100" id="attach-file-btn"><i class="fas fa-plus"></i> Submit</button>
+                        @endif
+                        
+
+
+                        </form>
                             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                             <script>
                                 $(document).ready(function() {
@@ -218,8 +254,6 @@
                                     });
                                 });
                             </script>
-
-                                <button type="submit" class="btn btn-danger w-100" id="attach-file-btn">Submit</button>
                         </div>
                     </div>
                 </div>

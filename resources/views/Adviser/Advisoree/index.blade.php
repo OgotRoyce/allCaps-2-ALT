@@ -309,7 +309,9 @@
                           </div>
                           <div class="circle-graph-percents">
                             <div class="circle-graph-percents-wrapper">
-                              <span class="circle-graph-percents-number">2</span>
+                              @foreach ($adviser as $item)              
+                              @endforeach
+                              <span class="circle-graph-percents-number">{{$item->counter}}</span>
                               <span class="circle-graph-percents-units">of 10</span>
                             </div>
                           </div>
@@ -323,21 +325,16 @@
                                 <h5 class="advisee-project-head"><i class="fas fa-users"></i> List of Advisee</h5>
                                 <div class="header-line"></div>
                                 <div class="row cards-container">
+                                  @foreach ($students as $student)
                                           <div class="col-md-4 col-lg-5">
                                               <div class="advisee-card">
                                                   <img class="avatar" src="{{ asset('images/pic.png')}}" alt="Avatar" />
-                                                  <div class="name">Royce Ogot</div>
-                                                  <div class="email">201911397@gordoncollege.edu.ph</div>
+                                                <div class="name">{{$student->first_name}}</div>
+                                                  <div class="email">{{$student->email}}</div>
+                                                  <div class="email">Group: {{$student->group_name}}</div>
                                               </div>
                                           </div>
-                                          <div class="col-md-4 col-lg-5">
-                                              <div class="advisee-card">
-                                                  <img class="avatar" src="{{ asset('images/pic.png')}}" alt="Avatar" />
-                                                  <div class="name">Ken Ammay</div>
-                                                  <div class="email">201913563@gordoncollege.edu.ph</div>
-                                              </div>
-                                          </div>
-    
+                                          @endforeach
                                     </div>
                                 </div>
                             </div>

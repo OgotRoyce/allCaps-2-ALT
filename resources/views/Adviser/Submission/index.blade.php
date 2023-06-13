@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.adviser')
 <style>
     .header {
         font-family: 'Poppins', sans-serif;
@@ -70,6 +70,7 @@
                     <th>Date submitted</th>
                     <th>Status</th>
                     <th class="col-sm-4">Attachment</th>
+                    <th>action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -81,6 +82,18 @@
                         <a href="{{ asset('file/' . $item->attachments) }}" download>{{ $item->attachments }}</a>
                         {{-- <a class="btn btn-danger" href="#">View</a> --}}
                     </td>
+                    <td>
+                        <a class="update-button"
+                        onclick="event.preventDefault(); TaskConfirmation('{{ $item->id }}')">
+                        <button class="btn btn-success" >reviewed</button>
+                    </a>
+                    <form id="update-form-{{ $item->id }}"
+                        action="{{ route('review_tasks', $item->id) }}" method="POST"
+                        class="d-none">
+                        {!! csrf_field() !!}
+                        @method('PUT')
+                    </form>
+                    </td>
                     </tr>
                     </tbody>
                 </table>
@@ -89,4 +102,23 @@
             </div>
         </div>
         </div>
+
+        <script>
+            function TaskConfirmation(taskId) {
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: 'You are about to mark as reviewed the activity of this student',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Reviwed'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.getElementById('update-form-' + taskId).submit();
+                    }
+                });
+            }
+        </script>
+
 @endsection

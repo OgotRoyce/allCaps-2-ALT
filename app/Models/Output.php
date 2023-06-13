@@ -4,22 +4,22 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Student extends Authenticatable
+class Output extends Model
 {
     use HasFactory;
-    protected $table = 'student';
+    protected $table = 'output';
     protected $fillable = [
+        'task_code',
+        'activity_code',
         'student_id',
-        'account_code',
         'first_name',
         'last_name',
-        'last_name',
-        'email',
-        'password',
-        'photo',
         'adviser_id',
-        'group_name',
+        'title',
+        'description',
+        'due_date',
+        'attachments',
+        'status',
     ];
 }

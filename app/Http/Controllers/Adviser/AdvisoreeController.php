@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Adviser;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Advisoree;
+use App\Models\Adviser;
+use App\Models\Student;
+use App\Models\Task;
 use App\Http\Requests\AdvisoreeRequest;
 
 class AdvisoreeController extends Controller
@@ -14,10 +16,12 @@ class AdvisoreeController extends Controller
      */
     public function index()
     {
-        // $courses = Advisoree::paginate(10);
-        // return view('Admin.course.index',['courses' => $courses]);
-                return view('Adviser.Advisoree.index');
+        $adviser = Adviser::all();
+        $adviseeIds = $adviser->pluck('id'); // Get an array of adviser IDs
+        $students = Student::whereIn('adviser_id', $adviseeIds)->get(); // Retrieve students with adviser IDs in the array
+        return view('Adviser.Advisoree.index', ['adviser' => $adviser, 'students' => $students]);
     }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -57,7 +61,7 @@ class AdvisoreeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
     }
 
     /**

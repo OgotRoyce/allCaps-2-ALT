@@ -30,6 +30,11 @@
                 id="exampleFormControlInput1">
         </div>
         <div class="">
+            <label for="exampleFormControlInput1" class="form-label">Group Name</label>
+            <input type="text" name="group_name" class="form-control" id="exampleFormControlInput1"
+                value="{{ old('group_name') }}">
+        </div>
+        <div class="">
             <label for="formFile" class="form-label">Attach your System's Logo</label>
             <input type="file" name="logo" step="any" class="form-control">
         </div>

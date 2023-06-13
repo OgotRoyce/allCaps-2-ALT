@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
 use App\Models\Projects;
+use App\Models\Student;
 use Illuminate\Http\Request;
 use Session;
 
@@ -36,7 +37,8 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-  
+        $user = auth('student')->user();
+    
         if ($request->hasFile('logo')) {
             $photo = $request->file('logo');
             $filenameWithExt = $photo->getClientOriginalName();
@@ -44,22 +46,26 @@ class ProjectController extends Controller
             $extension = $photo->getClientOriginalExtension();
             $image = $filename . '_' . time() . '.' . $extension;
             $path = $photo->move('pictures', $image);
-
-        $projects = Projects::create([
-            'title' => $request->get('title'),
-            'description' => $request->get('description'),
-            'logo' => $image,
-            'user_id' => auth('student')->user()->id,
-
-        ]);
-
-    } else {
-        // Set default image filename or return an error message
-    }
-
-        Session::flash('success', 'Task created!');
+    
+            $project = Projects::create([
+                'title' => $request->get('title'),
+                'description' => $request->get('description'),
+                'group_name' => $request->get('group_name'),
+                'logo' => $image,
+                'user_id' => $user->id,
+            ]);
+    
+            $user->update([
+                'group_name' => $request->get('group_name'),
+            ]);
+        } else {
+            // Set default image filename or return an error message
+        }
+    
+        Session::flash('success', 'Project created!');
         return redirect()->route('project');
     }
+    
 
     /**
      * Display the specified resource.

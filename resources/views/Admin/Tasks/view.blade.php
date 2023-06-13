@@ -197,13 +197,16 @@
                     <button type="button" class="btn back-btn btn-outline-danger">Back</button>
                 </a>
             </div>
+
+    @if ($acts)
+    
             <div class="col text-end">
-                <a href="{{ route('submissions_admin') }}">
+                <a href="{{ route('submissions_admin', $acts->task_code) }}">
                     <h5 class="submit-header mb-0"><i class="fas fa-file me-2"></i> Submissions</h5>
                 </a>
             </div>
         </div>
-        @if ($acts)
+
             <div class="row task">
                 <div class="task-content">
                     <a href="{{ route('edit_tasks', ['id' => $acts->id]) }}" class="btn edit-btn float-end"><i

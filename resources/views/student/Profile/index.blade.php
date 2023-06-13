@@ -198,6 +198,10 @@
                                     <h6 class="member-email mb-2 text-muted"><strong>EMAIL:</strong>
                                         {{ auth('student')->user()->email }}</h6>
                                 </div>
+                                <div class="profile-usertitle-email">
+                                    <h6 class="member-email mb-2 text-muted"><strong>Group:</strong>
+                                        {{ auth('student')->user()->group_name }}</h6>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -220,6 +224,9 @@
                                                 <p style="font-size: 12px; color: #666;">Developed by
                                                     {{ auth('student')->user()->first_name }}
                                                     {{ auth('student')->user()->last_name }}</p>
+                                                    <p style="font-size: 12px; color: #666;">Group: 
+                                                        {{ auth('student')->user()->group_name }}
+                                                      </p>
                                             </div>
                                         </div>
                                     </div>

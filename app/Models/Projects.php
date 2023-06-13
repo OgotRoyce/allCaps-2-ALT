@@ -12,6 +12,7 @@ class Projects extends Model
     protected $fillable = [
         'title',
         'description',
+        'group_name',
         'logo',
         'user_id',
         'adviser_id'
