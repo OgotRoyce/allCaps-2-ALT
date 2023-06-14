@@ -20,6 +20,11 @@
       margin-bottom: 20px;
     }
     
+    .header-line-2 {
+        height: 1px;
+        background-color: #bfbfbf;
+        margin-bottom: 10px;
+    }
     
     .advisee-card {
             border-radius: 18px;
@@ -62,6 +67,9 @@
       font-size: 18px;
       margin-bottom: 8px;
       color: #25272a;
+      white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
     }
     .advisee-card .adv-role {
       font-size: 16px;
@@ -74,6 +82,9 @@
       font-size: 14px;
       color: #777;
       margin-left: 84px;
+      white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
     }
 
     .advisee-card .group {
@@ -335,10 +346,10 @@
                         <div class="advisee-content">
                             <div class="advisee-project-details">
                                 <h5 class="advisee-project-head"><i class="fas fa-users"></i> List of Advisee</h5>
-                                <div class="header-line"></div>
+                                <div class="header-line-2"></div>
                                 <div class="row cards-container">
                                   @foreach ($students as $student)
-                                          <div class="col-md-4 col-lg-5">
+                                          <div class="col-md-6 col-lg-6 mb-4">
                                             <a href="{{ route('view_advisoree', $student->id) }}">
                                               <div class="advisee-card">
                                                 <img class="avatar" src="{{ asset('pictures/'.($student->photo ? $student->photo : 'pic.png')) }}"  />
