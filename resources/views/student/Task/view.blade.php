@@ -89,7 +89,13 @@
         font-weight: bold;
     }
 
-
+    .due-head {
+        margin-top: 10px;
+        font-size: 24px;
+        margin-bottom: 8px;
+        color: #212529;
+        font-weight: bold;
+    }
     .task-usertitle-name {
         margin-top: 20px;
         color: #212529;
@@ -184,12 +190,12 @@
                         <a href="{{ route('task_student') }}" style="margin-left: 20px;">
                             <button type="button" class="btn btn-outline-danger">Back</button>
                         </a>
+                        @if (\Carbon\Carbon::parse($acts->due_date)->isPast())
+                                    <span class="due-head" style="color: #e24f4c; margin-left: 11rem;">Late</span>
+                                @endif
                         <div class="task-usertitle-name">
                             <h5 class="task-head">
                                 My Work
-                                @if (\Carbon\Carbon::parse($acts->due_date)->isPast())
-                                    <span style="color: #e24f4c; margin-left: 10rem;">Late</span>
-                                @endif
                             </h5>
                         </div>
 
@@ -235,7 +241,7 @@
                         @endforeach
                         
                         @if ($accout->isEmpty())
-                            <button type="submit" class="btn btn-danger w-100" id="attach-file-btn"><i class="fas fa-plus"></i> Submit</button>
+                            <button type="submit" class="btn btn-danger w-100" id="attach-file-btn">Submit</button>
                         @endif
                         
 

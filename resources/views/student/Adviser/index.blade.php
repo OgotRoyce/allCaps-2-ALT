@@ -104,6 +104,9 @@
     }
 
     .user_item {
+        display: flex;
+    flex-direction: column;
+    justify-content: space-between;
         border-radius: 18px;
         background: #fff;
         padding: 18px 12px 42px 14px;
@@ -141,6 +144,7 @@
         font-weight: bold;
         font-size: 18px;
         margin-bottom: -1px;
+        color:#1a1819;
     }
 
     .user_item .info .name-role .role {
@@ -184,16 +188,19 @@
         border: 0;
         background: var(--primary);
         color: var(--white);
-        padding: 12px 25px;
         margin-top: 20px;
         border-radius: 3px;
         font-weight: 700;
         cursor: pointer;
         transition: 0.5s ease;
+        margin-left: auto;
     }
 
     .user_select_wrap button:hover {
         background: var(--btn-hover-clr);
+        cursor: pointer;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        transform: scale(1.01); */
     }
 
     .user_item.active {
@@ -228,6 +235,83 @@
         box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
         transform: scale(1.01);
     }
+
+    .adviser-content {
+        padding: 20px;
+        background: #fff;
+        border-radius: 18px;
+        height: auto;
+        margin-bottom: 20px;
+    }
+
+    .adviser-advdetails-head {
+        color: #f06548;
+        font-size: 30px;
+        font-weight: 600;
+        margin-top: 10px;
+        font-size: 30px;
+        margin-bottom: 10px;
+        margin-left: 20px;
+    }
+
+    .advdetails-container {
+        margin-top: 10px;
+        margin-left: 20px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    
+    .advdetails-img {
+        margin-right: 20px;
+    }
+
+    .adv-thumbnail {
+        height: 100px;
+        object-fit: cover;
+        border-radius: 999px;
+        border-color: #c4bfbf !important;
+        border: 1px solid;
+    }
+
+    .card-content {
+        text-align: left;
+        overflow: hidden;
+        /* add this */
+        flex-grow: 1;
+        margin-top: 20px;
+    }
+
+    /* .adviser-advdetails-details {
+    display: flex;
+    flex-direction: column;
+    } */
+
+    .advdetails-title {
+        margin-top: 0px;
+        font-weight: 700;
+        font-size: 24px !important;
+    }
+
+    .advdetails-title a {
+        color: #000;
+        text-decoration: none !important;
+    }
+
+    .advdetails-title a:hover {
+        color: #f06548;
+        text-decoration: none !important;
+    }
+
+    .advdetails-subtitle {
+        font-size: 14px;
+        color: #999;
+        margin-top: 1 px;
+        margin-bottom: 0;
+    }
+
+
 </style>
 @section('content')
     <div class="container-fluid">
@@ -246,6 +330,34 @@
         </div>
     </div>
 
+    <div class="">
+        <div class="live-preview container-fluid">
+                    <div class="adviser-content">
+                        <h5 class="adviser-advdetails-head"><i class="fas fa-user"></i> My Adviser </h5>
+                        <div class="header-line"></div>
+                        <div class="advdetails-container">
+                            <div class="advdetails-img">
+                                {{-- @if ($item->logo) --}}
+                                    {{-- <img class="app-logo" src="{{ asset('public/images/' . $item->logo) }}"> --}}
+                                    {{-- <img class="app-logo" src="{{ asset('pictures/'.($item->logo ? $item->logo : 'pic.png')) }}"  />
+                                @else --}}
+                                <img class="adv-thumbnail" src="{{ asset('/images/no_image.jpg') }}">
+                                {{-- @endif --}}
+                            </div>
+                            <div class="card-content">
+                                <h4 class="advdetails-title">Adviser's Name</h4>
+                                <div class="advdetails-subtitle">
+                                    <p>Program</p>
+                                    <p style="font-size: 12px; color: #666;">Email</b>
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+        </div>
+    </div>
+
     <div class="wrapper-fluid">
         <div class="user_select_wrap">
             <div class="title">
@@ -256,6 +368,8 @@
                 @foreach ($advisers as $item)
                     <div class="col-md-4 col-lg-3">
                         <div class="user_item">
+                            <a class="delete-button"
+                                onclick="event.preventDefault(); DeleteTaskConfirmation('{{ $item->id }}')">
                             <!-- <input type="checkbox" class="checkbox-input">> -->
                             <span class="checkmark"></span>
                             <div class="info">
@@ -266,10 +380,8 @@
                                     <p class="role">{{ $item->program }}</p>
                                 </div>
                             </div>
-                            <a class="delete-button"
-                                onclick="event.preventDefault(); DeleteTaskConfirmation('{{ $item->id }}')">
+                            
                                 {{-- <i class="accordion-img fas fa-trash" style="color: #DD6B55"></i> --}}
-                                <button type="button" class="btn btn-danger">Choose</button>
                             </a>
                             <form id="delete-form-{{ $item->id }}" action="{{ route('choose_adviser', $item->id) }}"
                                 method="POST" class="d-none">

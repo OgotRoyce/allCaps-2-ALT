@@ -77,10 +77,20 @@
     }
 
     .advisee-card .email {
-        font-size: 14px;
-        color: #777;
-        margin-left: 84px;
+      font-size: 14px;
+      color: #777;
+      margin-left: 84px;
     }
+
+    .advisee-card .group {
+        font-size: 15px;
+        font-weight: 500;
+        color:#25272a;
+        margin-left: 84px;
+        margin-right: 20px;
+        margin-bottom: 8px;
+    }
+
 
     .advisee-card .avatar {
         border-radius: 999px;
@@ -349,7 +359,7 @@
                 <div class="col-md-3">
                     <div class="advisee-sidebar">
                         <div class="advisee-head">
-                            <h5>Available slots under your Advisory</h5>
+                            <h5>Slots taken under your Advisory</h5>
                         </div>
 
                         <div class="circle-graph" data-circle-graph data-percent="{{ $studentsCount * 10 }}">
@@ -397,17 +407,20 @@
                             <h5 class="advisee-project-head"><i class="fas fa-users"></i> List of Advisee</h5>
                             <div class="header-line"></div>
                             <div class="row cards-container">
+                                @foreach ($students as $item)
                                 <div class="col-md-4 col-lg-5">
-                                    @foreach ($students as $item)
+                                    
                                         <div class="advisee-card">
                                             {{-- <img class="avatar" src="{{ asset('images/' . $item->photo) }}"
                                                 alt="Avatar" /> --}}
                                                 <img class="avatar" src="{{ asset('pictures/'.($item->photo ? $item->photo : 'pic.png')) }}"  />
                                             <div class="name">{{ $item->first_name }} {{ $item->last_name }}</div>
+                                            <div class="group">Group: <b>{{$item->group_name}}</b></div>  
                                             <div class="email">{{ $item->email }}</div>
                                         </div>
-                                    @endforeach
+                                    
                                 </div>
+                                @endforeach
 
                             </div>
                         </div>

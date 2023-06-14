@@ -74,11 +74,21 @@
       color: #777;
       margin-left: 84px;
     }
+
+    .advisee-card .group {
+        font-size: 15px;
+        font-weight: 500;
+        color:#25272a;
+        margin-left: 84px;
+        margin-right: 20px;
+        margin-bottom: 8px;
+    }
     
     .advisee-card .avatar {
       border-radius: 999px;
-      width: 72px;
+      width: 80px;
       padding: 10px;
+      
     }
     
       /* styles for 404 */
@@ -300,7 +310,7 @@
                   <div class="col-md-3">
                       <div class="advisee-sidebar">
                         <div class="advisee-head">
-                          <h5 >Available slots under your Advisory</h5>
+                          <h5>Slots taken under your Advisory</h5>
                         </div>
                         
                         <div class="circle-graph" data-circle-graph data-percent="20">
@@ -328,10 +338,12 @@
                                   @foreach ($students as $student)
                                           <div class="col-md-4 col-lg-5">
                                               <div class="advisee-card">
-                                                  <img class="avatar" src="{{ asset('images/pic.png')}}" alt="Avatar" />
-                                                <div class="name">{{$student->first_name}}</div>
-                                                  <div class="email">{{$student->email}}</div>
-                                                  <div class="email">Group: {{$student->group_name}}</div>
+                                                <img class="avatar" src="{{ asset('pictures/'.($student->photo ? $student->photo : 'pic.png')) }}"  />
+                                                  {{-- <img class="avatar" src="{{ asset('images/pic.png')}}" alt="Avatar" /> --}}
+                                                <div class="name">{{$student->first_name}} {{$student->last_name}}</div>
+                                                <div class="group">Group: <b>{{$student->group_name}}</b></div>  
+                                                <div class="email">{{$student->email}}</div>
+                                                  
                                               </div>
                                           </div>
                                           @endforeach

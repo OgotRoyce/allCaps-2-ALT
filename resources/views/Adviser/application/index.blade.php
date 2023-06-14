@@ -119,6 +119,33 @@
     .application-card .card-body {
         padding: 20px;
     }
+
+    .adviser-content {
+        padding: 20px;
+        background: #fff;
+        border-radius: 18px;
+        height: auto;
+        margin-bottom: 20px;
+    }
+
+    .no-application {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+    .no-application h1 {
+        font-size: 60px;
+        margin-bottom: 20px;
+        font-style: italic;
+    }
+
+    .no-application h3 {
+        font-size: 24px;
+    }
+
 </style>
 
 @section('content')
@@ -134,7 +161,16 @@
             </div>
 
             @if ($all->isEmpty())
-                <p>No requests currently found</p>
+            <div class="">
+                <div class="live-preview container-fluid">
+                            <div class="adviser-content">
+                                <div class="no-application">
+                                    <h1 class="text-center"><b>Oops...</b></h1>
+                                    <h3 class="text-subtitle">Looks like you have no requests yet.</h3>
+                                </div>
+                            </div>
+                </div>
+            </div>
             @else
                 @foreach ($all as $user)
                     <div class="card application-card application-invitation">
@@ -186,12 +222,12 @@
             console.log("run");
             Swal.fire({
                 title: 'Are you sure?',
-                text: "You want to accept this student",
+                text: "Do you want to accept this student?",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, accept it!'
+                confirmButtonText: 'Yes'
             }).then((result) => {
                 console.log(result);
                 if (result.isConfirmed) {
@@ -201,7 +237,7 @@
                     $(this).closest(".application-card").addClass("display-none");
                     Swal.fire(
                         'Dismissed!',
-                        'The application has been dismissed.',
+                        'Student has been added to your Advisees.',
                         'success'
                     )
 
@@ -213,12 +249,12 @@
         function Declined(taskId) {
             Swal.fire({
                 title: 'Are you sure?',
-                text: "You want to decline this student request?",
+                text: "Do you want to decline this student request?",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, decline it!'
+                confirmButtonText: 'Yes'
             }).then((result) => {
                 if (result.isConfirmed) {
                     document.getElementById('declined-form-' + taskId).submit();

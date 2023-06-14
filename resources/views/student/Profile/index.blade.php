@@ -32,6 +32,10 @@
         font-weight: bold;
     }
 
+    .member-group {
+        font-size: 18px;
+    }
+
     .member-email {
         font-size: 0.8rem;
     }
@@ -91,8 +95,15 @@
         font-weight: bold;
     }
 
-    .profile-usertitle-email {
+    .profile-usertitle-group {
         color: #5b9bd1;
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+
+    .profile-usertitle-email {
+        color: #212529;
         font-size: 12px;
         font-weight: 600;
         margin-bottom: 15px;
@@ -194,14 +205,15 @@
                                     <h5 class="member-name">{{ auth('student')->user()->first_name }}
                                         {{ auth('student')->user()->last_name }}</h5>
                                 </div>
+                                <div class="profile-usertitle-group">
+                                    <h6 class="member-group">
+                                        <b>{{ auth('student')->user()->group_name }}</b></h6>
+                                </div>
                                 <div class="profile-usertitle-email">
-                                    <h6 class="member-email mb-2 text-muted"><strong>EMAIL:</strong>
+                                    <h6 class="member-email mb-2 text-muted"><strong>Email:</strong>
                                         {{ auth('student')->user()->email }}</h6>
                                 </div>
-                                <div class="profile-usertitle-email">
-                                    <h6 class="member-email mb-2 text-muted"><strong>Group:</strong>
-                                        {{ auth('student')->user()->group_name }}</h6>
-                                </div>
+
                             </div>
                         </div>
                     </div>
