@@ -237,6 +237,7 @@
                                                     {{ auth('student')->user()->first_name }}
                                                     {{ auth('student')->user()->last_name }}
                                                 </p>
+                                                <p>Group: {{ $item->group_name }}</p>
                                             </div>
                                         </div>
 

@@ -121,7 +121,8 @@
                         <img class="app-logo" src="{{ asset('pictures/'.($item->logo ? $item->logo : 'pic.png')) }}"  />
                         <div class="name">{{ $item->title }}</div>
                         <div class="description">{{ $item->description }}</div>
-                        {{-- <div class="developer">Developed by {{ $item->user->first_name }} {{ $item->user->last_name }}</div> --}}
+                        <div class="developer">Developed by {{ $item->user->first_name }} {{ $item->user->last_name }}</div>
+                        <div class="developer">Group: {{ $item->group_name }}</div>
                         <a href="#" class="stretched-link"></a>
                     </div>       
                 </div>

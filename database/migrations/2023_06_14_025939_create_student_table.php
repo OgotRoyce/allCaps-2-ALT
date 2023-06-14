@@ -8,8 +8,10 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('student', function (Blueprint $table) {
             $table->id();
@@ -20,14 +22,19 @@ return new class extends Migration
             $table->string('email', 96)->unique();
             $table->string('password');
             $table->string('photo')->nullable();
+            $table->string('adviser_id')->nullable();
+            $table->string('status')->default('pending');
+            $table->string('group_name')->nullable();
             $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('student');
     }
