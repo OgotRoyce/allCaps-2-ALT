@@ -207,7 +207,7 @@
                 <div class="profile-sidebar">
                     <div class="profile-userpic">
                         {{-- <img src="{{ asset('/images/no_image.jpg') }}"  /> --}}
-                        <img class="avatar" src="{{ asset('pictures/'.($students->photo ? $students->photo : 'pic.png')) }}"  />
+                        <img class="avatar" src="{{ asset('pictures/'.($students->photo ? $students->photo : 'pic.png')) }}"/>
 
                     </div>
                     <div class="profile-usertitle">
@@ -216,11 +216,11 @@
                         </div>
                         <div class="profile-usertitle-group">
                             <h6 class="member-group">
-                                <b>Group: {{$students->group_name}}</b></h6>
+                                <b>{{$students->group_name}}</b></h6>
                         </div>
                         <div class="profile-usertitle-email">
                             <h6 class="member-email mb-2 text-muted"><strong>Email:</strong>
-                               {{$students->first_name}}</h6>
+                               {{$students->email}}</h6>
                         </div>
 
                     </div> 
@@ -234,6 +234,7 @@
                             <div class="header-line-2"></div>
                             {{-- @foreach ($projects as $item) --}}
                             <div class="project-container">
+                                @if($projects)
                                 <div class="project-img">
                                     {{-- <img class="app-logo" src="{{ asset('/images/no_image.jpg') }}"  /> --}}
                                     <img class="app-logo" src="{{ asset('pictures/'.($projects->logo ? $projects->logo : 'pic.png')) }}"  />
@@ -242,13 +243,13 @@
                                     <h4 class="project-title">{{$projects->title}}</h4>
                                     <div class="project-subtitle">
                                         <p>{{$projects->description}}</p>
-                                        <p style="font-size: 12px; color: #666;">Developed by
-                                            {{$projects->first_name}} {{$projects->lastname}}</p>
-                                            <p style="font-size: 12px; color: #666;">Group: 
-                                                {{$projects->group_name}}
-                                              </p>
+                                        <p style="font-size: 12px; color: #666;">Developed by <b>{{$projects->group_name}}</b></p>
                                     </div>
                                 </div>
+                            @else
+                                <p>No project found.</p>
+                            @endif
+                            
                             </div>
                             {{-- @endforeach --}}
                         </div>
