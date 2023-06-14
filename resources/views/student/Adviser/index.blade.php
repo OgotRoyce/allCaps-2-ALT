@@ -109,7 +109,7 @@
     justify-content: space-between;
         border-radius: 18px;
         background: #fff;
-        padding: 18px 12px 42px 14px;
+        padding: 14px 12px 10px 14px;
         margin: 0 0 28px 0;
         /* modified */
         width: fit-content, calc(33.33% - 40px);
@@ -150,6 +150,11 @@
     .user_item .info .name-role .role {
         color: var(--sub-text-clr);
         font-size: 18px;
+    }
+
+    .user_item .info .name-role .count {
+        color: #1a1819;
+        font-size: 14px;
     }
 
     .user_item .info img {
@@ -433,6 +438,7 @@
                                         <div class="name-role">
                                             <p class="name">{{ $item->first_name }} {{ $item->last_name }}</p>
                                             <p class="role">{{ $item->program }}</p>
+                                            <p class="count">Advisees: <b><span style="color: #f39100;">0/10</span></b></p>
                                         </div>
                                     </div>
                                 </a>

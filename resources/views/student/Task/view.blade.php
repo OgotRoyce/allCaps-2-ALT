@@ -183,12 +183,22 @@
 
     .modal-footer {
     padding: 10px;
-}
+    }
 
 #attach-file-btn {
     width: calc(100% - 20px); /* subtracting 20px from the width to account for the padding */
 }
 
+.submit-btn {
+    background-color: #f5f5f5 !important;
+    align-items: center;
+    font-weight: 600 !important;
+    font-size: 12px;
+    }
+
+    .file-btn {
+    margin-bottom: 10px;
+    }
 </style>
 
 @section('content')
@@ -230,7 +240,7 @@
                         <div class="header-line flex-grow-1 ml-3"></div>
 
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-danger w-100" id="attach-file-btn"><i class="fas fa-plus"></i> Attach File</button>
+                                
                                     <form action="{{route('submit_task')}}" method="POST" class="flex-grow-1 ml-3" enctype="multipart/form-data" > 
                                     {!! csrf_field() !!}
                                     <input type="text" name="student_id" hidden value="{{auth('student')->user()->account_code}}">
@@ -246,15 +256,16 @@
 
                                     @foreach ($accout as $accouts)
                                         @if ($accouts->attachments)
-                                            <button type="submit" class="btn btn-danger w-100" id="attach-file-btn"><i class="fas fa-sync-alt"></i> Resubmit</button>
-                                            <p align=center>Already Submitted</p>
+                                            <button type="submit" class="btn submit-btn w-100 disabled" id="attach-file-btn">Already Submitted</button>
+                                            {{-- <p class="submit-text">Already Submitted</p> --}}
                                         @endif
                                     @endforeach
                                 
                                     @if ($accout->isEmpty())
+                                        <button type="button" class="btn file-btn btn-outline-danger w-100" id="attach-file-btn"><i class="fas fa-plus"></i> Attach File</button>
                                         <button type="submit" class="btn btn-danger w-100" id="attach-file-btn">Submit</button>
                                     @endif
-                                </form>
+                                    </form>
                                 
                                 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                                 <script>

@@ -111,6 +111,14 @@
         cursor: pointer;
     }
 
+    .status {
+        margin-left: auto;
+        font-style: italic;
+        font-size: 16px;
+        color: #f39100;
+        margin-right: 3rem;
+    }
+
     .task-stats {
         display: flex;
         align-items: center;
@@ -267,24 +275,15 @@
                                                             <p>Due Date: {{ \Carbon\Carbon::parse($act->due_date)->format('F d, Y') }}</p>
                                                         </div>
                                                     </div>
-                                                    {{-- <div class="project-tasks-delete"> 
-                                                        <a class="delete-button" onclick="event.preventDefault(); DeleteActivityConfirmation()">
-                                                            <i class="accordion-img fas fa-trash"  style="color: #8a8a8a" ></i>
-                                                            </a>             
-                                                                <form id="delete-acts" action="{{ route('delete_acts',$act->id) }}" method="POST" class="d-none">
-                                                                    {!! csrf_field() !!}
-                                                                    @method('DELETE')
-                                                                </form>
-                                                            </div> --}}
+                                                    <div class='status'>
+                                                        <p>Pending</p>
+                                                    </div>
                                                 </div>
                 
                                                 @endif
                                                 
                                             @endforeach
                 
-                                            {{-- <a href="{{ route('create_tasks', $task->id) }}">
-                                                <button type="button" style="width:100%" class="btn btn-outline-danger float-right input-group-text">+ Create Activity</button>
-                                            </a> --}}
                                         </main>
                                     </div>
                                 </div>

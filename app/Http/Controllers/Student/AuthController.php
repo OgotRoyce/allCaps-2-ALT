@@ -20,7 +20,7 @@ class AuthController extends Controller
          if (auth('student')->attempt(['email' => $request->get('email'), 'password' => $request->get('password')])) {
             $auth = auth('student')->user();
             // dd($auth);
-            return redirect()->route('task_student');
+            return redirect()->route('project');
         }
         // dd("warning", "wrong credentials");
         return redirect()->back()->with("warning", "Wrong Credentials");
