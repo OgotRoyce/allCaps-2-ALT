@@ -235,9 +235,8 @@
                                                 <p>{{ $item->description }}</p>
                                                 <p style="font-size: 12px; color: #666;">Developed by
                                                     {{ auth('student')->user()->first_name }}
-                                                    {{ auth('student')->user()->last_name }}
+                                                    {{ auth('student')->user()->last_name }}, <b>{{ $item->group_name }}</b>
                                                 </p>
-                                                <p>Group: {{ $item->group_name }}</p>
                                             </div>
                                         </div>
 

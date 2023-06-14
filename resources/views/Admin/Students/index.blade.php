@@ -130,6 +130,10 @@
         font-size: 14px;
         margin-left: 84px;
         margin-right: 36px;
+        max-width: 210px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
     }
 
     .profile-card .name {
@@ -138,8 +142,17 @@
         margin-bottom: 8px;
     }
 
+    .profile-card .group {
+        font-size: 15px;
+        font-weight: 500;
+        color:#25272a;
+        margin-left: 84px;
+        margin-right: 20px;
+        margin-bottom: 8px;
+    }
+
     .profile-card .email {
-        font-size: 14px;
+        font-size: 12px;
         color: #777;
         margin-left: 84px;
         margin-right: 20px;
@@ -189,8 +202,8 @@
                 <img class="avatar" src="{{ asset('pictures/'.($item->photo ? $item->photo : 'pic.png')) }}"  />
 
                 <div class="name">{{ $item->last_name }}, {{ $item->first_name }}</div>
+                <div class="group"><b>Group:</b> {{ $item->group_name }}</div>
                 <div class="email">{{ $item->email }}</div>
-                <div class="email">Group: {{ $item->group_name }}</div>
             </div>
         </div>
     @endforeach

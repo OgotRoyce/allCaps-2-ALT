@@ -82,6 +82,10 @@
   font-size: 14px;
   color: #777;
   margin-left: 84px;
+  max-width: 210px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .profile-card .avatar {

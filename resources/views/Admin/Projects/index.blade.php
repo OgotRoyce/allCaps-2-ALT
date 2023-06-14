@@ -91,6 +91,14 @@
     margin-bottom: 8px;
     }
 
+        .img-card .group {
+    font-size: 14px;
+    color: #777;
+    margin-left: 84px;
+    margin-bottom: 8px;
+    }
+
+
     .img-card .developer {
     font-size: 14px;
     color: #777;
@@ -121,8 +129,8 @@
                         <img class="app-logo" src="{{ asset('pictures/'.($item->logo ? $item->logo : 'pic.png')) }}"  />
                         <div class="name">{{ $item->title }}</div>
                         <div class="description">{{ $item->description }}</div>
-                        <div class="developer">Developed by {{ $item->user->first_name }} {{ $item->user->last_name }}</div>
-                        <div class="developer">Group: {{ $item->group_name }}</div>
+                        <div class="group"><b>Developed by {{ $item->group_name }}</b></div>
+                        <div class="developer">{{ $item->user?->first_name }} {{ $item->user?->last_name }}</div>
                         <a href="#" class="stretched-link"></a>
                     </div>       
                 </div>

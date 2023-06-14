@@ -74,7 +74,7 @@ class SubmissionController extends Controller
     public function update(Request $request, $id)
     {
         $acts = Output::find($id);
-        $acts->status = 'reviewed';
+        $acts->status = 'Reviewed';
         $acts->save();
         return back()->with('success', 'Updated successfully');
     }

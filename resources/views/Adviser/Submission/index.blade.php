@@ -70,7 +70,7 @@
                     <th>Date submitted</th>
                     <th>Status</th>
                     <th class="col-sm-4">Attachment</th>
-                    <th>action</th>
+                    <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -85,7 +85,7 @@
                     <td>
                         <a class="update-button"
                         onclick="event.preventDefault(); TaskConfirmation('{{ $item->id }}')">
-                        <button class="btn btn-success" >reviewed</button>
+                        <button class="btn btn-outline-danger" >Review</button>
                     </a>
                     <form id="update-form-{{ $item->id }}"
                         action="{{ route('review_tasks', $item->id) }}" method="POST"
@@ -107,12 +107,12 @@
             function TaskConfirmation(taskId) {
                 Swal.fire({
                     title: 'Are you sure?',
-                    text: 'You are about to mark as reviewed the activity of this student',
+                    text: 'You are about to mark this activity of this student as reviewed.',
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Reviwed'
+                    confirmButtonText: 'Yes'
                 }).then((result) => {
                     if (result.isConfirmed) {
                         document.getElementById('update-form-' + taskId).submit();
