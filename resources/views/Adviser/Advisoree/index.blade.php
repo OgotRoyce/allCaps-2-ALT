@@ -311,7 +311,7 @@
                             <div class="circle-graph-percents-wrapper">
                               @foreach ($adviser as $item)              
                               @endforeach
-                              <span class="circle-graph-percents-number">{{$adviser->counter}}</span>
+                              <span class="circle-graph-percents-number">{{$item->counter}}</span>
                               <span class="circle-graph-percents-units">of 10</span>
                             </div>
                           </div>

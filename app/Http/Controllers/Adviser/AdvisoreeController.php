@@ -16,15 +16,11 @@ class AdvisoreeController extends Controller
      */
     public function index()
     {
-        $user = auth('adviser')->user();
-        $userID = $user->id;
-        
-        $adviser = Adviser::where('id', $userID)->first();
-        $students = Student::whereIn('adviser_id', [$adviser->id])->get();
-        
+        $adviser = Adviser::all();
+        $adviseeIds = $adviser->pluck('id'); // Get an array of adviser IDs
+        $students = Student::whereIn('adviser_id', $adviseeIds)->get(); // Retrieve students with adviser IDs in the array
         return view('Adviser.Advisoree.index', ['adviser' => $adviser, 'students' => $students]);
     }
-    
     
 
     /**
