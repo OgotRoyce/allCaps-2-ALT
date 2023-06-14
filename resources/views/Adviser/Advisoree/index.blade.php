@@ -61,6 +61,7 @@
       /* existing rules */
       font-size: 18px;
       margin-bottom: 8px;
+      color: #25272a;
     }
     .advisee-card .adv-role {
       font-size: 16px;
@@ -338,6 +339,7 @@
                                 <div class="row cards-container">
                                   @foreach ($students as $student)
                                           <div class="col-md-4 col-lg-5">
+                                            <a href="{{ route('view_advisoree', $student->id) }}">
                                               <div class="advisee-card">
                                                 <img class="avatar" src="{{ asset('pictures/'.($student->photo ? $student->photo : 'pic.png')) }}"  />
                                                   {{-- <img class="avatar" src="{{ asset('images/pic.png')}}" alt="Avatar" /> --}}
@@ -346,6 +348,7 @@
                                                 <div class="email">{{$student->email}}</div>
                                                   
                                               </div>
+                                            </a>
                                           </div>
                                           @endforeach
                                     </div>

@@ -20,6 +20,12 @@
     .header-line {
         height: 1px;
         background-color: #bfbfbf;
+        margin-bottom: 20px;
+    }
+
+    .header-line-2 {
+        height: 1px;
+        background-color: #bfbfbf;
         margin-top: 20px;
         margin-bottom: 20px;
     }
@@ -222,7 +228,7 @@
                             <div class="profile-content">
                                 <div class="profile-project-details">
                                     <h5 class="profile-project-head"><i class="fas fa-folder-open"></i> Projects </h5>
-                                    <div class="header-line"></div>
+                                    <div class="header-line-2"></div>
                                     @foreach ($projects as $item)
                                     <div class="project-container">
                                         <div class="project-img">

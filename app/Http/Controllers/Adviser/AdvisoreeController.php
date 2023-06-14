@@ -49,7 +49,7 @@ class AdvisoreeController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return view('Adviser.Advisoree.view');
     }
 
     /**

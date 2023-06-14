@@ -21,6 +21,7 @@
         margin-top: 20px;
         margin-bottom: 20px;
     }
+    
 
     .task-head {
         margin-top: 10px;
@@ -179,6 +180,15 @@
         margin-top: 10px;
         margin-right: 20px;
     }
+
+    .modal-footer {
+    padding: 10px;
+}
+
+#attach-file-btn {
+    width: calc(100% - 20px); /* subtracting 20px from the width to account for the padding */
+}
+
 </style>
 
 @section('content')
@@ -215,52 +225,51 @@
                             @endif
                             @endforeach
                             </div>
-
                         </div>
+
                         <div class="header-line flex-grow-1 ml-3"></div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-danger w-100" id="attach-file-btn"><i class="fas fa-plus"></i> Attach File</button>
-                        <form action="{{route('submit_task')}}" method="POST" class="header-line flex-grow-1 ml-3" enctype="multipart/form-data" > 
-                            {!! csrf_field() !!}
-                            <input type="text" name="student_id" hidden value="{{auth('student')->user()->account_code}}">
-                            <input type="text" name="first_name" hidden value="{{auth('student')->user()->first_name}}">
-                            <input type="text" name="last_name" hidden value="{{auth('student')->user()->last_name}}">
-                            <input type="text" name="adviser_id" hidden value="{{auth('student')->user()->adviser_id}}">
-                            <input type="text" name="task_code" hidden value="{{$acts->task_code}}">
-                            <input type="text" name="title" hidden value="{{$acts->title}}">
-                            <input type="text" name="description" hidden value="{{$acts->description}}">
-                            <input type="date" name="due_date" hidden value="{{$acts->due_date}}">
-                            {{-- <p> {{$acts->due_date}}</p> --}}
-                            <input type="file" name="attachments[]" multiple hidden id="file-input">
 
-                            @foreach ($accout as $accouts)
-                            @if ($accouts->attachments)
-                                <button type="submit" class="btn btn-danger w-100" id="attach-file-btn"><i class="fas fa-sync-alt"></i> Resubmit</button>
-                                <p align=center>Already Submited</p>
-                            @endif
-                        @endforeach
-                        
-                        @if ($accout->isEmpty())
-                            <button type="submit" class="btn btn-danger w-100" id="attach-file-btn">Submit</button>
-                        @endif
-                        
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-danger w-100" id="attach-file-btn"><i class="fas fa-plus"></i> Attach File</button>
+                                    <form action="{{route('submit_task')}}" method="POST" class="flex-grow-1 ml-3" enctype="multipart/form-data" > 
+                                    {!! csrf_field() !!}
+                                    <input type="text" name="student_id" hidden value="{{auth('student')->user()->account_code}}">
+                                    <input type="text" name="first_name" hidden value="{{auth('student')->user()->first_name}}">
+                                    <input type="text" name="last_name" hidden value="{{auth('student')->user()->last_name}}">
+                                    <input type="text" name="adviser_id" hidden value="{{auth('student')->user()->adviser_id}}">
+                                    <input type="text" name="task_code" hidden value="{{$acts->task_code}}">
+                                    <input type="text" name="title" hidden value="{{$acts->title}}">
+                                    <input type="text" name="description" hidden value="{{$acts->description}}">
+                                    <input type="date" name="due_date" hidden value="{{$acts->due_date}}">
+                                    {{-- <p> {{$acts->due_date}}</p> --}}
+                                    <input type="file" name="attachments[]" multiple hidden id="file-input">
 
-
-                        </form>
-                            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                            <script>
-                                $(document).ready(function() {
-                                    $('#attach-file-btn').click(function() {
-                                        $('#file-input').click();
+                                    @foreach ($accout as $accouts)
+                                        @if ($accouts->attachments)
+                                            <button type="submit" class="btn btn-danger w-100" id="attach-file-btn"><i class="fas fa-sync-alt"></i> Resubmit</button>
+                                            <p align=center>Already Submitted</p>
+                                        @endif
+                                    @endforeach
+                                
+                                    @if ($accout->isEmpty())
+                                        <button type="submit" class="btn btn-danger w-100" id="attach-file-btn">Submit</button>
+                                    @endif
+                                </form>
+                                
+                                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                                <script>
+                                    $(document).ready(function() {
+                                        $('#attach-file-btn').click(function() {
+                                            $('#file-input').click();
+                                        });
+                            
+                                        $('#file-input').change(function() {
+                                            var fileName = $(this).val().split('\\').pop();
+                                            $('#file-name').text(fileName);
+                                        });
                                     });
-                        
-                                    $('#file-input').change(function() {
-                                        var fileName = $(this).val().split('\\').pop();
-                                        $('#file-name').text(fileName);
-                                    });
-                                });
-                            </script>
-                        </div>
+                                </script>
+                            </div>
                     </div>
                 </div>
                 <div class="col-md-9">

@@ -142,14 +142,14 @@
 
     .user_item .info .name-role .name {
         font-weight: bold;
-        font-size: 18px;
+        font-size: 20px;
         margin-bottom: -1px;
         color:#1a1819;
     }
 
     .user_item .info .name-role .role {
         color: var(--sub-text-clr);
-        font-size: 14px;
+        font-size: 18px;
     }
 
     .user_item .info img {
@@ -262,6 +262,13 @@
         align-items: center;
     }
 
+    .advdetails-container-2 {
+        margin-top: 10px;
+        margin-left: 20px;
+        flex-direction: row;
+        align-items: center;
+    }
+
     
     .advdetails-img {
         margin-right: 20px;
@@ -269,6 +276,7 @@
 
     .adv-thumbnail {
         height: 100px;
+        width: 100px;
         object-fit: cover;
         border-radius: 999px;
         border-color: #c4bfbf !important;
@@ -304,13 +312,36 @@
         text-decoration: none !important;
     }
 
-    .advdetails-subtitle {
+    .advdetails-subtitle .adv-program{
+        font-size: 18px;
+        color: #424242;
+        margin-top: 1px;
+        margin-bottom: 5px;
+    }
+
+    .advdetails-subtitle .adv-email{
         font-size: 14px;
         color: #999;
-        margin-top: 1 px;
+        margin-top: 5px;
         margin-bottom: 0;
     }
 
+    .no-application {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+    .no-application h1 {
+        font-size: 60px;
+        margin-bottom: 20px;
+        font-style: italic;
+    }
+
+    .no-application h3 {
+        font-size: 24px;
+    }
 
 </style>
 @section('content')
@@ -336,8 +367,8 @@
                         <h5 class="adviser-advdetails-head"><i class="fas fa-user"></i> My Adviser </h5>
                         <div class="header-line"></div>
                         @if ($myadviser && $myadviser->id == auth('student')->user()->adviser_id)
-                        <div class="advdetails-container">
-                         
+                        
+                        <div class="advdetails-container"> 
                             <div class="advdetails-img">
                                 {{-- @if ($item->logo) --}}
                                     {{-- <img class="app-logo" src="{{ asset('public/images/' . $item->logo) }}"> --}}
@@ -350,36 +381,21 @@
                             <div class="card-content">
                                 <h4 class="advdetails-title">{{$myadviser->first_name}} {{$myadviser->last_name}}</h4>
                                 <div class="advdetails-subtitle">
-                                    <p>{{$myadviser->program}}</p>
-                                    <p style="font-size: 12px; color: #666;">{{$myadviser->email}}</b>
+                                    <p class="adv-program">{{$myadviser->program}}</p>
+                                    <p class="adv-email">{{$myadviser->email}}</b>
                                     </p>
                                 </div>
                             </div>
-
                         </div>
                 
                         @else
 
-                    <div class="advdetails-container">
-                     
-                        <div class="advdetails-img">
-                            {{-- @if ($item->logo) --}}
-                                {{-- <img class="app-logo" src="{{ asset('public/images/' . $item->logo) }}"> --}}
-                                {{-- <img class="app-logo" src="{{ asset('pictures/'.($item->logo ? $item->logo : 'pic.png')) }}"  />
-                            @else --}}
-                            <img class="adv-thumbnail" src="{{ asset('/images/no_image.jpg') }}">
-                            {{-- @endif --}}
-                         
+                    <div class="advdetails-container-2">
+                        <div class="no-application">
+                            <h1 class="text-center"><b>Oops...</b></h1>
+                            <h3 class="text-subtitle">You don't have an Adviser yet.</h3>
+                            <p>Select one from the advisers below.</p>
                         </div>
-                        <div class="card-content">
-                            <h4 class="advdetails-title"></h4>
-                            <div class="advdetails-subtitle">Dont have yet project adviser
-                                {{-- <p>{{$myadviser->program}}</p>
-                                <p style="font-size: 12px; color: #666;">{{$myadviser->email}}</b> --}}
-                                </p>
-                            </div>
-                        </div>
-
                     </div>
                 @endif
 
@@ -388,20 +404,24 @@
     </div>
 
     <div class="wrapper-fluid">
-        <div class="user_select_wrap">
-            <div class="title">
-                <p>Select an adviser below</p>
-            </div>
+        @if (auth('student')->user()->adviser_id)
+            {{-- <div class="user_select_wrap">
+                <div class="title">
+                    <p>Select your Project Adviser</p>
+                </div> 
 
-            
-   
-                @if (auth('student')->user()->adviser_id)
                 <div class="col-md-4 col-lg-3">
                     <div class="user_item">
                         You already have an adviser.
                     </div>
                 </div>
+            </div> --}}
             @else
+            <div class="user_select_wrap">
+                <div class="title">
+                    <p>Select your Project Adviser</p>
+                </div> 
+                
                 <div class="user_select">
                     @foreach ($advisers as $item)
                         <div class="col-md-4 col-lg-3">

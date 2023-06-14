@@ -88,6 +88,7 @@ Route::group(['prefix' => 'adviser', 'namespace' => 'Adviser'], function () {
 
     Route::group(['prefix' => 'advisoree',], function () {
         Route::get('/', ['as' => 'advisoree', 'uses' => 'AdvisoreeController@index']);
+        Route::get('/show/{id}', ['as' => 'view_advisoree', 'uses' => "AdvisoreeController@show"]);
     });
     Route::group(['prefix' => 'adviser_task',], function () {
         Route::get('/', ['as' => 'adviser_task', 'uses' => 'TasksController@index']);
