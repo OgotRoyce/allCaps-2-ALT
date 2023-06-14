@@ -335,25 +335,54 @@
                     <div class="adviser-content">
                         <h5 class="adviser-advdetails-head"><i class="fas fa-user"></i> My Adviser </h5>
                         <div class="header-line"></div>
+                        @if ($myadviser && $myadviser->id == auth('student')->user()->adviser_id)
                         <div class="advdetails-container">
+                         
                             <div class="advdetails-img">
                                 {{-- @if ($item->logo) --}}
                                     {{-- <img class="app-logo" src="{{ asset('public/images/' . $item->logo) }}"> --}}
                                     {{-- <img class="app-logo" src="{{ asset('pictures/'.($item->logo ? $item->logo : 'pic.png')) }}"  />
                                 @else --}}
-                                <img class="adv-thumbnail" src="{{ asset('/images/no_image.jpg') }}">
+                                {{-- <img class="adv-thumbnail" src="{{ asset('/images/no_image.jpg') }}"> --}}
                                 {{-- @endif --}}
+                                <img class="adv-thumbnail" src="{{ asset('pictures/'.($myadviser->photo ? $myadviser->photo : 'pic.png')) }}"  />
                             </div>
                             <div class="card-content">
-                                <h4 class="advdetails-title">Adviser's Name</h4>
+                                <h4 class="advdetails-title">{{$myadviser->first_name}} {{$myadviser->last_name}}</h4>
                                 <div class="advdetails-subtitle">
-                                    <p>Program</p>
-                                    <p style="font-size: 12px; color: #666;">Email</b>
+                                    <p>{{$myadviser->program}}</p>
+                                    <p style="font-size: 12px; color: #666;">{{$myadviser->email}}</b>
                                     </p>
                                 </div>
                             </div>
 
                         </div>
+                
+                        @else
+
+                    <div class="advdetails-container">
+                     
+                        <div class="advdetails-img">
+                            {{-- @if ($item->logo) --}}
+                                {{-- <img class="app-logo" src="{{ asset('public/images/' . $item->logo) }}"> --}}
+                                {{-- <img class="app-logo" src="{{ asset('pictures/'.($item->logo ? $item->logo : 'pic.png')) }}"  />
+                            @else --}}
+                            <img class="adv-thumbnail" src="{{ asset('/images/no_image.jpg') }}">
+                            {{-- @endif --}}
+                         
+                        </div>
+                        <div class="card-content">
+                            <h4 class="advdetails-title"></h4>
+                            <div class="advdetails-subtitle">Dont have yet project adviser
+                                {{-- <p>{{$myadviser->program}}</p>
+                                <p style="font-size: 12px; color: #666;">{{$myadviser->email}}</b> --}}
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                @endif
+
                     </div>
         </div>
     </div>
@@ -364,34 +393,39 @@
                 <p>Select an adviser below</p>
             </div>
 
-            <div class="user_select">
-                @foreach ($advisers as $item)
-                    <div class="col-md-4 col-lg-3">
-                        <div class="user_item">
-                            <a class="delete-button"
-                                onclick="event.preventDefault(); DeleteTaskConfirmation('{{ $item->id }}')">
-                            <!-- <input type="checkbox" class="checkbox-input">> -->
-                            <span class="checkmark"></span>
-                            <div class="info">
-                                <img class="avatar"
-                                    src="{{ asset('pictures/' . ($item->photo ? $item->photo : 'pic.png')) }}" />
-                                <div class="name-role">
-                                    <p class="name">{{ $item->first_name }} {{ $item->last_name }}</p>
-                                    <p class="role">{{ $item->program }}</p>
-                                </div>
-                            </div>
-                            
-                                {{-- <i class="accordion-img fas fa-trash" style="color: #DD6B55"></i> --}}
-                            </a>
-                            <form id="delete-form-{{ $item->id }}" action="{{ route('choose_adviser', $item->id) }}"
-                                method="POST" class="d-none">
-                                {!! csrf_field() !!}
-                                {{-- @method('POST') --}}
-                            </form>
-                        </div>
+            
+   
+                @if (auth('student')->user()->adviser_id)
+                <div class="col-md-4 col-lg-3">
+                    <div class="user_item">
+                        You already have an adviser.
                     </div>
-                @endforeach
-            </div>
+                </div>
+            @else
+                <div class="user_select">
+                    @foreach ($advisers as $item)
+                        <div class="col-md-4 col-lg-3">
+                            <div class="user_item">
+                                <a class="delete-button" onclick="event.preventDefault(); DeleteTaskConfirmation('{{ $item->id }}')">
+                                    <span class="checkmark"></span>
+                                    <div class="info">
+                                        <img class="avatar" src="{{ asset('pictures/' . ($item->photo ? $item->photo : 'pic.png')) }}" />
+                                        <div class="name-role">
+                                            <p class="name">{{ $item->first_name }} {{ $item->last_name }}</p>
+                                            <p class="role">{{ $item->program }}</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <form id="delete-form-{{ $item->id }}" action="{{ route('choose_adviser', $item->id) }}" method="POST" class="d-none">
+                                    {!! csrf_field() !!}
+                                </form>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+            
+ 
 
             <script>
                 function DeleteTaskConfirmation(taskId) {
