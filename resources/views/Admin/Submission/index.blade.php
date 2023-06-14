@@ -62,7 +62,7 @@
 
           <div class="container-fluid">
             <div class="row table-card">
-                @foreach ($acts as $item)                 
+                       
                 <table class="table">
                     <thead>
                     <tr>
@@ -73,6 +73,7 @@
                     </tr>
                     </thead>
                     <tbody>
+                        @foreach ($acts as $item)   
                     <tr>
                     <td>{{$item->first_name}} {{$item->last_name}}</td>
                     <td>{{$item->created_at}}</td>
@@ -83,8 +84,9 @@
                     </td>
                     </tr>
                     </tbody>
+                    @endforeach
                 </table>
-                @endforeach
+  
             </div>
             </div>
         </div>

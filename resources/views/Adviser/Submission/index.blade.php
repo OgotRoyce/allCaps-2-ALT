@@ -61,8 +61,7 @@
             <div class="header-line"></div>
 
           <div class="container-fluid">
-            <div class="row table-card">
-                @foreach ($acts as $item)                 
+            <div class="row table-card">              
                 <table class="table">
                     <thead>
                     <tr>
@@ -73,6 +72,7 @@
                     <th>Action</th>
                     </tr>
                     </thead>
+                    @foreach ($acts as $item)   
                     <tbody>
                     <tr>
                     <td>{{$item->first_name}} {{$item->last_name}}</td>
@@ -96,8 +96,9 @@
                     </td>
                     </tr>
                     </tbody>
+                    @endforeach
                 </table>
-                @endforeach
+
             </div>
             </div>
         </div>

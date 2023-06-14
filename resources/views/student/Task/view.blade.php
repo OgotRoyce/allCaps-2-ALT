@@ -243,6 +243,7 @@
                                 
                                     <form action="{{route('submit_task')}}" method="POST" class="flex-grow-1 ml-3" enctype="multipart/form-data" > 
                                     {!! csrf_field() !!}
+                                    <input type="text" name="activity_code" hidden value="{{$acts->id}}">
                                     <input type="text" name="student_id" hidden value="{{auth('student')->user()->account_code}}">
                                     <input type="text" name="first_name" hidden value="{{auth('student')->user()->first_name}}">
                                     <input type="text" name="last_name" hidden value="{{auth('student')->user()->last_name}}">

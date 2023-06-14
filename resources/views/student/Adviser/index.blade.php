@@ -438,7 +438,7 @@
                                         <div class="name-role">
                                             <p class="name">{{ $item->first_name }} {{ $item->last_name }}</p>
                                             <p class="role">{{ $item->program }}</p>
-                                            <p class="count">Advisees: <b><span style="color: #f39100;">0/10</span></b></p>
+                                            <p class="count">Advisees: <b><span style="color: #f39100;">{{ $item->counter }}/10</span></b></p>
                                         </div>
                                     </div>
                                 </a>

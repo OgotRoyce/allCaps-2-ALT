@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Adviser;
 use App\Models\Student;
 use App\Models\Task;
+use App\Models\Projects;
 use App\Http\Requests\AdvisoreeRequest;
 
 class AdvisoreeController extends Controller
@@ -49,7 +50,10 @@ class AdvisoreeController extends Controller
      */
     public function show(string $id)
     {
-        return view('Adviser.Advisoree.view');
+        $students = Student::where('id', $id)->first();
+        $projects = Projects::where('user_id', $id)->first();
+        // dd($projects);
+        return view('Adviser.Advisoree.view',['students'=>$students, 'projects'=>$projects]);
     }
 
     /**

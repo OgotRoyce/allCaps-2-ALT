@@ -275,9 +275,27 @@
                                                             <p>Due Date: {{ \Carbon\Carbon::parse($act->due_date)->format('F d, Y') }}</p>
                                                         </div>
                                                     </div>
-                                                    <div class='status'>
-                                                        <p>Pending</p>
+                                                    @foreach($outputs as $output)
+                                                    @if($act->id == $output->activity_code && $output->status == 'pending')
+                                                        <div class='status'>     
+                                                            <p>Submitted </p>
+                                                        </div>
+                                                        <?php break; ?> <!-- Exit the loop after finding a match -->
+                                                        @elseif($act->id == $output->activity_code && $output->status == 'Reviewed')
+                                                        <div class='status'>  
+                                                            <p>{{$output->status}} by the project adviser</p> 
+                                                        </div>
+                                                        <?php break; ?> <!-- Exit the loop after finding a match -->
+                                                    @endif
+                                                @endforeach
+                                                
+                                                @if ($loop->last) <!-- Check if it's the last iteration of the loop -->
+                                                    <div class='status'>     
+                                                        <p>No Submission</p>
                                                     </div>
+                                                @endif
+                                                
+                                                
                                                 </div>
                 
                                                 @endif

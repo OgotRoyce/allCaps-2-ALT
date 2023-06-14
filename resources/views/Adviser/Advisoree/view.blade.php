@@ -206,19 +206,21 @@
             <div class="col-md-3">
                 <div class="profile-sidebar">
                     <div class="profile-userpic">
-                        <img src="{{ asset('/images/no_image.jpg') }}"  />
+                        {{-- <img src="{{ asset('/images/no_image.jpg') }}"  /> --}}
+                        <img class="avatar" src="{{ asset('pictures/'.($students->photo ? $students->photo : 'pic.png')) }}"  />
+
                     </div>
                     <div class="profile-usertitle">
                         <div class="profile-usertitle-name">
-                            <h5 class="member-name">Royce Ogot</h5>
+                            <h5 class="member-name">{{$students->first_name}} {{$students->last_name}}</h5>
                         </div>
                         <div class="profile-usertitle-group">
                             <h6 class="member-group">
-                                <b>DGR8</b></h6>
+                                <b>Group: {{$students->group_name}}</b></h6>
                         </div>
                         <div class="profile-usertitle-email">
                             <h6 class="member-email mb-2 text-muted"><strong>Email:</strong>
-                                201911397@gordoncollege.edu.ph</h6>
+                               {{$students->first_name}}</h6>
                         </div>
 
                     </div> 
@@ -233,16 +235,17 @@
                             {{-- @foreach ($projects as $item) --}}
                             <div class="project-container">
                                 <div class="project-img">
-                                    <img class="app-logo" src="{{ asset('/images/no_image.jpg') }}"  />
+                                    {{-- <img class="app-logo" src="{{ asset('/images/no_image.jpg') }}"  /> --}}
+                                    <img class="app-logo" src="{{ asset('pictures/'.($projects->logo ? $projects->logo : 'pic.png')) }}"  />
                                 </div>
                                 <div class="card-content">
-                                    <h4 class="project-title">AllCaps</h4>
+                                    <h4 class="project-title">{{$projects->title}}</h4>
                                     <div class="project-subtitle">
-                                        <p>Capstone Project Team Monitoring System</p>
+                                        <p>{{$projects->description}}</p>
                                         <p style="font-size: 12px; color: #666;">Developed by
-                                            Royce Ogot</p>
+                                            {{$projects->first_name}} {{$projects->lastname}}</p>
                                             <p style="font-size: 12px; color: #666;">Group: 
-                                                DGR8
+                                                {{$projects->group_name}}
                                               </p>
                                     </div>
                                 </div>

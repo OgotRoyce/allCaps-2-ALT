@@ -13,29 +13,29 @@ use Str;
 
 class TasksController extends Controller
 {
+
     public function index()
     {
- 
         $tasks = Task::all();
         $acts = Activity::all();
-       
-    
-        return view('Student.Task.index', ['tasks' => $tasks, 'acts' => $acts, ]);
+        $outputs = Output::whereIn('activity_code', $acts->pluck('id'))->get();
+        // dd($outputs);
+        return view('Student.Task.index', ['tasks' => $tasks, 'acts' => $acts, 'outputs' => $outputs]);
     }
-    
-
-    public function show($taskId)
+public function show($taskId)
     {
         $user = auth('student')->user();
         $userAccountCode = $user->account_code;
-      
+        // dd($taskId);
         $acts = Activity::findOrFail($taskId);
-        $taskCode = $acts->task_code;
+        // dd($acts);
+        $taskCode = $acts->id;
+        // dd($taskCode);
         $accout = Output::where([
             ['student_id', $userAccountCode],
-            ['task_code', $taskCode],
+            ['activity_code', $taskCode],
         ])->get();
-        // dd($taskCode);
+        // dd($accout);
         return view('Student.Task.view', ['acts' => $acts, 'accout' => $accout, 'taskCode' => $taskCode]);
     }
     
@@ -67,6 +67,7 @@ class TasksController extends Controller
             }
                 // Create a new Task instance
                 $task = Output::create([
+                    'activity_code' =>  $request->get('activity_code'),
                     'student_id' =>  $request->get('student_id'),
                     'first_name' =>  $request->get('first_name'),
                     'last_name' =>  $request->get('last_name'),
