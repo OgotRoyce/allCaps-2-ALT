@@ -119,6 +119,14 @@
         margin-right: 3rem;
     }
 
+    .status-done {
+        margin-left: auto;
+        font-style: italic;
+        font-size: 16px;
+        color: #45b565;
+        margin-right: 3rem;
+    }
+
     .task-stats {
         display: flex;
         align-items: center;
@@ -282,8 +290,8 @@
                                                         </div>
                                                         <?php break; ?> <!-- Exit the loop after finding a match -->
                                                         @elseif($act->id == $output->activity_code && $output->status == 'Reviewed')
-                                                        <div class='status'>  
-                                                            <p>{{$output->status}} by the project adviser</p> 
+                                                        <div class='status-done'>  
+                                                            <p>{{$output->status}} by the Project Adviser</p> 
                                                         </div>
                                                         <?php break; ?> <!-- Exit the loop after finding a match -->
                                                     @endif
