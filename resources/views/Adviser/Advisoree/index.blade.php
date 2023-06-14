@@ -17,7 +17,7 @@
     .header-line {
       height: 1px;
       background-color: #bfbfbf;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
     }
     
     
