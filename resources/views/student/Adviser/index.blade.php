@@ -253,7 +253,6 @@
         color: #f06548;
         font-size: 30px;
         font-weight: 600;
-        margin-top: 10px;
         font-size: 30px;
         margin-bottom: 10px;
         margin-left: 20px;
@@ -294,6 +293,7 @@
         /* add this */
         flex-grow: 1;
         margin-top: 20px;
+        margin-bottom: 20px;
     }
 
     /* .adviser-advdetails-details {
