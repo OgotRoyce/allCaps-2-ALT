@@ -43,8 +43,10 @@ public function show($taskId)
     public function store(Request $request)
     {
         $request->validate([
-            'attachments' => 'nullable|array',
-            'attachments.*' => 'nullable|file|mimes:pdf,doc,docx|max:2048', // Define the allowed file types and size
+            'attachments' => 'required|array|min:1',
+            'attachments.*' => 'required|file|mimes:pdf,doc,docx|max:2048',
+        ], [
+            'attachments.required' => 'Please provide attachment.',
         ]);
 
                // file upload
@@ -63,7 +65,8 @@ public function show($taskId)
                 $attachments = implode(',', $attachmentPaths); // Convert array to comma-separated string
             } else {
                 //   dd('Invalid file');
-                $attachments = ''; // Assign an empty string if no attachments
+                $request->session()->flash('error', 'Please provide attachment');
+                // return back()->withInput();
             }
                 // Create a new Task instance
                 $task = Output::create([

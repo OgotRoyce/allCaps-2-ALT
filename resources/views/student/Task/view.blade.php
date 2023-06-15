@@ -242,6 +242,12 @@
 
                             <div class="modal-footer">
                                 
+                                @if ($errors->has('attachments'))
+                                    <div class="alert alert-danger">
+                                        {{ $errors->first('attachments') }}
+                                    </div>
+                                @endif
+
                                     <form action="{{route('submit_task')}}" method="POST" class="flex-grow-1 ml-3" enctype="multipart/form-data" > 
                                     {!! csrf_field() !!}
                                     <input type="text" name="activity_code" hidden value="{{$acts->id}}">

@@ -17,8 +17,11 @@ class AdviserController extends Controller
     {
         $user = auth('student')->user();
         $userID = $user->adviser_id;
+ 
         // dd($userID);
+
         $myadviser = Adviser::where('id', $userID)->first();
+
         // dd($myadviser);
         $advisers = Adviser::all();
         return view('Student.Adviser.index', ['advisers' => $advisers, 'myadviser'=>$myadviser]);

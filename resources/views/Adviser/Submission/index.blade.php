@@ -93,7 +93,7 @@
                         <th>Action</th>
                         </tr>
                         </thead>
-                        @foreach ($acts as $item)   
+                        @foreach ($pending as $item)   
                         <tbody>
                         <tr>
                         <td>{{$item->first_name}} {{$item->last_name}}</td>
@@ -139,16 +139,15 @@
                             <th>Status</th>
                             </tr>
                             </thead>
-                            
+                            @foreach ($review as $reviewed)
                             <tbody>
-                            <tr>
-                            <td></td>
-                            <td></td>
-                            {{-- <td>{{$item->status}}</td> --}}
-                            <td></td>
-                            <td></td>
+                            <td>{{$reviewed->first_name}} {{$item->reviewed}}</td>  
+                            <td>{{$reviewed->updated_at}}</td>
+                            <td>  <a href="{{ asset('file/' . $reviewed->attachments) }}" download>{{ $reviewed->attachments }}</a></td>
+                            <td>{{$reviewed->status}}</td>
                             </tr>
                             </tbody>
+                            @endforeach
                         </table>
                     </div>
                 </div>

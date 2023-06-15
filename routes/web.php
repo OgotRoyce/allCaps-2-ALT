@@ -13,15 +13,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('Admin/Auth/login');
-// });
+Route::redirect('/', '/admin');
+Route::get('/admin', function () {
+    return view('Admin/Auth/login');
+});
 
-// Route::get('/Adviser', function () {
-//     return view('Adviser/Auth/login');
-// });
 
-Route::redirect('/', '/admin/login');
+Route::get('/adviser', function () {
+    return view('Adviser/Auth/login');
+});
+
+
+Route::get('/student', function () {
+    return view('Student/Auth/login');
+});
+
+// Route::redirect('/', '/admin/login');
 
 //Admin routes
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {

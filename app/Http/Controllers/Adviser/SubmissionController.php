@@ -16,9 +16,18 @@ class SubmissionController extends Controller
      */
     public function index($task_code)
     {
-        $acts = Output::where('task_code', $task_code)->get();
+        $user = auth('adviser')->user();
+        $userID = $user->id;
+
+        $pending = Output::where('task_code', $task_code)->
+                        where('adviser_id',$userID)->
+                        where('status','pending')->get();
+
+        $review = Output::where('task_code', $task_code)->
+                        where('adviser_id',$userID)->
+                        where('status','Reviewed')->get();          
         // dd($acts);
-        return view('Adviser.Submission.index', ['acts' => $acts]);
+        return view('Adviser.Submission.index', ['pending' => $pending, 'review'=>$review]);
     }
 
     /**
