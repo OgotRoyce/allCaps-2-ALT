@@ -67,7 +67,7 @@
     /* search input */
     #accordion_search_bar_container {
     position: relative;
-        &:after { 
+        /* &:after { 
             content: '\e003';
             font-family: Glyphicons Halflings;
             width: 18px;
@@ -75,7 +75,7 @@
             position: absolute;
             right: 10px;
             bottom: 10px; 
-        }  
+        }   */
 
         #accordion_search_bar {
             display: block;
@@ -189,6 +189,8 @@
       <input type="search" 
          id="accordion_search_bar" 
          placeholder="Search"/>
+         <div style="position: absolute; right: 10px; top: 10px;"><i class="fas fa-search"></i></div>
+
   </div>
     
     <div class="row cards-container">
