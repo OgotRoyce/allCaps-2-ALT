@@ -371,7 +371,7 @@
                     <div class="adviser-content">
                         <h5 class="adviser-advdetails-head"><i class="fas fa-user"></i> My Adviser </h5>
                         <div class="header-line"></div>
-                        @if ($myadviser && $myadviser->id == auth('student')->user()->adviser_id)
+                        @if ($myadviser && $myadviser->id == auth('student')->user()->adviser_id && auth('student')->user()->status == 'accepted')
                         
                         <div class="advdetails-container"> 
                             <div class="advdetails-img">
@@ -388,11 +388,44 @@
                                 <div class="advdetails-subtitle">
                                     <p class="adv-program">{{$myadviser->program}}</p>
                                     <p class="adv-email">{{$myadviser->email}}</b>
+                                        <p class="adv-email text-success">Accepted</b>
                                     </p>
                                 </div>
                             </div>
                         </div>
-                
+                        @elseif ($myadviser && $myadviser->id == auth('student')->user()->adviser_id && auth('student')->user()->status == 'pending')
+
+                        <div class="advdetails-container"> 
+                            <div class="advdetails-img">
+                                {{-- @if ($item->logo) --}}
+                                    {{-- <img class="app-logo" src="{{ asset('public/images/' . $item->logo) }}"> --}}
+                                    {{-- <img class="app-logo" src="{{ asset('pictures/'.($item->logo ? $item->logo : 'pic.png')) }}"  />
+                                @else --}}
+                                {{-- <img class="adv-thumbnail" src="{{ asset('/images/no_image.jpg') }}"> --}}
+                                {{-- @endif --}}
+                                <img class="adv-thumbnail" src="{{ asset('pictures/'.($myadviser->photo ? $myadviser->photo : 'pic.png')) }}"  />
+                            </div>
+                            <div class="card-content">
+                                <h4 class="advdetails-title">{{$myadviser->first_name}} {{$myadviser->last_name}}</h4>
+                                <div class="advdetails-subtitle">
+                                    <p class="adv-program">{{$myadviser->program}}</p>
+                                    <p class="adv-email">{{$myadviser->email}}</b>
+                                        <p class="adv-email text-warning">Waiting for approval</b>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        @elseif ($myadviser && $myadviser->id == auth('student')->user()->adviser_id && auth('student')->user()->status == 'declined')
+
+                        <div class="advdetails-container-2">
+                            <div class="no-application">
+                                <h1 class="text-center"><b>Sorry...</b></h1>
+                                <h3 class="text-subtitle">You request was declined.</h3>
+                                <p>Select one from the advisers below.</p>
+                            </div>
+                        </div>
+
                         @else
 
                     <div class="advdetails-container-2">
@@ -409,19 +442,37 @@
     </div>
 
     <div class="wrapper-fluid">
-        @if (auth('student')->user()->adviser_id)
-            {{-- <div class="user_select_wrap">
-                <div class="title">
-                    <p>Select your Project Adviser</p>
-                </div> 
 
+        @if (auth('student')->user()->adviser_id && auth('student')->user()->status != 'accepted' )
+
+        <div class="user_select">
+            @foreach ($advisers as $item)
                 <div class="col-md-4 col-lg-3">
                     <div class="user_item">
-                        You already have an adviser.
+                        <a class="delete-button" onclick="event.preventDefault(); DeleteTaskConfirmation('{{ $item->id }}')">
+                            <span class="checkmark"></span>
+                            <div class="info">
+                                <img class="avatar" src="{{ asset('pictures/' . ($item->photo ? $item->photo : 'pic.png')) }}" />
+                                <div class="name-role">
+                                    <p class="name">{{ $item->first_name }} {{ $item->last_name }}</p>
+                                    <p class="role">{{ $item->program }}</p>
+                                    <p class="count">Advisees: <b><span style="color: #f39100;">{{ $item->counter }}/10</span></b></p>
+                                </div>
+                            </div>
+                        </a>
+                        <form id="delete-form-{{ $item->id }}" action="{{ route('choose_adviser', $item->id) }}" method="POST" class="d-none">
+                            {!! csrf_field() !!}
+                        </form>
                     </div>
                 </div>
-            </div> --}}
-            @else
+            @endforeach
+        </div>
+
+        @endif
+
+        @if (auth('student')->user()->adviser_id )
+
+        @else
             <div class="user_select_wrap">
                 <div class="title">
                     <p>Select your Project Adviser</p>

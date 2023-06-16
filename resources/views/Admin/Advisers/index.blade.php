@@ -167,10 +167,10 @@
 
                         {{-- <i class="accordion-img fas fa-pencil-alt" style="color: rgb(48, 133, 214)" data-bs-target="#exampleModalToggle-{{$item->id}}" data-bs-toggle="modal"></i> --}}
                 
-                        <a class="delete-button" onclick="event.preventDefault(); DeleteTaskConfirmation()">
+                        <a class="delete-button" onclick="event.preventDefault(); DeleteTaskConfirmation('{{ $item->id }}')">
                         <i class="accordion-img fas fa-trash"  style="color: #8a8a8a" ></i>
                         </a>             
-                            <form id="delete-form" action="{{ route('delete_adviser',$item->id) }}" method="POST" class="d-none">
+                            <form id="delete-form-{{ $item->id }}" action="{{ route('delete_adviser',$item->id) }}" method="POST" class="d-none">
                                 {!! csrf_field() !!}
                                 @method('DELETE')
                             </form>
@@ -191,7 +191,7 @@
 </div>
 
 <script>
-    function DeleteTaskConfirmation() {
+    function DeleteTaskConfirmation(adviserID) {
         Swal.fire({
             title: 'Are you sure?',
             text: 'You are about to delete this adviser!',
@@ -202,7 +202,7 @@
             confirmButtonText: 'Delete'
         }).then((result) => {
             if (result.isConfirmed) {
-                document.getElementById('delete-form').submit();
+                document.getElementById('delete-form-'+adviserID).submit();
             }
         });
     }

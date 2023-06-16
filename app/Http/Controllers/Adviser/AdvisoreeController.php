@@ -21,7 +21,10 @@ class AdvisoreeController extends Controller
         $userID = $user->id;
         
         $adviser = Adviser::where('id', $userID)->first();
-        $students = Student::whereIn('adviser_id', [$adviser->id])->get();
+        $students = Student::whereIn('adviser_id', [$adviser->id])
+                            ->where('status', 'accepted')
+                            ->get();
+
         // dd($adviser);
         return view('Adviser.Advisoree.index', ['adviser' => $adviser, 'students' => $students]);
     }

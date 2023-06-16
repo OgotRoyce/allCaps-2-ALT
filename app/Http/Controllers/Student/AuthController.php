@@ -11,7 +11,7 @@ class AuthController extends Controller
 {
     public function login()
     {
-        return view('student.Auth.login');
+        return view('Student.Auth.login');
     }
 
     public function auth(Request $request)

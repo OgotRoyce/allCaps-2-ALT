@@ -69,6 +69,7 @@ class AdviserController extends Controller
         $student = Student::where('id', $user->id)->first();
         // dd($student);
         $student->adviser_id = $id;
+        $student->status = 'pending';
         $student->save();
         return back();
         // Projects::update()

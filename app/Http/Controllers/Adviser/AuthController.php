@@ -30,7 +30,8 @@ class AuthController extends Controller
 
     public function logout()
     {
-        FacadesAuth::guard('adviser')->logout();
+        
+        Auth::guard('adviser')->logout();
         return redirect()->route('login_adviser');
     }
 }

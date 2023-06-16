@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\RoleRequest;
-use App\Models\adviser;
+use App\Models\Adviser;
 use App\Models\Student;
 use Str;
 
@@ -16,7 +16,7 @@ class AdviserController extends Controller
      */
     public function index()
     {
-        $adviser = adviser::all();
+        $adviser = Adviser::all();
         return view('Admin.Advisers.index', ['adviser' => $adviser]);
         // return view('Admin.Advisers.index');
     }
@@ -44,7 +44,7 @@ class AdviserController extends Controller
             $image = $filename . '_' . time() . '.' . $extension;
             $path = $photo->move('pictures', $image);
 
-            $user = adviser::create([
+            $user = Adviser::create([
                 'adviser_id' => strtoupper(Str::random(10)),
                 'first_name' => $request->get('first_name'),
                 'last_name' => $request->get('last_name'),
@@ -106,7 +106,7 @@ class AdviserController extends Controller
      */
     public function edit(string $id)
     {
-        $user = adviser::find($id);
+        $user = Adviser::find($id);
         if (!$user) {
             return redirect()->route('adviser')->with('error', 'user not found.');
         }
@@ -118,7 +118,7 @@ class AdviserController extends Controller
      */
     public function update(RoleRequest $request, string $id)
     {
-        $user = adviser::find($id);
+        $user = Adviser::find($id);
         $input = $request->all();
         $user->update($input);
         return redirect()->route('adviser')->with('success', 'Adviser updated!');
@@ -129,7 +129,7 @@ class AdviserController extends Controller
      */
     public function destroy(string $id)
     {
-        adviser::destroy($id);
+        Adviser::destroy($id);
         return back()->with('success', 'Deleted successfully.');
     }
 }
