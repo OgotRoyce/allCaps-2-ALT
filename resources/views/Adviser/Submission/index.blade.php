@@ -80,7 +80,21 @@
               <h5 class="header mt-2"><i class="fas fa-file me-2"></i> Submissions </h5>
             </div>
             <div class="header-line"></div>
-
+            {{-- @if ($acts)
+                <div class="row task">
+                <div class="task-content">
+                    <div class="task-detail-name">
+                        <h5 class="task-detail-head">{{ $acts->title }}</h5>
+                        <div class="due-date">
+                            <p>
+                                <i class="fas fa-clock me-1"></i>
+                                <strong>Due Date:</strong>
+                                {{ \Carbon\Carbon::parse($acts->due_date)->format('F d, Y') }}
+                            </p>
+                    </div>
+                </div>
+                </div>
+            @endif --}}
             <div class="container-fluid">
                 <div class="row table-card">              
                     <table class="table">
