@@ -84,6 +84,12 @@ class AdviserController extends Controller
             'studentsCount' => $studentsCount,
             'students' => $students
         ]);
+    
+    
+        // $students = Student::where('id', $id)->first();
+        // $projects = Projects::where('user_id', $id)->first();
+        // // dd($projects);
+        // return view('Admin.Advisee.view',['students'=>$students, 'projects'=>$projects]);
     }
 
 

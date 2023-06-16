@@ -75,6 +75,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::delete('/delete/{id}', ['as' => 'delete_adviser', 'uses' => "AdviserController@destroy"]);
         Route::get('/show/{id}', ['as' => 'view_adviser', 'uses' => "AdviserController@show"]);
         Route::get('/adviser/{id}/students/count', 'AdviserController@studentsCount')->name('adviser.students.count');
+        // Route::get('/show/{id}', ['as' => 'view_advisee', 'uses' => "AdviserController@show"]);    
     });
 });
 

@@ -1,4 +1,4 @@
-@extends('layouts.adviser')
+@extends('layouts.admin')
 
 <style>
     .header {
@@ -196,9 +196,6 @@
         <div class="col-12">
           <div class="d-flex justify-content-between align-items-center">
             <h5 class="header mt-2"><i class="fas fa-user"></i>Advisee</h5>
-                <a class="delete-button" onclick="event.preventDefault(); DeleteTaskConfirmation()">
-                <i class="fas fa-user-slash" style="color: #8a8a8a; font-size: 28px; margin-right: 20px;"></i>
-                </a>
           </div>
           <div class="header-line"></div>
         </div>
@@ -262,20 +259,3 @@
   </div>
   @endsection
 
-  <script>
-    function DeleteTaskConfirmation() {
-        Swal.fire({
-            title: 'Are you sure?',
-            text: 'You are about to remove this student as your advisee!',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#3085d6',
-            confirmButtonText: 'Delete'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                document.getElementById('delete-form').submit();
-            }
-        });
-    }
-</script>

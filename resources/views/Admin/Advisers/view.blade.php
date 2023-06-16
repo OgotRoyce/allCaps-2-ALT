@@ -408,8 +408,8 @@
                             <div class="header-line"></div>
                             <div class="row cards-container">
                                 @foreach ($students as $item)
-                                <div class="col-md-4 col-lg-5">
-                                    
+                                <div class="col-md-6 col-lg-6 mb-4">
+                                    {{-- <a href="{{ route('view_advisee', $item->id) }}"> --}}
                                         <div class="advisee-card">
                                             {{-- <img class="avatar" src="{{ asset('images/' . $item->photo) }}"
                                                 alt="Avatar" /> --}}

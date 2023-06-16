@@ -21,7 +21,7 @@ class SubmissionController extends Controller
 
         $pending = Output::where('task_code', $task_code)->
                         where('adviser_id',$userID)->
-                        where('status','pending')->get();
+                        where('status','Pending')->get();
 
         $review = Output::where('task_code', $task_code)->
                         where('adviser_id',$userID)->

@@ -46,7 +46,7 @@ public function show($taskId)
             'attachments' => 'required|array|min:1',
             'attachments.*' => 'required|file|mimes:pdf,doc,docx|max:2048',
         ], [
-            'attachments.required' => 'Please provide attachment.',
+            'attachments.required' => 'Please attach your submission file.',
         ]);
 
                // file upload

@@ -141,7 +141,7 @@
                             </thead>
                             @foreach ($review as $reviewed)
                             <tbody>
-                            <td>{{$reviewed->first_name}} {{$item->reviewed}}</td>  
+                            <td>{{$reviewed->first_name}} {{ $reviewed->last_name}}</td>  
                             <td>{{$reviewed->updated_at}}</td>
                             <td>  <a href="{{ asset('file/' . $reviewed->attachments) }}" download>{{ $reviewed->attachments }}</a></td>
                             <td>{{$reviewed->status}}</td>

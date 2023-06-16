@@ -200,6 +200,23 @@
     .file-btn {
     margin-bottom: 10px;
     }
+
+    .validation-error {
+  text-align: center;
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  margin-bottom: 10px;
+}
+
+
+
 </style>
 
 @section('content')
@@ -243,7 +260,7 @@
                             <div class="modal-footer">
                                 
                                 @if ($errors->has('attachments'))
-                                    <div class="alert alert-danger">
+                                    <div class="alert alert-danger validation-error">
                                         {{ $errors->first('attachments') }}
                                     </div>
                                 @endif
