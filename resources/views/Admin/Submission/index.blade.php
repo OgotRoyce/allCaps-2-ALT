@@ -47,17 +47,20 @@
 
     .status-accepted {
         background-color: #28a745;
+        text-transform: uppercase;
         color: #fff;
     }
 
     .status-rejected {
         background-color: #dc3545;
         color: #fff;
+        text-transform: uppercase;
     }
 
     .status-pending {
         background-color: #ffc107;
         color: #212529;
+        text-transform: uppercase;
     }
 
 
