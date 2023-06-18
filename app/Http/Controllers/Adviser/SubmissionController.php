@@ -25,6 +25,27 @@ class SubmissionController extends Controller
     //     // dd($acts);
     //     return view('Adviser.Submission.index', ['pending' => $pending, 'review' => $review]);
     // }
+    // public function index($task_code)
+    // {
+    //     $user = auth('adviser')->user();
+    //     $userID = $user->id;
+
+    //     $pending = Output::where('output.task_code', $task_code)
+    //         ->where('output.adviser_id', $userID)
+    //         ->where('output.status', 'Pending')
+    //         ->join('tasks', 'output.task_code', '=', 'tasks.task_code')
+    //         ->select('output.*', 'tasks.task')
+    //         ->get();
+
+    //     $review = Output::where('output.task_code', $task_code)
+    //         ->where('output.adviser_id', $userID)
+    //         ->where('output.status', 'Accepted')
+    //         ->join('tasks', 'output.task_code', '=', 'tasks.task_code')
+    //         ->select('output.*', 'tasks.task')
+    //         ->get();
+
+    //     return view('Adviser.Submission.index', ['pending' => $pending, 'review' => $review]);
+    // }
     public function index($task_code)
     {
         $user = auth('adviser')->user();
@@ -32,16 +53,22 @@ class SubmissionController extends Controller
 
         $pending = Output::where('output.task_code', $task_code)
             ->where('output.adviser_id', $userID)
-            ->where('output.status', 'Pending')
+            ->where('output.status', 'pending')
             ->join('tasks', 'output.task_code', '=', 'tasks.task_code')
-            ->select('output.*', 'tasks.task')
+            ->leftJoin('student', 'output.student_id', '=', 'student.id')
+            ->leftJoin('projects', 'student.id', '=', 'projects.user_id')
+            ->select('output.*', 'tasks.task', 'projects.group_name')
+            ->orderBy('output.created_at', 'desc')
             ->get();
 
         $review = Output::where('output.task_code', $task_code)
             ->where('output.adviser_id', $userID)
             ->where('output.status', 'Accepted')
             ->join('tasks', 'output.task_code', '=', 'tasks.task_code')
-            ->select('output.*', 'tasks.task')
+            ->leftJoin('student', 'output.student_id', '=', 'student.id')
+            ->leftJoin('projects', 'student.id', '=', 'projects.user_id')
+            ->select('output.*', 'tasks.task', 'projects.group_name')
+            ->orderBy('output.created_at', 'desc')
             ->get();
 
         return view('Adviser.Submission.index', ['pending' => $pending, 'review' => $review]);

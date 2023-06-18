@@ -100,6 +100,7 @@
                     <thead>
                         <tr>
                             <th>Name</th>
+                            <th>Group Name</th>
                             <th>Date submitted</th>
                             {{-- <th>Status</th> --}}
                             <th>Task Name</th>
@@ -111,6 +112,7 @@
                         <tbody>
                             <tr>
                                 <td>{{ $item->first_name }} {{ $item->last_name }}</td>
+                                <td>{{ $item->group_name }}</td>
                                 <td>{{ $item->created_at }}</td>
                                 {{-- <td>{{$item->status}}</td> --}}
                                 <td>{{ $item->task }}</td>
@@ -129,7 +131,8 @@
                                         onclick="event.preventDefault(); TaskConfirmation('{{ $item->id }}', 'reject')">
                                         <button class="btn btn-outline-danger">Reject</button>
                                     </a>
-                                    <form id="update-form-{{ $item->id }}" action="" method="POST" class="d-none">
+                                    <form id="update-form-{{ $item->id }}" action="" method="POST"
+                                        class="d-none">
                                         {!! csrf_field() !!}
                                         @method('PUT')
                                         <input type="hidden" name="action" id="action-{{ $item->id }}"
@@ -166,9 +169,9 @@
                         @foreach ($review as $reviewed)
                             <tbody>
                                 <td>{{ $reviewed->first_name }} {{ $reviewed->last_name }}</td>
-                                <td>{{ }}</td>
+                                <td>{{ $reviewed->group_name }}</td>
                                 <td>{{ $reviewed->updated_at }}</td>
-                                <td>{{ $item->task }}</td>
+                                <td>{{ $reviewed->task }}</td>
                                 <td> <a href="{{ asset('file/' . $reviewed->attachments) }}"
                                         download>{{ $reviewed->attachments }}</a></td>
                                 <td>{{ $reviewed->status }}</td>
