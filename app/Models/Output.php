@@ -22,4 +22,9 @@ class Output extends Model
         'attachments',
         'status',
     ];
+
+    public function student()
+    {
+        return $this->belongsTo(Student::class, 'student_id', 'account_code');
+    }
 }

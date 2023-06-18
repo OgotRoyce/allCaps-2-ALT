@@ -58,13 +58,12 @@
 
     thead {
         background-color: #f7f6f6;
-        
+
     }
 
     .completed-tasks {
         margin-top: 40px;
     }
-
 </style>
 
 @section('content')
@@ -76,11 +75,11 @@
                 </a>
             </div>
         </div>
-            <div class="d-flex justify-content-between align-items-center">
-              <h5 class="header mt-2"><i class="fas fa-file me-2"></i> Submissions </h5>
-            </div>
-            <div class="header-line"></div>
-            {{-- @if ($acts)
+        <div class="d-flex justify-content-between align-items-center">
+            <h5 class="header mt-2"><i class="fas fa-file me-2"></i> Submissions </h5>
+        </div>
+        <div class="header-line"></div>
+        {{-- @if ($acts)
                 <div class="row task">
                 <div class="task-content">
                     <div class="task-detail-name">
@@ -95,95 +94,118 @@
                 </div>
                 </div>
             @endif --}}
+        <div class="container-fluid">
+            <div class="row table-card">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Date submitted</th>
+                            {{-- <th>Status</th> --}}
+                            <th>Task Name</th>
+                            <th class="col-sm-4">Attachment</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    @foreach ($pending as $item)
+                        <tbody>
+                            <tr>
+                                <td>{{ $item->first_name }} {{ $item->last_name }}</td>
+                                <td>{{ $item->created_at }}</td>
+                                {{-- <td>{{$item->status}}</td> --}}
+                                <td>{{ $item->task }}</td>
+                                <td>
+                                    <a href="{{ asset('file/' . $item->attachments) }}"
+                                        target="_blank">{{ $item->attachments }}</a>
+                                    {{-- IF THE FILE IS .PDF, magbubukas lang sa new window, pero pag .docx, madodownload --}}
+                                    {{-- <a class="btn btn-danger" href="#">View</a> --}}
+                                </td>
+                                <td>
+                                    <a class="update-button"
+                                        onclick="event.preventDefault(); TaskConfirmation('{{ $item->id }}', 'accept')">
+                                        <button class="btn btn-outline-success">Accept</button>
+                                    </a>
+                                    <a class="update-button"
+                                        onclick="event.preventDefault(); TaskConfirmation('{{ $item->id }}', 'reject')">
+                                        <button class="btn btn-outline-danger">Reject</button>
+                                    </a>
+                                    <form id="update-form-{{ $item->id }}" action="" method="POST" class="d-none">
+                                        {!! csrf_field() !!}
+                                        @method('PUT')
+                                        <input type="hidden" name="action" id="action-{{ $item->id }}"
+                                            value="">
+                                    </form>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    @endforeach
+                </table>
+            </div>
+        </div>
+
+        <div class="completed-tasks col-lg-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <h5 class="header-2 mt-2"><i class="fas fa-clipboard-check" style="margin-right: 10px;"></i> Completed </h5>
+            </div>
+            <div class="header-line-2"></div>
             <div class="container-fluid">
-                <div class="row table-card">              
+                <div class="row table-card">
                     <table class="table">
                         <thead>
-                        <tr>
-                        <th>Name</th>
-                        <th>Date submitted</th>
-                        {{-- <th>Status</th> --}}
-                        <th class="col-sm-4">Attachment</th>
-                        <th>Action</th>
-                        </tr>
+                            <tr>
+                                <th>Name</th>
+                                <th>Group Name</th>
+                                <th>Date submitted</th>
+                                {{-- <th>Status</th> --}}
+                                <th>Task Name</th>
+                                <th class="col-sm-4">Attachment</th>
+                                <th>Status</th>
+                            </tr>
                         </thead>
-                        @foreach ($pending as $item)   
-                        <tbody>
-                        <tr>
-                        <td>{{$item->first_name}} {{$item->last_name}}</td>
-                        <td>{{$item->created_at}}</td>
-                        {{-- <td>{{$item->status}}</td> --}}
-                        <td>
-                            <a href="{{ asset('file/' . $item->attachments) }}" download>{{ $item->attachments }}</a>
-                            {{-- <a class="btn btn-danger" href="#">View</a> --}}
-                        </td>
-                        <td>
-                            <a class="update-button"
-                            onclick="event.preventDefault(); TaskConfirmation('{{ $item->id }}')">
-                            <button class="btn btn-outline-danger" >Review</button>
-                        </a>
-                        <form id="update-form-{{ $item->id }}"
-                            action="{{ route('review_tasks', $item->id) }}" method="POST"
-                            class="d-none">
-                            {!! csrf_field() !!}
-                            @method('PUT')
-                        </form>
-                        </td>
-                        </tr>
-                        </tbody>
+                        @foreach ($review as $reviewed)
+                            <tbody>
+                                <td>{{ $reviewed->first_name }} {{ $reviewed->last_name }}</td>
+                                <td>{{ }}</td>
+                                <td>{{ $reviewed->updated_at }}</td>
+                                <td>{{ $item->task }}</td>
+                                <td> <a href="{{ asset('file/' . $reviewed->attachments) }}"
+                                        download>{{ $reviewed->attachments }}</a></td>
+                                <td>{{ $reviewed->status }}</td>
+                                </tr>
+                            </tbody>
                         @endforeach
                     </table>
                 </div>
             </div>
-        
-            <div class="completed-tasks col-lg-12">
-                <div class="d-flex justify-content-between align-items-center">
-                    <h5 class="header-2 mt-2"><i class="fas fa-clipboard-check" style="margin-right: 10px;"></i> Completed </h5>
-                </div>
-                <div class="header-line-2"></div>
-                <div class="container-fluid">
-                    <div class="row table-card">              
-                        <table class="table">
-                            <thead>
-                            <tr>
-                            <th>Name</th>
-                            <th>Date submitted</th>
-                            {{-- <th>Status</th> --}}
-                            <th class="col-sm-4">Attachment</th>
-                            <th>Status</th>
-                            </tr>
-                            </thead>
-                            @foreach ($review as $reviewed)
-                            <tbody>
-                            <td>{{$reviewed->first_name}} {{ $reviewed->last_name}}</td>  
-                            <td>{{$reviewed->updated_at}}</td>
-                            <td>  <a href="{{ asset('file/' . $reviewed->attachments) }}" download>{{ $reviewed->attachments }}</a></td>
-                            <td>{{$reviewed->status}}</td>
-                            </tr>
-                            </tbody>
-                            @endforeach
-                        </table>
-                    </div>
-                </div>
-            </div>
-        
+        </div>
+
 
         <script>
-            function TaskConfirmation(taskId) {
+            function TaskConfirmation(taskId, action) {
                 Swal.fire({
                     title: 'Are you sure?',
-                    text: 'You are about to mark this activity of this student as reviewed.',
+                    text: 'You are about to ' + (action === 'accept' ? 'accept' : 'reject') + ' this task!',
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes'
+                    confirmButtonText: (action === 'accept' ? 'Accept' : 'Reject')
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        document.getElementById('update-form-' + taskId).submit();
+                        document.getElementById('action-' + taskId).value = action;
+                        var form = document.getElementById('update-form-' + taskId);
+
+                        // Set the form action dynamically based on the selected action
+                        if (action === 'accept') {
+                            form.action = "{{ route('accept_tasks', '') }}/" + taskId;
+                        } else if (action === 'reject') {
+                            form.action = "{{ route('reject_tasks', '') }}/" + taskId;
+                        }
+
+                        form.submit();
                     }
                 });
             }
         </script>
-
-@endsection
+    @endsection

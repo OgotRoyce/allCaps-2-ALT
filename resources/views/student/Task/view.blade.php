@@ -22,7 +22,7 @@
         margin-top: 20px;
         margin-bottom: 20px;
     }
-    
+
 
     .task-head {
         margin-top: 10px;
@@ -98,6 +98,7 @@
         color: #212529;
         font-weight: bold;
     }
+
     .task-usertitle-name {
         margin-top: 20px;
         color: #212529;
@@ -183,40 +184,38 @@
     }
 
     .modal-footer {
-    padding: 10px;
+        padding: 10px;
     }
 
-#attach-file-btn {
-    width: calc(100% - 20px); /* subtracting 20px from the width to account for the padding */
-}
+    #attach-file-btn {
+        width: calc(100% - 20px);
+        /* subtracting 20px from the width to account for the padding */
+    }
 
-.submit-btn {
-    background-color: #f5f5f5 !important;
-    align-items: center;
-    font-weight: 600 !important;
-    font-size: 12px;
+    .submit-btn {
+        background-color: #f5f5f5 !important;
+        align-items: center;
+        font-weight: 600 !important;
+        font-size: 12px;
     }
 
     .file-btn {
-    margin-bottom: 10px;
+        margin-bottom: 10px;
     }
 
     .validation-error {
-  text-align: center;
-  display: flex; 
-  justify-content: center; 
-  align-items: center;
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 9999;
-  margin-bottom: 10px;
-}
-
-
-
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 9999;
+        margin-bottom: 10px;
+    }
 </style>
 
 @section('content')
@@ -229,8 +228,8 @@
                             <button type="button" class="btn btn-outline-danger">Back</button>
                         </a>
                         @if (\Carbon\Carbon::parse($acts->due_date)->isPast())
-                                    <span class="due-head" style="color: #e24f4c; margin-left: 11rem;">Late</span>
-                                @endif
+                            <span class="due-head" style="color: #e24f4c; margin-left: 11rem;">Late</span>
+                        @endif
                         <div class="task-usertitle-name">
                             <h5 class="task-head">
                                 My Work
@@ -243,69 +242,90 @@
                         </div>
                         <div class="card file-upload-card">
                             <div class="card-body" id="file-name">
-                               
                                 @foreach ($accout as $accouts)
-                                    
-                                @if ($accouts->attachments)
-                                @foreach (explode(',', $accouts->attachments) as $attachment)
-                                    <a href="{{ asset('file/' . $attachment) }}" download>{{ $attachment }}</a><br>
+                                    @if ($accouts->attachments)
+                                        @foreach (explode(',', $accouts->attachments) as $attachment)
+                                            <a href="{{ asset('file/' . $attachment) }}"
+                                                download>{{ $attachment }}</a><br>
+                                        @endforeach
+                                    @endif
                                 @endforeach
-                            @endif
-                            @endforeach
                             </div>
                         </div>
 
                         <div class="header-line flex-grow-1 ml-3"></div>
 
-                            <div class="modal-footer">
-                                
-                                @if ($errors->has('attachments'))
-                                    <div class="alert alert-danger validation-error">
-                                        {{ $errors->first('attachments') }}
-                                    </div>
+                        <div class="modal-footer">
+
+                            @if ($errors->has('attachments'))
+                                <div class="alert alert-danger validation-error">
+                                    {{ $errors->first('attachments') }}
+                                </div>
+                            @endif
+
+                            <form action="{{ route('submit_task') }}" method="POST" class="flex-grow-1 ml-3"
+                                enctype="multipart/form-data">
+                                {!! csrf_field() !!}
+
+                                <input type="text" name="output_id" hidden
+                                    value="{{ $accout->isNotEmpty() ? $accout[0]->id : '' }}">
+                                <input type="text" name="activity_code" hidden value="{{ $acts->id }}">
+                                <input type="text" name="student_id" hidden
+                                    value="{{ auth('student')->user()->account_code }}">
+                                <input type="text" name="first_name" hidden
+                                    value="{{ auth('student')->user()->first_name }}">
+                                <input type="text" name="last_name" hidden
+                                    value="{{ auth('student')->user()->last_name }}">
+                                <input type="text" name="adviser_id" hidden
+                                    value="{{ auth('student')->user()->adviser_id }}">
+                                <input type="text" name="task_code" hidden value="{{ $acts->task_code }}">
+                                <input type="text" name="title" hidden value="{{ $acts->title }}">
+                                <input type="text" name="description" hidden value="{{ $acts->description }}">
+                                <input type="date" name="due_date" hidden value="{{ $acts->due_date }}">
+                                {{-- <p> {{$acts->due_date}}</p> --}}
+                                <input type="file" name="attachments[]" multiple hidden id="file-input">
+
+                                @foreach ($accout as $accouts)
+                                    @if ($accouts->attachments)
+                                        @if ($accouts->status == 'Rejected')
+                                            <button type="submit" class="btn btn-danger w-100"
+                                                id="attach-file-btn">Resubmit</button>
+                                        @else
+                                            <button type="submit" class="btn submit-btn w-100 disabled"
+                                                id="attach-file-btn">Already Submitted</button>
+                                        @endif
+                                    @endif
+                                @endforeach
+
+                                @if ($accout->isEmpty())
+                                    <button type="button" class="btn file-btn btn-outline-danger w-100"
+                                        id="attach-file-btn"><i class="fas fa-plus"></i> Attach File</button>
+                                    <button type="submit" class="btn btn-danger w-100" id="attach-file-btn">Submit</button>
                                 @endif
 
-                                    <form action="{{route('submit_task')}}" method="POST" class="flex-grow-1 ml-3" enctype="multipart/form-data" > 
-                                    {!! csrf_field() !!}
-                                    <input type="text" name="activity_code" hidden value="{{$acts->id}}">
-                                    <input type="text" name="student_id" hidden value="{{auth('student')->user()->account_code}}">
-                                    <input type="text" name="first_name" hidden value="{{auth('student')->user()->first_name}}">
-                                    <input type="text" name="last_name" hidden value="{{auth('student')->user()->last_name}}">
-                                    <input type="text" name="adviser_id" hidden value="{{auth('student')->user()->adviser_id}}">
-                                    <input type="text" name="task_code" hidden value="{{$acts->task_code}}">
-                                    <input type="text" name="title" hidden value="{{$acts->title}}">
-                                    <input type="text" name="description" hidden value="{{$acts->description}}">
-                                    <input type="date" name="due_date" hidden value="{{$acts->due_date}}">
-                                    {{-- <p> {{$acts->due_date}}</p> --}}
-                                    <input type="file" name="attachments[]" multiple hidden id="file-input">
+                            </form>
 
-                                    @foreach ($accout as $accouts)
-                                        @if ($accouts->attachments)
-                                            <button type="submit" class="btn submit-btn w-100 disabled" id="attach-file-btn">Already Submitted</button>
-                                            {{-- <p class="submit-text">Already Submitted</p> --}}
-                                        @endif
-                                    @endforeach
-                                
-                                    @if ($accout->isEmpty())
-                                        <button type="button" class="btn file-btn btn-outline-danger w-100" id="attach-file-btn"><i class="fas fa-plus"></i> Attach File</button>
-                                        <button type="submit" class="btn btn-danger w-100" id="attach-file-btn">Submit</button>
-                                    @endif
-                                    </form>
-                                
-                                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                                <script>
-                                    $(document).ready(function() {
-                                        $('#attach-file-btn').click(function() {
-                                            $('#file-input').click();
-                                        });
-                            
-                                        $('#file-input').change(function() {
-                                            var fileName = $(this).val().split('\\').pop();
-                                            $('#file-name').text(fileName);
-                                        });
+                            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                            <script>
+                                $(document).ready(function() {
+                                    $('#attach-file-btn').click(function() {
+                                        $('#file-input').click();
                                     });
-                                </script>
-                            </div>
+
+                                    $('#file-input').change(function() {
+                                        var fileInput = $(this);
+                                        var fileName = fileInput.val().split('\\').pop();
+                                        $('#file-name').text(fileName);
+
+                                        // Check if the button should be changed to "Submit"
+                                        var resubmitButton = $('#attach-file-btn');
+                                        if (resubmitButton.text() === 'Resubmit' && fileInput[0].files.length > 0) {
+                                            resubmitButton.text('Submit');
+                                        }
+                                    });
+                                });
+                            </script>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-9">
@@ -330,7 +350,8 @@
                                     style="margin-right: 5px;"></i><strong>Attachments</strong></h6>
                             <div class="task-attachments-card">
                                 <div class="card-body ">
-                                    <a href="{{ asset('file/' . $acts->attachments) }}" download>{{ $acts->attachments }}</a>
+                                    <a href="{{ asset('file/' . $acts->attachments) }}"
+                                        download>{{ $acts->attachments }}</a>
                                 </div>
                             </div>
                         </div>

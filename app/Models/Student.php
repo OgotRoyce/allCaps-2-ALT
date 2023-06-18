@@ -22,4 +22,8 @@ class Student extends Authenticatable
         'adviser_id',
         'group_name',
     ];
+    public function projects()
+    {
+        return $this->hasMany(Project::class, 'user_id');
+    }
 }

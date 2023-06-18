@@ -14,21 +14,40 @@ class SubmissionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // public function index($task_code)
+    // {
+    //     $user = auth('adviser')->user();
+    //     $userID = $user->id;
+
+    //     $pending = Output::where('task_code', $task_code)->where('adviser_id', $userID)->where('status', 'Pending')->get();
+
+    //     $review = Output::where('task_code', $task_code)->where('adviser_id', $userID)->where('status', 'Accepted')->get();
+    //     // dd($acts);
+    //     return view('Adviser.Submission.index', ['pending' => $pending, 'review' => $review]);
+    // }
     public function index($task_code)
     {
         $user = auth('adviser')->user();
         $userID = $user->id;
 
-        $pending = Output::where('task_code', $task_code)->
-                        where('adviser_id',$userID)->
-                        where('status','Pending')->get();
+        $pending = Output::where('output.task_code', $task_code)
+            ->where('output.adviser_id', $userID)
+            ->where('output.status', 'Pending')
+            ->join('tasks', 'output.task_code', '=', 'tasks.task_code')
+            ->select('output.*', 'tasks.task')
+            ->get();
 
-        $review = Output::where('task_code', $task_code)->
-                        where('adviser_id',$userID)->
-                        where('status','Reviewed')->get();          
-        // dd($acts);
-        return view('Adviser.Submission.index', ['pending' => $pending, 'review'=>$review]);
+        $review = Output::where('output.task_code', $task_code)
+            ->where('output.adviser_id', $userID)
+            ->where('output.status', 'Accepted')
+            ->join('tasks', 'output.task_code', '=', 'tasks.task_code')
+            ->select('output.*', 'tasks.task')
+            ->get();
+
+        return view('Adviser.Submission.index', ['pending' => $pending, 'review' => $review]);
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -83,7 +102,24 @@ class SubmissionController extends Controller
     public function update(Request $request, $id)
     {
         $acts = Output::find($id);
-        $acts->status = 'Reviewed';
+        $acts->status = 'Accepted';
+        $acts->save();
+        return back()->with('success', 'Updated successfully');
+    }
+
+    public function accept(Request $request, $id)
+    {
+        $acts = Output::find($id);
+        $acts->status = 'Accepted';
+        $acts->save();
+        return back()->with('success', 'Updated successfully');
+    }
+
+
+    public function reject(Request $request, $id)
+    {
+        $acts = Output::find($id);
+        $acts->status = 'Rejected';
         $acts->save();
         return back()->with('success', 'Updated successfully');
     }

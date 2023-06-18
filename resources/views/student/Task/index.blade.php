@@ -127,6 +127,14 @@
         margin-right: 3rem;
     }
 
+    .status-warning {
+        margin-left: auto;
+        font-style: italic;
+        font-size: 16px;
+        color: #ff0000;
+        margin-right: 3rem;
+    }
+
     .task-stats {
         display: flex;
         align-items: center;
@@ -240,86 +248,102 @@
                     <div class="header-line"></div>
 
                     @foreach ($tasks as $task)
-                    <div class="accordion">
-                        <div class="accordion-item">
-                            <div class="accordion-item-header">
-                                <div class="left-content">
-                                    <i class="accordion-img fas fa-folder-open"></i>
-                                    <!-- Task Title -->
-                                    {{ $task->task }}
-                                </div>
-                                {{-- <div class="right-content">  
-                
+                        <div class="accordion">
+                            <div class="accordion-item">
+                                <div class="accordion-item-header">
+                                    <div class="left-content">
+                                        <i class="accordion-img fas fa-folder-open"></i>
+                                        <!-- Task Title -->
+                                        {{ $task->task }}
+                                    </div>
+                                    {{-- <div class="right-content">
+
                                     <i class="accordion-img fas fa-pencil-alt" style="color: #DD6B55" data-bs-target="#exampleModalToggle-{{ $task->id }}" data-bs-toggle="modal"></i>
-                
+
                                     <a class="delete-button" onclick="event.preventDefault(); DeleteTaskConfirmation()">
                                     <i class="accordion-img fas fa-trash"  style="color: #DD6B55" ></i>
-                                    </a>             
+                                    </a>
                                         <form id="delete-form" action="{{ route('delete_tasks',$task->task_code) }}" method="POST" class="d-none">
                                             {!! csrf_field() !!}
                                             @method('DELETE')
                                         </form>
                                 </div> --}}
-                                
-                            </div>
-                            
-                
-                            <div class="accordion-item-body">
-                                <div class="accordion-item-body-content">
-                                    <div class='app'>
-                                        <main class='project'>
-                                            @foreach ($acts as $act)
-                
-                                            @if ($act->task_code === $task->task_code)
-                
-                                                <div class='project-tasks'>
-                                                    <a href="{{ route('view_student_tasks', $act->id) }}" class="project-column-header__link">
-                                                    <i class="task-img fas fa-clipboard-list"></i>
-                                                    <div class='project-column'>
-                                                            <h2 class='project-column-header__title'>{{ $act->title }}</h2>
-                                                        </a>
-                                                        
-                                                        <div class='task'>
-                                                            <p>Due Date: {{ \Carbon\Carbon::parse($act->due_date)->format('F d, Y') }}</p>
-                                                        </div>
-                                                    </div>
-                                                    @foreach($outputs as $output)
-                                                    @if($act->id == $output->activity_code && $output->status == 'pending')
-                                                        <div class='status'>     
-                                                            <p>Submitted </p>
-                                                        </div>
-                                                        <?php break; ?> <!-- Exit the loop after finding a match -->
-                                                        @elseif($act->id == $output->activity_code && $output->status == 'Reviewed')
-                                                        <div class='status-done'>  
-                                                            <p>{{$output->status}} by the Project Adviser</p> 
-                                                        </div>
-                                                        <?php break; ?> <!-- Exit the loop after finding a match -->
-                                                    @endif
-                                                @endforeach
-                                                
-                                                @if ($loop->last) <!-- Check if it's the last iteration of the loop -->
-                                                    <div class='status'>     
-                                                        <p>No Submission</p>
-                                                    </div>
-                                                @endif
-                                                
-                                                
-                                                </div>
-                
-                                                @endif
-                                                
-                                            @endforeach
-                
-                                        </main>
-                                    </div>
+
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
+
+
+                                <div class="accordion-item-body">
+                                    <div class="accordion-item-body-content">
+                                        <div class='app'>
+                                            <main class='project'>
+                                                @foreach ($acts as $act)
+                                                    @if ($act->task_code === $task->task_code)
+                                                        <div class='project-tasks'>
+                                                            <a href="{{ route('view_student_tasks', $act->id) }}"
+                                                                class="project-column-header__link">
+                                                                <i class="task-img fas fa-clipboard-list"></i>
+                                                                <div class='project-column'>
+                                                                    <h2 class='project-column-header__title'>
+                                                                        {{ $act->title }}</h2>
+                                                            </a>
+
+                                                            <div class='task'>
+                                                                <p>Due Date:
+                                                                    {{ \Carbon\Carbon::parse($act->due_date)->format('F d, Y') }}
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        @php
+                                                            $submissionFound = false;
+                                                            $reviewFound = false;
+                                                        @endphp
+                                                        @foreach ($outputs as $output)
+                                                            @if ($act->id == $output->activity_code && $output->status == 'pending')
+                                                                <div class='status'>
+                                                                    <p>Submitted </p>
+                                                                </div>
+
+                                                                @php
+                                                                    $submissionFound = true;
+                                                                    break;
+                                                                @endphp
+
+                                                                <!-- Exit the loop after finding a match -->
+                                                            @elseif($act->id == $output->activity_code && $output->status == 'Reviewed')
+                                                                <div class='status-done'>
+                                                                    <p>{{ $output->status }} by the Project Adviser</p>
+                                                                </div>
+                                                                @php
+                                                                    $reviewFound = true;
+                                                                    break;
+                                                                @endphp
+
+                                                                <!-- Exit the loop after finding a match -->
+                                                            @endif
+                                                        @endforeach
+
+                                                        @if (!$submissionFound && !$reviewFound)
+                                                            <!-- Check if it's the last iteration of the loop -->
+                                                            <div class='status-warning'>
+                                                                <p>No Submission</p>
+                                                            </div>
+                                                        @endif
+
+
+                                        </div>
+                    @endif
+                    @endforeach
+
+                    </main>
                 </div>
             </div>
         </div>
+    </div>
+    </div>
+    @endforeach
+    </div>
+    </div>
+    </div>
     </div>
     </div>
     </div>

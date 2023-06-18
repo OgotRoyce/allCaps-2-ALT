@@ -19,17 +19,17 @@ class AdvisoreeController extends Controller
     {
         $user = auth('adviser')->user();
         $userID = $user->id;
-        
+
         $adviser = Adviser::where('id', $userID)->first();
         $students = Student::whereIn('adviser_id', [$adviser->id])
-                            ->where('status', 'accepted')
-                            ->get();
+            ->where('status', 'accepted')
+            ->get();
 
         // dd($adviser);
         return view('Adviser.Advisoree.index', ['adviser' => $adviser, 'students' => $students]);
     }
-    
-    
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -39,7 +39,7 @@ class AdvisoreeController extends Controller
         return view('Adviser.Advisoree.create');
     }
 
-    
+
     /**
      * Store a newly created resource in storage.
      */
@@ -56,7 +56,7 @@ class AdvisoreeController extends Controller
         $students = Student::where('id', $id)->first();
         $projects = Projects::where('user_id', $id)->first();
         // dd($projects);
-        return view('Adviser.Advisoree.view',['students'=>$students, 'projects'=>$projects]);
+        return view('Adviser.Advisoree.view', ['students' => $students, 'projects' => $projects]);
     }
 
     /**
@@ -72,14 +72,25 @@ class AdvisoreeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        // Find the student by ID and remove the adviser
+        $student = Student::findOrFail($id);
+        $adviserId = $student->adviser_id;
+        $student->adviser_id = null;
+        $student->status = 'pending';
+        $student->save();
+
+        // Decrease the counter of the adviser
+        $adviser = Adviser::findOrFail($adviserId);
+        $adviser->counter = max(0, $adviser->counter - 1);
+        $adviser->save();
+
+        return redirect()->route('advisoree')->with('success', 'Student removed successfully.');
     }
 }

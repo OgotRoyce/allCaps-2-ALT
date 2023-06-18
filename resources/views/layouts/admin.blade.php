@@ -46,8 +46,9 @@ date_default_timezone_set('Asia/Manila');
         display: flex;
         align-items: center;
         padding: 20px;
-        
+
     }
+
     .role {
         font-family: 'Poppins', sans-serif;
         font-size: 32px;
@@ -208,44 +209,44 @@ date_default_timezone_set('Asia/Manila');
                     </div>
 
                     <h2 class="role mt-2 text-center"> ADMIN </h2>
-                        <ul class="navbar-nav" id="navbar-nav">
-                            <!-- <li class="menu-title text-white"><span data-key="t-menu">Menu</span></li> -->
+                    <ul class="navbar-nav" id="navbar-nav">
+                        <!-- <li class="menu-title text-white"><span data-key="t-menu">Menu</span></li> -->
 
 
-                            <li class="nav-item">
-                                <a class="nav-link menu-link text-white" href="{{ route('tasks_admin') }}">
-                                    {{-- services --}}
+                        <li class="nav-item">
+                            <a class="nav-link menu-link text-white" href="{{ route('tasks_admin') }}">
+                                {{-- services --}}
 
 
-                                    <i class="ri-file-list-2-fill"></i> <span data-key="t-dashboards">Tasks</span>
+                                <i class="ri-file-list-2-fill"></i> <span data-key="t-dashboards">Tasks</span>
 
-                                </a>
-                            </li>
+                            </a>
+                        </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link menu-link text-white" href="{{ route('adviser') }}">
-                                    {{-- appointment --}}
-                                    <i class="ri-user-2-fill"></i> <span data-key="t-pages">Advisers</span>
-                                </a>
-                            </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link text-white" href="{{ route('adviser') }}">
+                                {{-- appointment --}}
+                                <i class="ri-user-2-fill"></i> <span data-key="t-pages">Advisers</span>
+                            </a>
+                        </li>
 
 
 
-                            <li class="nav-item">
-                                <a class="nav-link menu-link text-white" href="{{ route('projects_admin') }}">
-                                    {{-- course --}}
-                                    <i class="ri-layout-3-line"></i> <span data-key="t-layouts">Projects</span>
-                                </a>
-                            </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link text-white" href="{{ route('projects_admin') }}">
+                                {{-- course --}}
+                                <i class="ri-layout-3-line"></i> <span data-key="t-layouts">Projects</span>
+                            </a>
+                        </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link menu-link text-white" href="{{ route('students_admin') }}">
-                                    {{-- member --}}
+                        <li class="nav-item">
+                            <a class="nav-link menu-link text-white" href="{{ route('students_admin') }}">
+                                {{-- member --}}
 
-                                    <i class="ri-team-fill"></i> <span data-key="t-dashboards">Students</span>
+                                <i class="ri-team-fill"></i> <span data-key="t-dashboards">Students</span>
 
-                                </a>
-                            </li>
+                            </a>
+                        </li>
 
                 </div>
                 <!-- <div class="logout-container">
@@ -316,6 +317,7 @@ date_default_timezone_set('Asia/Manila');
         <script src="{{ asset('/js/pages/animation-aos.init.js') }}"></script>
         <!-- App js -->
         <script src="{{ asset('js/app.js') }}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
         <script>
             const logoutButton = document.querySelector('.logout-button');
             logoutButton.addEventListener('click', (e) => {

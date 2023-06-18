@@ -29,11 +29,9 @@
         margin-bottom: 20px;
     }
 
-    .back-btn {
-        
-    }
+    .back-btn {}
 
-    
+
     .profile {
         margin: 20px 0;
     }
@@ -110,7 +108,7 @@
         font-weight: 600;
         margin-bottom: 15px;
     }
-    
+
     /* Profile Content */
     .profile-content {
         padding: 20px;
@@ -181,101 +179,112 @@
 </style>
 
 @section('content')
-<div class="container-fluid">
+    <div class="container-fluid">
 
-    <div class="modal-header row align-items-center">
-        <div class="col">
-            <a href="{{ route('advisoree') }}">
-                <button type="button" class="btn back-btn btn-outline-danger">Back</button>
-            </a>
-        </div>
-    </div>
-
-    <div class="live-preview">
-      <div class="row">
-        <div class="col-12">
-          <div class="d-flex justify-content-between align-items-center">
-            <h5 class="header mt-2"><i class="fas fa-user"></i>Advisee</h5>
-                <a class="delete-button" onclick="event.preventDefault(); DeleteTaskConfirmation()">
-                <i class="fas fa-user-slash" style="color: #8a8a8a; font-size: 28px; margin-right: 20px;"></i>
+        <div class="modal-header row align-items-center">
+            <div class="col">
+                <a href="{{ route('advisoree') }}">
+                    <button type="button" class="btn back-btn btn-outline-danger">Back</button>
                 </a>
-          </div>
-          <div class="header-line"></div>
+            </div>
         </div>
-      </div>
- 
-      <div class="container-fluid">
-        <div class="row profile">
-            <div class="col-md-3">
-                <div class="profile-sidebar">
-                    <div class="profile-userpic">
-                        {{-- <img src="{{ asset('/images/no_image.jpg') }}"  /> --}}
-                        <img class="avatar" src="{{ asset('pictures/'.($students->photo ? $students->photo : 'pic.png')) }}"/>
 
+        <div class="live-preview">
+            <div class="row">
+                <div class="col-12">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="header mt-2"><i class="fas fa-user"></i>Advisee</h5>
+                        <a class="delete-button" onclick="event.preventDefault(); DeleteTaskConfirmation()">
+                            <i class="fas fa-user-slash" style="color: #8a8a8a; font-size: 28px; margin-right: 20px;"></i>
+                        </a>
                     </div>
-                    <div class="profile-usertitle">
-                        <div class="profile-usertitle-name">
-                            <h5 class="member-name">{{$students->first_name}} {{$students->last_name}}</h5>
-                        </div>
-                        <div class="profile-usertitle-group">
-                            <h6 class="member-group">
-                                <b>{{$students->group_name}}</b></h6>
-                        </div>
-                        <div class="profile-usertitle-email">
-                            <h6 class="member-email mb-2 text-muted"><strong>Email:</strong>
-                               {{$students->email}}</h6>
-                        </div>
+                    <div class="header-line"></div>
 
-                    </div> 
-                </div> 
+                </div>
             </div>
 
-                <div class="col-md-9">
-                    <div class="profile-content">
-                        <div class="profile-project-details">
-                            <h5 class="profile-project-head"><i class="fas fa-folder-open"></i> Project </h5>
-                            <div class="header-line-2"></div>
-                            {{-- @foreach ($projects as $item) --}}
-                            <div class="project-container">
-                                @if($projects)
-                                <div class="project-img">
-                                    {{-- <img class="app-logo" src="{{ asset('/images/no_image.jpg') }}"  /> --}}
-                                    <img class="app-logo" src="{{ asset('pictures/'.($projects->logo ? $projects->logo : 'pic.png')) }}"  />
-                                </div>
-                                <div class="card-content">
-                                    <h4 class="project-title">{{$projects->title}}</h4>
-                                    <div class="project-subtitle">
-                                        <p>{{$projects->description}}</p>
-                                        <p style="font-size: 12px; color: #666;">Developed by <b>{{$projects->group_name}}</b></p>
-                                    </div>
-                                </div>
-                            @else
-                                <p>No project found.</p>
-                            @endif
-                            
+            <div class="container-fluid">
+                <div class="row profile">
+                    <div class="col-md-3">
+                        <div class="profile-sidebar">
+                            <div class="profile-userpic">
+                                {{-- <img src="{{ asset('/images/no_image.jpg') }}"  /> --}}
+                                <img class="avatar"
+                                    src="{{ asset('pictures/' . ($students->photo ? $students->photo : 'pic.png')) }}" />
+
                             </div>
-                            {{-- @endforeach --}}
+                            <div class="profile-usertitle">
+                                <div class="profile-usertitle-name">
+                                    <h5 class="member-name">{{ $students->first_name }} {{ $students->last_name }}</h5>
+                                </div>
+                                <div class="profile-usertitle-group">
+                                    <h6 class="member-group">
+                                        <b>{{ $students->group_name }}</b>
+                                    </h6>
+                                </div>
+                                <div class="profile-usertitle-email">
+                                    <h6 class="member-email mb-2 text-muted"><strong>Email:</strong>
+                                        {{ $students->email }}</h6>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-9">
+                        <div class="profile-content">
+                            <div class="profile-project-details">
+                                <h5 class="profile-project-head"><i class="fas fa-folder-open"></i> Project </h5>
+                                <div class="header-line-2"></div>
+                                {{-- @foreach ($projects as $item) --}}
+                                <div class="project-container">
+                                    @if ($projects)
+                                        <div class="project-img">
+                                            {{-- <img class="app-logo" src="{{ asset('/images/no_image.jpg') }}"  /> --}}
+                                            <img class="app-logo"
+                                                src="{{ asset('pictures/' . ($projects->logo ? $projects->logo : 'pic.png')) }}" />
+                                        </div>
+                                        <div class="card-content">
+                                            <h4 class="project-title">{{ $projects->title }}</h4>
+                                            <div class="project-subtitle">
+                                                <p>{{ $projects->description }}</p>
+                                                <p style="font-size: 12px; color: #666;">Developed by
+                                                    <b>{{ $projects->group_name }}</b>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    @else
+                                        <p>No project found.</p>
+                                    @endif
+
+                                </div>
+                                {{-- @endforeach --}}
+                            </div>
                         </div>
                     </div>
                 </div>
-    </div>
-  </div>
-  @endsection
+            </div>
+            <form id="delete-form" action="{{ route('delete_advisoree', $students->id) }}" method="POST"
+                style="display: none;">
+                @csrf
+                @method('DELETE')
+            </form>
+        @endsection
 
-  <script>
-    function DeleteTaskConfirmation() {
-        Swal.fire({
-            title: 'Are you sure?',
-            text: 'You are about to remove this student as your advisee!',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#3085d6',
-            confirmButtonText: 'Delete'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                document.getElementById('delete-form').submit();
+        <script>
+            function DeleteTaskConfirmation() {
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: 'You are about to remove this student as your advisee!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Delete'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.getElementById('delete-form').submit();
+                    }
+                });
             }
-        });
-    }
-</script>
+        </script>

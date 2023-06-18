@@ -22,4 +22,9 @@ class Projects extends Model
     {
         return $this->belongsTo(Student::class, 'user_id');
     }
+
+    public function student()
+    {
+        return $this->belongsTo(Student::class, 'user_id');
+    }
 }

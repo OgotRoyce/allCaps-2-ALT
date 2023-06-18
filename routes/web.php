@@ -75,7 +75,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::delete('/delete/{id}', ['as' => 'delete_adviser', 'uses' => "AdviserController@destroy"]);
         Route::get('/show/{id}', ['as' => 'view_adviser', 'uses' => "AdviserController@show"]);
         Route::get('/adviser/{id}/students/count', 'AdviserController@studentsCount')->name('adviser.students.count');
-        // Route::get('/show/{id}', ['as' => 'view_advisee', 'uses' => "AdviserController@show"]);    
+        // Route::get('/show/{id}', ['as' => 'view_advisee', 'uses' => "AdviserController@show"]);
     });
 });
 
@@ -96,6 +96,7 @@ Route::group(['prefix' => 'adviser', 'namespace' => 'Adviser'], function () {
 
     Route::group(['prefix' => 'advisoree',], function () {
         Route::get('/', ['as' => 'advisoree', 'uses' => 'AdvisoreeController@index']);
+        Route::delete('/delete/{id}', ['as' => 'delete_advisoree', 'uses' => "AdvisoreeController@destroy"]);
         Route::get('/show/{id}', ['as' => 'view_advisoree', 'uses' => "AdvisoreeController@show"]);
     });
     Route::group(['prefix' => 'adviser_task',], function () {
@@ -113,6 +114,9 @@ Route::group(['prefix' => 'adviser', 'namespace' => 'Adviser'], function () {
 
     Route::group(['prefix' => 'submissions_adviser'], function () {
         Route::get('/{task_code}', ['as' => 'submissions_adviser', 'uses' => "SubmissionController@index"]);
+        Route::put('/accept/{task_code}', ['as' => 'accept_tasks', 'uses' => "SubmissionController@accept"]);
+        Route::put('/reject/{task_code}', ['as' => 'reject_tasks', 'uses' => "SubmissionController@reject"]);
+
         Route::put('/update/{task_code}', ['as' => 'review_tasks', 'uses' => "SubmissionController@update"]);
     });
 });

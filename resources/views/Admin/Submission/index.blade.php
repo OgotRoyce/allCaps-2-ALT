@@ -37,12 +37,35 @@
         border-radius: 10px;
     }
 
+    .status-label {
+        display: inline-block;
+        padding: 5px 10px;
+        font-size: 12px;
+        font-weight: bold;
+        border-radius: 4px;
+    }
+
+    .status-accepted {
+        background-color: #28a745;
+        color: #fff;
+    }
+
+    .status-rejected {
+        background-color: #dc3545;
+        color: #fff;
+    }
+
+    .status-pending {
+        background-color: #ffc107;
+        color: #212529;
+    }
+
+
 
     thead {
         background-color: #f7f6f6;
-        
-    }
 
+    }
 </style>
 
 @section('content')
@@ -56,39 +79,63 @@
         </div>
         <div class="col-lg-12">
             <div class="d-flex justify-content-between align-items-center">
-              <h5 class="header mt-2"><i class="fas fa-file me-2"></i> Submissions </h5>
+                <h5 class="header mt-2"><i class="fas fa-file me-2"></i> Submissions </h5>
             </div>
             <div class="header-line"></div>
 
-          <div class="container-fluid">
-            <div class="row table-card">
-                       
-                <table class="table">
-                    <thead>
-                    <tr>
-                    <th>Name</th>
-                    <th>Date submitted</th>
-                    <th>Status</th>
-                    <th class="col-sm-4">Attachment</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($acts as $item)   
-                    <tr>
-                    <td>{{$item->first_name}} {{$item->last_name}}</td>
-                    <td>{{$item->created_at}}</td>
-                    <td>{{$item->status}}</td>
-                    <td>
-                        <a href="{{ asset('file/' . $item->attachments) }}" download>{{ $item->attachments }}</a>
-                        {{-- <a class="btn btn-danger" href="#">View</a> --}}
-                    </td>
-                    </tr>
-                    </tbody>
-                    @endforeach
-                </table>
-  
-            </div>
+            <div class="container-fluid">
+                <div class="row table-card">
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Group Name</th>
+                                <th>Date submitted</th>
+                                <th>Task Name</th>
+                                <th>Status</th>
+                                <th class="col-sm-4">Attachment</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($acts as $item)
+                                <tr>
+                                    <td>{{ $item->first_name }} {{ $item->last_name }}</td>
+                                    <td>{{ $item->group_name }}</td>
+                                    <td>{{ $item->created_at }}</td>
+                                    <td>{{ $item->task }}</td>
+
+                                    <td>
+                                        <span
+                                            class="status-label
+                                                @if ($item->status == 'Accepted') status-accepted
+                                                @elseif ($item->status == 'Rejected')
+                                                    status-rejected
+                                                @elseif ($item->status == 'pending')
+                                                    status-pending @endif
+                                            ">
+                                            {{ $item->status }}
+                                        </span>
+                                    </td>
+
+
+
+                                    {{-- <td>
+                                        <a href="{{ asset('file/' . $item->attachments) }}"
+                                            download>{{ $item->attachments }}</a>
+                                    </td> --}}
+                                    <td>
+                                        <a href="{{ asset('file/' . $item->attachments) }}"
+                                            target="_blank">{{ $item->attachments }}</a>
+                                        {{-- IF THE FILE IS .PDF, magbubukas lang sa new window, pero pag .docx, madodownload --}}
+                                    </td>
+                                </tr>
+                        </tbody>
+                        @endforeach
+                    </table>
+
+                </div>
             </div>
         </div>
-        </div>
+    </div>
 @endsection

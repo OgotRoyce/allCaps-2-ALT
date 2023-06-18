@@ -31,6 +31,7 @@ date_default_timezone_set('Asia/Manila');
         href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.0.18/sweetalert2.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.0.18/sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,500,600&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 
 
     {{-- boostrap CDN --}}
@@ -266,6 +267,7 @@ date_default_timezone_set('Asia/Manila');
 <script src="assets/js/app.js"></script> --}}
 
         <script src="{{ asset('libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
         <script src="{{ asset('libs/simplebar/simplebar.min.js') }}"></script>
         <script src="{{ asset('libs/node-waves/waves.min.js') }}"></script>
         <script src="{{ asset('libs/feather-icons/feather.min.js') }}"></script>
@@ -279,6 +281,7 @@ date_default_timezone_set('Asia/Manila');
         <!-- App js -->
         <script src="{{ asset('js/app.js') }}"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
         <script>
             const logoutButton = document.querySelector('.logout-button');
             logoutButton.addEventListener('click', (e) => {
