@@ -309,8 +309,16 @@
                                                                 @endphp
 
                                                                 <!-- Exit the loop after finding a match -->
-                                                            @elseif($act->id == $output->activity_code && $output->status == 'Reviewed')
+                                                            @elseif($act->id == $output->activity_code && $output->status == 'Accepted')
                                                                 <div class='status-done'>
+                                                                    <p>{{ $output->status }} by the Project Adviser</p>
+                                                                </div>
+                                                                @php
+                                                                    $reviewFound = true;
+                                                                    break;
+                                                                @endphp
+                                                            @elseif($act->id == $output->activity_code && $output->status == 'Rejected')
+                                                                <div class='status-warning'>
                                                                     <p>{{ $output->status }} by the Project Adviser</p>
                                                                 </div>
                                                                 @php

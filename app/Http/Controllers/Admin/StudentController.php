@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Student;
+use App\Models\Adviser;
+use App\Models\Projects;
 use App\Http\Requests\StudentRequest;
 use Illuminate\Support\Facades\Hash;
 use Nette\Utils\Random;
@@ -61,13 +63,19 @@ class StudentController extends Controller
     /**
      * Display the specified resource.
      */
+
+    // $students = Student::find($id);
+    // $projects = Projects::where('user_id', $id)->first();
+    // // dd($projects);
+    // return view('Admin.Student.view', ['students' => $students, 'projects' => $projects]);
+
     public function show(string $id)
     {
-        return view('Admin.Students.view');
-        // $students = Student::find($id);
-        // $projects = Projects::where('user_id', $id)->first();
-        // // dd($projects);
-        // return view('Admin.Student.view', ['students' => $students, 'projects' => $projects]);
+        $student = Student::with('adviser')->findOrFail($id);
+        $project = Projects::where('user_id', $student->id)->first();
+
+
+        return view('Admin.Students.view', compact('student', 'project'));
     }
 
     /**

@@ -26,4 +26,9 @@ class Student extends Authenticatable
     {
         return $this->hasMany(Project::class, 'user_id');
     }
+
+    public function adviser()
+    {
+        return $this->belongsTo(Adviser::class);
+    }
 }

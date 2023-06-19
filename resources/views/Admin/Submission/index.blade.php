@@ -92,22 +92,23 @@
                     <a href="{{ route('tasks_admin') }}">
                         <button type="button" class="btn back-btn btn-outline-danger">Back</button>
                     </a>
-                    <h5 class="header-2 mt-2 ml-3"> Task Name Here </h5>
+                    <h5 class="header-2 mt-2 ml-3"> {{ $task->task }}</h5>
                 </div>
             </div>
-        </div>        
+        </div>
         <div class="col-lg-12">
             <div class="d-flex align-items-center">
                 <h5 class="header mt-2"><i class="fas fa-file me-2"></i> Submissions </h5>
             </div>
             <div class="header-line"></div>
-    
+
             <div class="container-fluid">
                 <div class="row table-card">
 
                     <table class="table">
                         <thead>
                             <tr>
+                                <th>No</th>
                                 <th>Name</th>
                                 <th>Group Name</th>
                                 <th>Date submitted</th>
@@ -117,8 +118,12 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @php
+                                $counter = 1;
+                            @endphp
                             @foreach ($acts as $item)
                                 <tr>
+                                    <td>{{ $counter }}</td>
                                     <td>{{ $item->first_name }} {{ $item->last_name }}</td>
                                     <td>{{ $item->group_name }}</td>
                                     <td>{{ $item->created_at }}</td>
@@ -150,6 +155,9 @@
                                     </td>
                                 </tr>
                         </tbody>
+                        @php
+                            $counter++;
+                        @endphp
                         @endforeach
                     </table>
 

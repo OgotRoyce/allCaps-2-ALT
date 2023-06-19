@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Adviser;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Output;
+use App\Models\Task;
 use App\Models\Activity;
 
 class SubmissionController extends Controller
@@ -50,12 +51,11 @@ class SubmissionController extends Controller
     {
         $user = auth('adviser')->user();
         $userID = $user->id;
-
         $pending = Output::where('output.task_code', $task_code)
             ->where('output.adviser_id', $userID)
             ->where('output.status', 'pending')
             ->join('tasks', 'output.task_code', '=', 'tasks.task_code')
-            ->leftJoin('student', 'output.student_id', '=', 'student.id')
+            ->leftJoin('student', 'output.student_id', '=', 'student.account_code')
             ->leftJoin('projects', 'student.id', '=', 'projects.user_id')
             ->select('output.*', 'tasks.task', 'projects.group_name')
             ->orderBy('output.created_at', 'desc')
@@ -65,13 +65,17 @@ class SubmissionController extends Controller
             ->where('output.adviser_id', $userID)
             ->where('output.status', 'Accepted')
             ->join('tasks', 'output.task_code', '=', 'tasks.task_code')
-            ->leftJoin('student', 'output.student_id', '=', 'student.id')
+            ->leftJoin('student', 'output.student_id', '=', 'student.account_code')
             ->leftJoin('projects', 'student.id', '=', 'projects.user_id')
             ->select('output.*', 'tasks.task', 'projects.group_name')
             ->orderBy('output.created_at', 'desc')
             ->get();
 
-        return view('Adviser.Submission.index', ['pending' => $pending, 'review' => $review]);
+
+
+        $task = Task::where('task_code', $task_code)->first();
+
+        return view('Adviser.Submission.index', ['pending' => $pending, 'review' => $review, 'task' => $task]);
     }
 
 

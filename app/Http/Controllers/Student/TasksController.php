@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Task;
 use App\Models\Activity;
 use App\Models\Output;
+use App\Models\Projects;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Str;
@@ -16,14 +17,24 @@ use Illuminate\Support\Facades\Auth;
 class TasksController extends Controller
 {
 
+    // public function index()
+    // {
+    //     $tasks = Task::all();
+    //     $acts = Activity::all();
+    //     $outputs = Output::whereIn('activity_code', $acts->pluck('id'))->get();
+    //     // dd($outputs);
+    //     return view('Student.Task.index', ['tasks' => $tasks, 'acts' => $acts, 'outputs' => $outputs]);
+    // }
     public function index()
     {
         $tasks = Task::all();
         $acts = Activity::all();
         $outputs = Output::whereIn('activity_code', $acts->pluck('id'))->get();
-        // dd($outputs);
-        return view('Student.Task.index', ['tasks' => $tasks, 'acts' => $acts, 'outputs' => $outputs]);
+        $hasProject = Projects::where('user_id', auth('student')->user()->id)->exists();
+
+        return view('Student.Task.index', ['tasks' => $tasks, 'acts' => $acts, 'outputs' => $outputs, 'hasProject' => $hasProject]);
     }
+
 
     // public function index()
     // {

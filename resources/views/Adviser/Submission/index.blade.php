@@ -87,10 +87,10 @@
                     <a href="{{ route('adviser_task') }}">
                         <button type="button" class="btn back-btn btn-outline-danger">Back</button>
                     </a>
-                    <h5 class="header-3 mt-2 ml-3"> Task Name Here </h5>
+                    <h5 class="header-3 mt-2 ml-3"> {{ $task->task }} </h5>
                 </div>
             </div>
-        </div>  
+        </div>
         <div class="d-flex justify-content-between align-items-center">
             <h5 class="header mt-2"><i class="fas fa-file me-2"></i> Submissions </h5>
         </div>
@@ -115,6 +115,7 @@
                 <table class="table">
                     <thead>
                         <tr>
+                            <td>No.</td>
                             <th>Name</th>
                             <th>Group Name</th>
                             <th>Date submitted</th>
@@ -124,9 +125,13 @@
                             <th>Action</th>
                         </tr>
                     </thead>
+                    @php
+                        $counter = 1;
+                    @endphp
                     @foreach ($pending as $item)
                         <tbody>
                             <tr>
+                                <td>{{ $counter }}</td>
                                 <td>{{ $item->first_name }} {{ $item->last_name }}</td>
                                 <td>{{ $item->group_name }}</td>
                                 <td>{{ $item->created_at }}</td>
@@ -135,6 +140,7 @@
                                 <td>
                                     <a href="{{ asset('file/' . $item->attachments) }}"
                                         target="_blank">{{ $item->attachments }}</a>
+
                                     {{-- IF THE FILE IS .PDF, magbubukas lang sa new window, pero pag .docx, madodownload --}}
                                     {{-- <a class="btn btn-danger" href="#">View</a> --}}
                                 </td>
@@ -158,6 +164,9 @@
 
                             </tr>
                         </tbody>
+                        @php
+                            $counter++;
+                        @endphp
                     @endforeach
                 </table>
             </div>
@@ -173,6 +182,7 @@
                     <table class="table">
                         <thead>
                             <tr>
+                                <td>No.</td>
                                 <th>Name</th>
                                 <th>Group Name</th>
                                 <th>Date submitted</th>
@@ -182,17 +192,27 @@
                                 {{-- <th>Status</th> --}}
                             </tr>
                         </thead>
+                        @php
+                            $counter = 1;
+                        @endphp
                         @foreach ($review as $reviewed)
                             <tbody>
+                                <td>{{ $counter }}</td>
                                 <td>{{ $reviewed->first_name }} {{ $reviewed->last_name }}</td>
                                 <td>{{ $reviewed->group_name }}</td>
                                 <td>{{ $reviewed->updated_at }}</td>
                                 {{-- <td>{{ $reviewed->task }}</td> --}}
-                                <td> <a href="{{ asset('file/' . $reviewed->attachments) }}"
-                                        download>{{ $reviewed->attachments }}</a></td>
+                                <td>
+                                    <a href="{{ asset('file/' . $reviewed->attachments) }}"
+                                        target="_blank">{{ $reviewed->attachments }}</a>
+
+                                </td>
                                 {{-- <td>{{ $reviewed->status }}</td> --}}
                                 </tr>
                             </tbody>
+                            @php
+                                $counter++;
+                            @endphp
                         @endforeach
                     </table>
                 </div>

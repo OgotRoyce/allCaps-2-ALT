@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Output;
+use App\Models\Task;
 use App\Models\Activity;
 
 class SubmissionController extends Controller
@@ -33,7 +34,9 @@ class SubmissionController extends Controller
             ->orderBy('output.created_at', 'desc')
             ->get();
 
-        return view('Admin.Submission.index', ['acts' => $acts]);
+        $task = Task::where('task_code', $task_code)->first();
+
+        return view('Admin.Submission.index', ['acts' => $acts, 'task' => $task]);
     }
 
 

@@ -139,7 +139,7 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: center; 
+        justify-content: center;
         margin-left: 15px;
     }
 
@@ -233,7 +233,7 @@
                 <div class="col-12">
                     <div class="d-flex justify-content-between align-items-center">
                         <h5 class="header mt-2"><i class="fas fa-user"></i>Student</h5>
-                        
+
                     </div>
                     <div class="header-line"></div>
 
@@ -247,21 +247,21 @@
                             <div class="profile-userpic">
                                 {{-- <img src="{{ asset('/images/no_image.jpg') }}"  /> --}}
                                 <img class="avatar"
-                                src="{{ asset('/images/no_image.jpg') }}"  />
+                                    src="{{ asset('pictures/' . ($student->photo ? $student->photo : 'pic.png')) }}" />
 
                             </div>
                             <div class="profile-usertitle">
                                 <div class="profile-usertitle-name">
-                                    <h5 class="member-name">Ken Ammay</h5>
+                                    <h5 class="member-name">{{ $student->first_name }} {{ $student->last_name }}</h5>
                                 </div>
                                 <div class="profile-usertitle-group">
                                     <h6 class="member-group">
-                                        <b>Group Name</b>
+                                        <b>{{ $project->group_name }}</b>
                                     </h6>
                                 </div>
                                 <div class="profile-usertitle-email">
                                     <h6 class="member-email mb-2 text-muted"><strong>Email:</strong>
-                                        email@sample.com</h6>
+                                        {{ $student->email }}</h6>
                                 </div>
 
                             </div>
@@ -276,31 +276,37 @@
                                 {{-- @foreach ($projects as $item) --}}
                                 <div class="project-container">
                                     {{-- @if ($projects) --}}
-                                        <div class="project-img">
-                                            {{-- <img class="app-logo" src="{{ asset('/images/no_image.jpg') }}"  /> --}}
-                                            <img class="app-logo"
-                                                src="{{ asset('/images/no_image.jpg') }}"  />
+                                    <div class="project-img">
+                                        {{-- <img class="app-logo" src="{{ asset('/images/no_image.jpg') }}"  /> --}}
+                                        <img class="app-logo"
+                                            src="{{ asset('pictures/' . ($project->logo ? $project->logo : 'pic.png')) }}" />
+                                    </div>
+                                    <div class="card-content">
+                                        <h4 class="project-title">{{ $project->title }}</h4>
+                                        <div class="project-subtitle">
+                                            <p>{{ $project->description }}</p>
+
                                         </div>
-                                        <div class="card-content">
-                                            <h4 class="project-title">Project Name</h4>
-                                            <div class="project-subtitle">
-                                                <p>Project description</p>
-                                                
-                                            </div>
-                                            <p style="font-size: 12px; color: #666; margin-bottom: 5px;">Advisee of</p>
-                                            <div class="adviser-container">
-                                                
+                                        <p style="font-size: 12px; color: #666; margin-bottom: 5px;">Advisee of</p>
+                                        <div class="adviser-container">
+                                            @if ($student->adviser)
                                                 <div class="adviser-img">
                                                     {{-- <img class="app-logo" src="{{ asset('/images/no_image.jpg') }}"  /> --}}
                                                     <img class="adv-logo"
-                                                        src="{{ asset('/images/no_image.jpg') }}"  />
+                                                        src="{{ asset('pictures/' . ($student->adviser->photo ? $student->adviser->photo : 'pic.png')) }}" />
                                                 </div>
                                                 <div class="adviser-content">
-                                                    <h5 class="adviser-name">Adviser Name</h5>
+                                                    <h5 class="adviser-name">{{ $student->adviser->first_name }}
+                                                        {{ $student->adviser->last_name }}</h5>
                                                 </div>
-                                            </div>
+                                            @else
+                                                <div class="adviser-content">
+                                                    <h5 class="adviser-name">No Adviser Yet</h5>
+                                                </div>
+                                            @endif
                                         </div>
-                                        
+                                    </div>
+
                                     {{-- @else
                                         <p>No project found.</p>
                                     @endif --}}
@@ -313,6 +319,4 @@
                     </div>
                 </div>
             </div>
-
         @endsection
-
