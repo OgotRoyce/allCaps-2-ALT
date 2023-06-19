@@ -124,6 +124,7 @@
     }
 
     .name {
+        color: #25272a;
         font-weight: 900;
         position: relative;
         margin-top: -64px;
@@ -199,6 +200,7 @@
     @endphp
     @foreach ($sorted_students as $item)
         <div class="col-md-4 col-lg-3">
+            <a href="{{ route('view_student', $item->id) }}">
             <div class="profile-card">
                 {{-- <img class="avatar" src="{{ asset('images/pic.png') }}" alt="Avatar" /> --}}
                 <img class="avatar" src="{{ asset('pictures/'.($item->photo ? $item->photo : 'pic.png')) }}"  />
@@ -207,6 +209,7 @@
                 <div class="group"><b>Group:</b> {{ $item->group_name }}</div>
                 <div class="email">{{ $item->email }}</div>
             </div>
+        </a>
         </div>
     @endforeach
 </div>

@@ -10,6 +10,19 @@
         /* add this to center items vertically */
     }
 
+    .header-2 {
+        font-family: 'Poppins', sans-serif;
+        font-size: 28px;
+        /* font-weight: 200; */
+        font-weight: 700;
+        color: #495057;
+        display: flex;
+        /* add this to enable flexbox */
+        align-items: center;
+        /* add this to center items vertically */
+        margin-left: 30px;
+    }
+
     .header i {
         margin-right: 10px;
         /* adjust this value to increase/decrease the space */
@@ -18,7 +31,7 @@
     .header-line {
         height: 1px;
         background-color: #bfbfbf;
-        margin-bottom: 40px;
+        margin-bottom: 30px;
     }
 
     .back-btn {
@@ -75,17 +88,20 @@
     <div class="container-fluid">
         <div class="modal-header row align-items-center">
             <div class="col">
-                <a href="{{ route('tasks_admin') }}">
-                    <button type="button" class="btn back-btn btn-outline-danger">Back</button>
-                </a>
+                <div class="d-flex align-items-center">
+                    <a href="{{ route('tasks_admin') }}">
+                        <button type="button" class="btn back-btn btn-outline-danger">Back</button>
+                    </a>
+                    <h5 class="header-2 mt-2 ml-3"> Task Name Here </h5>
+                </div>
             </div>
-        </div>
+        </div>        
         <div class="col-lg-12">
-            <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
                 <h5 class="header mt-2"><i class="fas fa-file me-2"></i> Submissions </h5>
             </div>
             <div class="header-line"></div>
-
+    
             <div class="container-fluid">
                 <div class="row table-card">
 
@@ -95,7 +111,7 @@
                                 <th>Name</th>
                                 <th>Group Name</th>
                                 <th>Date submitted</th>
-                                <th>Task Name</th>
+                                {{-- <th>Task Name</th> --}}
                                 <th>Status</th>
                                 <th class="col-sm-4">Attachment</th>
                             </tr>
@@ -106,7 +122,7 @@
                                     <td>{{ $item->first_name }} {{ $item->last_name }}</td>
                                     <td>{{ $item->group_name }}</td>
                                     <td>{{ $item->created_at }}</td>
-                                    <td>{{ $item->task }}</td>
+                                    {{-- <td>{{ $item->task }}</td> --}}
 
                                     <td>
                                         <span

@@ -63,7 +63,11 @@ class StudentController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return view('Admin.Students.view');
+        // $students = Student::find($id);
+        // $projects = Projects::where('user_id', $id)->first();
+        // // dd($projects);
+        // return view('Admin.Student.view', ['students' => $students, 'projects' => $projects]);
     }
 
     /**
