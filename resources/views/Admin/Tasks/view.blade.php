@@ -201,7 +201,7 @@
     @if ($acts)
     
             <div class="col text-end">
-                <a href="{{ route('submissions_admin', $acts->task_code) }}">
+                <a href="{{ route('submissions_admin', $acts->id) }}">
                     <h5 class="submit-header mb-0"><i class="fas fa-file me-2"></i> Submissions</h5>
                 </a>
             </div>

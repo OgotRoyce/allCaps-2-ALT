@@ -92,7 +92,9 @@
                     <a href="{{ route('tasks_admin') }}">
                         <button type="button" class="btn back-btn btn-outline-danger">Back</button>
                     </a>
-                    <h5 class="header-2 mt-2 ml-3"> {{ $task->task }}</h5>
+                    @foreach ($titles as $item)
+                    <h5 class="header-2 mt-2 ml-3"> {{ $item }}</h5>
+                    @endforeach
                 </div>
             </div>
         </div>

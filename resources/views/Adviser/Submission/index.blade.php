@@ -87,7 +87,9 @@
                     <a href="{{ route('adviser_task') }}">
                         <button type="button" class="btn back-btn btn-outline-danger">Back</button>
                     </a>
-                    <h5 class="header-3 mt-2 ml-3"> {{ $task->task }} </h5>
+                    @foreach ($titles as $item)
+                    <h5 class="header-2 mt-2 ml-3"> {{ $item }}</h5>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -138,8 +140,16 @@
                                 {{-- <td>{{$item->status}}</td> --}}
                                 {{-- <td>{{ $item->task }}</td> --}}
                                 <td>
-                                    <a href="{{ asset('file/' . $item->attachments) }}"
+                                    {{-- <a href="{{ asset('file/' . $item->attachments) }}"
                                         target="_blank">{{ $item->attachments }}</a>
+
+                                        <iframe src="{{ asset('file/' . $item->attachments) }}" frameborder="0" width="100%" height="500"></iframe> --}}
+
+                                    @if (pathinfo($item->attachments, PATHINFO_EXTENSION) === 'docx')
+                                        <a href="{{ asset('file/' . $item->attachments) }}" target="_blank">{{ $item->attachments }}</a>
+                                    @else
+                                        <iframe src="{{ asset('file/' . $item->attachments) }}" frameborder="0" width="100%" height="500"></iframe>
+                                    @endif
 
                                     {{-- IF THE FILE IS .PDF, magbubukas lang sa new window, pero pag .docx, madodownload --}}
                                     {{-- <a class="btn btn-danger" href="#">View</a> --}}

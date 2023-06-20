@@ -15,29 +15,29 @@ class SubmissionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function index($id)
+    {
+        $acts = Output::where('activity_code', $id)->get();
+        $titles = $acts->pluck('title')->toArray();
+        $titles = array_values(array_unique($titles, SORT_REGULAR));
+    
+        return view('Admin.Submission.index', ['acts' => $acts, 'titles' => $titles]);
+    }
+    
     // public function index($task_code)
     // {
     //     $acts = Output::where('output.task_code', $task_code)
     //         ->join('tasks', 'output.task_code', '=', 'tasks.task_code')
-    //         ->select('output.*', 'tasks.task')
+    //         ->leftJoin('student', 'output.student_id', '=', 'student.account_code')
+    //         ->leftJoin('projects', 'student.id', '=', 'projects.user_id')
+    //         ->select('output.*', 'tasks.task', 'projects.group_name')
+    //         ->orderBy('output.created_at', 'desc')
     //         ->get();
 
-    //     return view('Admin.Submission.index', ['acts' => $acts]);
+    //     $task = Task::where('task_code', $task_code)->first();
+
+    //     return view('Admin.Submission.index', ['acts' => $acts, 'task' => $task]);
     // }
-    public function index($task_code)
-    {
-        $acts = Output::where('output.task_code', $task_code)
-            ->join('tasks', 'output.task_code', '=', 'tasks.task_code')
-            ->leftJoin('student', 'output.student_id', '=', 'student.account_code')
-            ->leftJoin('projects', 'student.id', '=', 'projects.user_id')
-            ->select('output.*', 'tasks.task', 'projects.group_name')
-            ->orderBy('output.created_at', 'desc')
-            ->get();
-
-        $task = Task::where('task_code', $task_code)->first();
-
-        return view('Admin.Submission.index', ['acts' => $acts, 'task' => $task]);
-    }
 
 
 

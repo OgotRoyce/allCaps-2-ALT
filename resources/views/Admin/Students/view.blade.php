@@ -256,7 +256,7 @@
                                 </div>
                                 <div class="profile-usertitle-group">
                                     <h6 class="member-group">
-                                        <b>{{ $project->group_name }}</b>
+                                        {{-- <b>{{ $project->group_name }}</b> --}}
                                     </h6>
                                 </div>
                                 <div class="profile-usertitle-email">
@@ -278,15 +278,24 @@
                                     {{-- @if ($projects) --}}
                                     <div class="project-img">
                                         {{-- <img class="app-logo" src="{{ asset('/images/no_image.jpg') }}"  /> --}}
-                                        <img class="app-logo"
-                                            src="{{ asset('pictures/' . ($project->logo ? $project->logo : 'pic.png')) }}" />
+                                        {{-- <img class="app-logo"
+                                            src="{{ asset('pictures/' . ($project->logo ? $project->logo : 'pic.png')) }}" /> --}}
+                                        @if ($project && $project->logo)
+                                            <img class="app-logo" src="{{ asset('pictures/' . $project->logo) }}" />
+                                        @else
+                                            <img class="app-logo" src="{{ asset('/images/no_image.jpg') }}"  />
+                                        @endif
+                                        
                                     </div>
                                     <div class="card-content">
+                                        @if ($project && $project->title &&  $project->description )
                                         <h4 class="project-title">{{ $project->title }}</h4>
                                         <div class="project-subtitle">
                                             <p>{{ $project->description }}</p>
-
                                         </div>
+                                        @else
+                                        <h4 class="project-title">No project yet</h4>
+                                        @endif
                                         <p style="font-size: 12px; color: #666; margin-bottom: 5px;">Advisee of</p>
                                         <div class="adviser-container">
                                             @if ($student->adviser)

@@ -8,7 +8,8 @@ date_default_timezone_set('Asia/Manila');
 
     <meta charset="utf-8" />
     <title>ALLCaps</title>
-    <link rel="icon" href="assets/images/AC icon.ico" type="image/icon type">
+    <link rel="icon" href="{{ asset('/images/AC icon.ico')  }}" type="image/x-icon">
+    {{-- <link rel="icon" href="assets/images/AC icon.ico" type="image/icon type"> --}}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />

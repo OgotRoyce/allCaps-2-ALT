@@ -19,6 +19,8 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- Scripts -->
     {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/css/login.css']) --}}
+    <link rel="icon" href="{{ asset('/images/AC icon.ico')  }}" type="image/x-icon">
+
 </head>
 
 <body>

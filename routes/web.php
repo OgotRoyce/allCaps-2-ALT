@@ -57,7 +57,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     });
 
     Route::group(['prefix' => 'submissions_admin'], function () {
-        Route::get('/{task_code}', ['as' => 'submissions_admin', 'uses' => "SubmissionController@index"]);
+        Route::get('/{id}', ['as' => 'submissions_admin', 'uses' => "SubmissionController@index"]);
     });
 
     Route::group(['prefix' => 'students_admin'], function () {
@@ -114,7 +114,7 @@ Route::group(['prefix' => 'adviser', 'namespace' => 'Adviser'], function () {
     });
 
     Route::group(['prefix' => 'submissions_adviser'], function () {
-        Route::get('/{task_code}', ['as' => 'submissions_adviser', 'uses' => "SubmissionController@index"]);
+        Route::get('/{id}', ['as' => 'submissions_adviser', 'uses' => "SubmissionController@index"]);
         Route::put('/accept/{task_code}', ['as' => 'accept_tasks', 'uses' => "SubmissionController@accept"]);
         Route::put('/reject/{task_code}', ['as' => 'reject_tasks', 'uses' => "SubmissionController@reject"]);
 
