@@ -23,18 +23,18 @@
     .header-line-2 {
         height: 1px;
         background-color: #bfbfbf;
-        margin-bottom: 10px;
+        margin-bottom: 20px;
     }
     
     .advisee-card {
             border-radius: 18px;
             background: #fff;
             padding: 18px 12px 42px 14px;
-            margin: 0 0 28px 0; /* modified */
+            /* margin: 0 0 28px 0; modified */
             width: fit-content, calc(33.33% - 40px);
             transition: .3s ease;
             border: 1px solid #bfbfbf;
-            margin-top: 20px;
+            /* margin-top: 20px; */
         }
     
         .advisee-card:hover {
