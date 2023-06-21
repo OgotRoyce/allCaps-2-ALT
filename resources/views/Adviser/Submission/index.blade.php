@@ -88,7 +88,7 @@
                         <button type="button" class="btn back-btn btn-outline-danger">Back</button>
                     </a>
                     @foreach ($titles as $item)
-                    <h5 class="header-2 mt-2 ml-3"> {{ $item }}</h5>
+                    <h5 class="header-3 mt-2 ml-3"> {{ $item }}</h5>
                     @endforeach
                 </div>
             </div>
