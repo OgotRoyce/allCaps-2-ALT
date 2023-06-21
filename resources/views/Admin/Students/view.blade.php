@@ -160,7 +160,8 @@
     }
 
     .adv-logo {
-        max-height: 30px;
+        height: 30px;
+        width: 30px;
         object-fit: cover;
         border-radius: 999px;
         border-color: #c4bfbf;
