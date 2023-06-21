@@ -188,7 +188,22 @@
         font-size: 24px !important;
     }
 
+    .project-title-2 {
+        font-style: italic;
+        margin-top: 0px;
+        font-weight: 700;
+        font-size: 24px !important;
+    }
+
     .adviser-name {
+        margin-top: 0px;
+        font-weight: 600;
+        font-size: 16px !important;
+        margin-bottom: 0;
+    }
+
+    .adviser-name-2 {
+        font-style: italic;
         margin-top: 0px;
         font-weight: 600;
         font-size: 16px !important;
@@ -295,7 +310,7 @@
                                             <p>{{ $project->description }}</p>
                                         </div>
                                         @else
-                                        <h4 class="project-title">No project yet</h4>
+                                        <h4 class="project-title-2">No project yet</h4>
                                         @endif
                                         <p style="font-size: 12px; color: #666; margin-bottom: 5px;">Advisee of</p>
                                         <div class="adviser-container">
@@ -311,7 +326,7 @@
                                                 </div>
                                             @else
                                                 <div class="adviser-content">
-                                                    <h5 class="adviser-name">No Adviser Yet</h5>
+                                                    <h5 class="adviser-name-2">No Adviser Yet</h5>
                                                 </div>
                                             @endif
                                         </div>
